@@ -60,6 +60,7 @@
             this.записатиТаблицюВБазуДанихToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститиТаблицюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.очиститиФайлиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сортуватиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ввестиКритерійСортуванняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сортуватиПоГрупіToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,7 +82,6 @@
             this.RBKnees = new System.Windows.Forms.RadioButton();
             this.RBSiting = new System.Windows.Forms.RadioButton();
             this.RBStanding = new System.Windows.Forms.RadioButton();
-            this.очиститиФайлиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.NReps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NWeight)).BeginInit();
@@ -541,6 +541,12 @@
             this.очиститиТаблицюToolStripMenuItem.Text = "Очистити таблиці";
             this.очиститиТаблицюToolStripMenuItem.Click += new System.EventHandler(this.очиститиТаблицюToolStripMenuItem_Click);
             // 
+            // очиститиФайлиToolStripMenuItem
+            // 
+            this.очиститиФайлиToolStripMenuItem.Name = "очиститиФайлиToolStripMenuItem";
+            this.очиститиФайлиToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.очиститиФайлиToolStripMenuItem.Text = "Очистити файли";
+            // 
             // сортуватиToolStripMenuItem
             // 
             this.сортуватиToolStripMenuItem.BackColor = System.Drawing.Color.Yellow;
@@ -775,12 +781,6 @@
             this.RBStanding.TabStop = true;
             this.RBStanding.Text = "Стоячи";
             this.RBStanding.UseVisualStyleBackColor = true;
-            // 
-            // очиститиФайлиToolStripMenuItem
-            // 
-            this.очиститиФайлиToolStripMenuItem.Name = "очиститиФайлиToolStripMenuItem";
-            this.очиститиФайлиToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
-            this.очиститиФайлиToolStripMenuItem.Text = "Очистити файли";
             // 
             // Form1
             // 

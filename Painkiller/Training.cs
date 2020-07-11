@@ -7,7 +7,7 @@ using System.Drawing;
 
 namespace Painkiller
 {
-    
+
     public class Base
     {
         public delegate void Message(object sender, MessageEventArgs e);
@@ -43,22 +43,16 @@ namespace Painkiller
 
         public DataTable TabMinTrain = new DataTable();
         public DataTable DovGroup = new DataTable();
-        public DataTable TabTrain = new DataTable();//відводить місце для таблиці тренувань для кожного екземпляру типу Base
+        public static DataTable TabTrain = new DataTable();//відводить місце для таблиці тренувань для кожного екземпляру типу Base
         public DataView TrainView;
-        string sdir, sNameFileAllTrain, sNameFileBadExercise, textRow;
-        public string SortCriteria;
+        string fileAllTrain, fileBadExercise, textRow;
+        public static string dialogCriteria;
         public static int numTypeTrain, length;
         public static string typeTrain;
         private Int32 j;
-        public Boolean clear;
-        public Base()
+        public Boolean isClearMinRes;
+        static Base()
         {
-            clear = false;
-            sdir = Directory.GetCurrentDirectory();
-            sNameFileAllTrain = $"{sdir}\\Все тренування.txt";
-            sNameFileBadExercise = $"{sdir}\\Відстаючі вправи.txt";
-            TrainView = new DataView(TabTrain);
-            //значення в лапках - значення властивості ColumnName
             DataColumn cNpp = new DataColumn("N_пп");
             DataColumn cNameGroup = new DataColumn("Група_мязів");
             DataColumn cTypeTrain = new DataColumn("Вид_тренування");
@@ -82,10 +76,19 @@ namespace Painkiller
             TabTrain.Columns.Add(cTypeTrain);
             TabTrain.Columns.Add(cNameExercice);
             TabTrain.Columns.Add(cBurden);
-            TabTrain.Columns.Add(cPosition);           
+            TabTrain.Columns.Add(cPosition);
             TabTrain.Columns.Add(cWeight);
             TabTrain.Columns.Add(cReps);
             TabTrain.Columns.Add(cSets);
+        }
+        public Base()
+        {
+            isClearMinRes = false;
+            fileAllTrain = "Все тренування.txt";
+            fileBadExercise = "Відстаючі вправи.txt";
+            TrainView = new DataView(TabTrain);
+            //значення в лапках - значення властивості ColumnName
+            
         }
         Int32 firstGroup = 0;//назва групи м'язів першого рядка
         public void TTrainingAddRow(String group, String exercise,
@@ -94,7 +97,7 @@ namespace Painkiller
             j = TabTrain.Rows.Count + 1;
             DataRow rowSklad = TabTrain.NewRow();
             //присвоюємо значення полів значення, отримані через параметри
-            rowSklad["N_пп"] = j++;
+            rowSklad["N_пп"] = j;
             rowSklad["Група_мязів"] = group;
             rowSklad["Вправа"] = exercise;
             rowSklad["Вид_тренування"] = typeTraining;
@@ -103,10 +106,10 @@ namespace Painkiller
             rowSklad["Max_вага"] = weight;
             rowSklad["К_сть_повторень_з_max_вагою"] = reps;
             rowSklad["Загальна_к_сть_підходів"] = sets;
-            if(j == 2)
+            if (j == 1)
             {
-                
-                if(group == "Ноги")
+
+                if (group == "Ноги")
                 {
                     firstGroup = 0;
                 }
@@ -141,7 +144,7 @@ namespace Painkiller
 
                 if (allTrain)
                 {
-                    StreamReader sr = new StreamReader(sNameFileAllTrain);
+                    StreamReader sr = new StreamReader(fileAllTrain);
                     while (sr.Peek() >= 0)
                     {
                         textRow = sr.ReadLine();
@@ -158,7 +161,7 @@ namespace Painkiller
                     sr.Close();
                 }
 
-                StreamWriter sw1 = new StreamWriter(sNameFileAllTrain, true);
+                StreamWriter sw1 = new StreamWriter(fileAllTrain, true);
                 if (allTrain)
                 {
                     sw1.WriteLine($"День {++i}");
@@ -177,9 +180,9 @@ namespace Painkiller
             }
             try
             {
-                using (StreamWriter sw = new StreamWriter(sNameFileBadExercise))
+                using (StreamWriter sw = new StreamWriter(fileBadExercise))
                 {
-                    foreach(DataRow r in TabMinTrain.Rows)
+                    foreach (DataRow r in TabMinTrain.Rows)
                     {
                         if (r["Вправа "].ToString() == "")
                         {
@@ -201,7 +204,7 @@ namespace Painkiller
         {
             try
             {
-                using (StreamReader sr = new StreamReader(sNameFileAllTrain))
+                using (StreamReader sr = new StreamReader(fileAllTrain))
                 {
                     while (sr.Peek() >= 0)//поки у файлі є елементи
                     {
@@ -214,9 +217,9 @@ namespace Painkiller
                         }
                         TTrainingAddRow(partTrain[0], partTrain[1], partTrain[2], partTrain[3], partTrain[4], Convert.ToInt32(partTrain[5]), Convert.ToInt32(partTrain[6]), Convert.ToInt32(partTrain[7]));
                     }
-                }               
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 messageNegative?.Invoke(this, new MessageEventArgs(ex.Message));
             }
@@ -229,7 +232,7 @@ namespace Painkiller
         {
             TrainView.RowFilter = filter;
             dGV.DataSource = TrainView;
-            for(int i = 0; i < dGV.Rows.Count - 1; i++)
+            for (int i = 0; i < dGV.Rows.Count - 1; i++)
             {
                 dGV.Rows[i].Cells["N_пп"].Value = i + 1;
             }
@@ -237,44 +240,14 @@ namespace Painkiller
         public void TTrainingSort(string sort, DataGridView dGV)
         {
             TrainView.Sort = sort;
-            SortCriteria = sort;
+            dialogCriteria = sort;
             dGV.DataSource = TrainView;
             for (int i = 0; i < dGV.Rows.Count - 1; i++)//dGv.Rows.Count - 1, оскільки останній рядок самостійно додається
             {
                 dGV.Rows[i].Cells["N_пп"].Value = i + 1;
             }
         }
-        public void SeekExercise(string name, DataGridView dGV)
-        {
-            int n = 0;
-            bool isFound = false;
-            try
-            {
-                for (int i = 0; i < dGV.Rows.Count; i++)
-                {
-                    if ((string)dGV.Rows[i].Cells["Вправа"].Value == name)
-                    {
-                        n = i;
-                        isFound = true;
-                        break;
-                    }
-                }
-                if (isFound)
-                {
-                    dGV.FirstDisplayedCell = dGV.Rows[n].Cells["Вправа"];
-                    dGV.Rows[n].Selected = true;
-                    dGV.CurrentCell = dGV.Rows[n].Cells["Вправа"];
-                }
-                else
-                {
-                    messageNegative?.Invoke(this, new MessageEventArgs("Елемент з такою назвою не існує"));
-                }
-            }
-            catch
-            {
-                messageNegative?.Invoke(this, new MessageEventArgs("Елемент з такою назвою не існує"));
-            }
-        }
+        
         public void MainRes()
         {
             DataColumn cGroup = new DataColumn("Група_мязів ");
@@ -314,7 +287,7 @@ namespace Painkiller
 
         public void ClearMax(DataGridView dGV)
         {
-            clear = true;
+            isClearMinRes = true;
             TabMinTrain.Columns.Remove(TabMinTrain.Columns["Max_вага "]);
             TabMinTrain.Columns.Remove(TabMinTrain.Columns["К_сть_повторень_з_max_вагою "]);
             DataColumn cWeight = new DataColumn("Max_вага ");
@@ -331,12 +304,11 @@ namespace Painkiller
                 TabMinTrain.Rows[i]["Max_вага "] = "";
                 TabMinTrain.Rows[i]["К_сть_повторень_з_max_вагою "] = "";
             }
-            dGV.DataSource = TabMinTrain;
         }
 
         public void DefineMinWeightColumn(DataGridView dGv, Int32 numGroup, List<Int32> rows)
         {
-            if (clear == false)
+            if (isClearMinRes == false)
             {
                 Int32 rowMax = rows[0];
                 foreach (Int32 i in rows)
@@ -348,7 +320,6 @@ namespace Painkiller
                 }
                 ChangeColumnsValue(numGroup, rowMax);
 
-                dGv.DataSource = TabMinTrain;
             }
         }
 
@@ -362,7 +333,7 @@ namespace Painkiller
         }
         public void SetSumy(DataGridView dGV, DomainUpDown unitMeasure)
         {
-            if (clear == true)
+            if (isClearMinRes == true)
             {
                 TabMinTrain.Columns.Remove(TabMinTrain.Columns["Max_вага "]);
                 TabMinTrain.Columns.Remove(TabMinTrain.Columns["К_сть_повторень_з_max_вагою "]);
@@ -385,7 +356,7 @@ namespace Painkiller
                 dGV.Columns["К_сть_повторень_з_max_вагою "].DefaultCellStyle.BackColor = Color.Red;
                 dGV.Columns["К_сть_повторень_з_max_вагою "].DefaultCellStyle.ForeColor = Color.Black;
 
-                clear = false;//щоб не заходило зайвий раз в це розгалуження
+                isClearMinRes = false;//щоб не заходило зайвий раз в це розгалуження
             }
             if (TrainView.Count == 1)//якщо один рядок, то не потрібно робити логічний операцій порівнянь, а просто варто додавати його в таблицю TabMaxTrain
             {
@@ -451,172 +422,171 @@ namespace Painkiller
                 }
             }
 
-            dGV.DataSource = TabMinTrain;
-            TrainView.Sort = SortCriteria;
+            TrainView.Sort = dialogCriteria;
         }
     }
 
-        public class Legs : Base, IPainKiller
+    public class Legs : Base, IPainKiller
+    {
+        public void Exercises()
         {
-            public void Exercises()
+            length = 7;
+            DataColumn cNameGroup = new DataColumn("Вправа")
             {
-                length = 7;
-                DataColumn cNameGroup = new DataColumn("Вправа")
-                {
-                    DataType = Type.GetType("System.String")
-                };
-                DovGroup.Columns.Add(cNameGroup);
-                DataRow rowSklad0 = DovGroup.NewRow();
-                rowSklad0[cNameGroup] = "Присідання";
-                DovGroup.Rows.Add(rowSklad0);
-                DataRow rowSklad1 = DovGroup.NewRow();
-                rowSklad1[cNameGroup] = "Фронтальні присідання";
-                DovGroup.Rows.Add(rowSklad1);
-                DataRow rowSklad2 = DovGroup.NewRow();
-                rowSklad2[cNameGroup] = "Мертва тяга";
-                DovGroup.Rows.Add(rowSklad2);
-                DataRow rowSklad3 = DovGroup.NewRow();
-                rowSklad3[cNameGroup] = "Жим ногами";
-                DovGroup.Rows.Add(rowSklad3);
-                DataRow rowSklad4 = DovGroup.NewRow();
-                rowSklad4[cNameGroup] = "Випади на місці";
-                DovGroup.Rows.Add(rowSklad4);
-                DataRow rowSklad5 = DovGroup.NewRow();
-                rowSklad5[cNameGroup] = "Випади ходьбою";
-                DovGroup.Rows.Add(rowSklad5);
-                DataRow rowSklad6 = DovGroup.NewRow();
-                rowSklad6[cNameGroup] = "Розгинання ніг";
-                DovGroup.Rows.Add(rowSklad6);
-                DataRow rowSklad7 = DovGroup.NewRow();
-                rowSklad7[cNameGroup] = "Згинання ніг";
-                DovGroup.Rows.Add(rowSklad7);
-            }
-            public void Reps(out int min, out int max)
-            {
-                if (numTypeTrain == 1)
-                {
-                    min = 18;
-                    max = 30;
-                }
-                else if (numTypeTrain == 2)
-                {
-                    min = 8;
-                    max = 15;
-                }
-                else
-                {
-                    min = 1;
-                    max = 6;
-                }
-            }
-            public void Sets(out int min, out int max)
-            {
-                 min = 1;
-                 max = 10;               
-            }
+                DataType = Type.GetType("System.String")
+            };
+            DovGroup.Columns.Add(cNameGroup);
+            DataRow rowSklad0 = DovGroup.NewRow();
+            rowSklad0[cNameGroup] = "Присідання";
+            DovGroup.Rows.Add(rowSklad0);
+            DataRow rowSklad1 = DovGroup.NewRow();
+            rowSklad1[cNameGroup] = "Фронтальні присідання";
+            DovGroup.Rows.Add(rowSklad1);
+            DataRow rowSklad2 = DovGroup.NewRow();
+            rowSklad2[cNameGroup] = "Мертва тяга";
+            DovGroup.Rows.Add(rowSklad2);
+            DataRow rowSklad3 = DovGroup.NewRow();
+            rowSklad3[cNameGroup] = "Жим ногами";
+            DovGroup.Rows.Add(rowSklad3);
+            DataRow rowSklad4 = DovGroup.NewRow();
+            rowSklad4[cNameGroup] = "Випади на місці";
+            DovGroup.Rows.Add(rowSklad4);
+            DataRow rowSklad5 = DovGroup.NewRow();
+            rowSklad5[cNameGroup] = "Випади ходьбою";
+            DovGroup.Rows.Add(rowSklad5);
+            DataRow rowSklad6 = DovGroup.NewRow();
+            rowSklad6[cNameGroup] = "Розгинання ніг";
+            DovGroup.Rows.Add(rowSklad6);
+            DataRow rowSklad7 = DovGroup.NewRow();
+            rowSklad7[cNameGroup] = "Згинання ніг";
+            DovGroup.Rows.Add(rowSklad7);
         }
-        public class Back : Base, IPainKiller
+        public void Reps(out int min, out int max)
         {
-            public void Exercises()
+            if (numTypeTrain == 1)
             {
-                length = 6;
-                DataColumn cNameGroup = new DataColumn("Вправа");
-                cNameGroup.DataType = Type.GetType("System.String");
-                DovGroup.Columns.Add(cNameGroup);
-                DataRow rowSklad0 = DovGroup.NewRow();
-                rowSklad0[cNameGroup] = "Станова тяга";
-                DovGroup.Rows.Add(rowSklad0);
-                DataRow rowSklad1 = DovGroup.NewRow();
-                rowSklad1[cNameGroup] = "Тяга зверху перед собою";
-                DovGroup.Rows.Add(rowSklad1);
-                DataRow rowSklad2 = DovGroup.NewRow();
-                rowSklad2[cNameGroup] = "Тяга за голову";
-                DovGroup.Rows.Add(rowSklad2);
-                DataRow rowSklad3 = DovGroup.NewRow();
-                rowSklad3[cNameGroup] = "Тяга до поясу";
-                DovGroup.Rows.Add(rowSklad3);
-                DataRow rowSklad4 = DovGroup.NewRow();
-                rowSklad4[cNameGroup] = "Пуловер";
-                DovGroup.Rows.Add(rowSklad4);
-                DataRow rowSklad5 = DovGroup.NewRow();
-                rowSklad5[cNameGroup] = "Good morning";
-                DovGroup.Rows.Add(rowSklad5);
-                DataRow rowSklad6 = DovGroup.NewRow();
-                rowSklad6[cNameGroup] = "Гіперекстензія";
-                DovGroup.Rows.Add(rowSklad6);
+                min = 20;
+                max = 40;
             }
-            public void Reps(out int min, out int max)
+            else if (numTypeTrain == 2)
             {
-                if (numTypeTrain == 1)
-                {
-                    min = 22;
-                    max = 33;
-                }
-                else if (numTypeTrain == 2)
-                {
-                    min = 8;
-                    max = 15;
-                }
-                else
-                {
-                    min = 1;
-                    max = 6;
-                }
+                min = 8;
+                max = 20;
             }
-            public void Sets(out int min, out int max)
+            else
             {
                 min = 1;
-                max = 10;
+                max = 7;
             }
         }
-        public class Chest : Base, IPainKiller
+        public void Sets(out int min, out int max)
         {
-            public void Exercises()
+            min = 1;
+            max = 10;
+        }
+    }
+    public class Back : Base, IPainKiller
+    {
+        public void Exercises()
+        {
+            length = 6;
+            DataColumn cNameGroup = new DataColumn("Вправа");
+            cNameGroup.DataType = Type.GetType("System.String");
+            DovGroup.Columns.Add(cNameGroup);
+            DataRow rowSklad0 = DovGroup.NewRow();
+            rowSklad0[cNameGroup] = "Станова тяга";
+            DovGroup.Rows.Add(rowSklad0);
+            DataRow rowSklad1 = DovGroup.NewRow();
+            rowSklad1[cNameGroup] = "Тяга зверху перед собою";
+            DovGroup.Rows.Add(rowSklad1);
+            DataRow rowSklad2 = DovGroup.NewRow();
+            rowSklad2[cNameGroup] = "Тяга за голову";
+            DovGroup.Rows.Add(rowSklad2);
+            DataRow rowSklad3 = DovGroup.NewRow();
+            rowSklad3[cNameGroup] = "Тяга до поясу";
+            DovGroup.Rows.Add(rowSklad3);
+            DataRow rowSklad4 = DovGroup.NewRow();
+            rowSklad4[cNameGroup] = "Пуловер";
+            DovGroup.Rows.Add(rowSklad4);
+            DataRow rowSklad5 = DovGroup.NewRow();
+            rowSklad5[cNameGroup] = "Good morning";
+            DovGroup.Rows.Add(rowSklad5);
+            DataRow rowSklad6 = DovGroup.NewRow();
+            rowSklad6[cNameGroup] = "Гіперекстензія";
+            DovGroup.Rows.Add(rowSklad6);
+        }
+        public void Reps(out int min, out int max)
+        {
+            if (numTypeTrain == 1)
             {
-                length = 5;
-                DataColumn cNameGroup = new DataColumn("Вправа");
-                cNameGroup.DataType = Type.GetType("System.String");
-                DovGroup.Columns.Add(cNameGroup);
-                DataRow rowSklad0 = DovGroup.NewRow();
-                rowSklad0[cNameGroup] = "Жим (широким хватом)";
-                DovGroup.Rows.Add(rowSklad0);
-                DataRow rowSklad1 = DovGroup.NewRow();
-                rowSklad1[cNameGroup] = "Віджимання";
-                DovGroup.Rows.Add(rowSklad1);
-                DataRow rowSklad2 = DovGroup.NewRow();
-                rowSklad2[cNameGroup] = "Паралельний жим";
-                DovGroup.Rows.Add(rowSklad2);
-                DataRow rowSklad3 = DovGroup.NewRow();
-                rowSklad3[cNameGroup] = "Пуловер";
-                DovGroup.Rows.Add(rowSklad3);
-                DataRow rowSklad4 = DovGroup.NewRow();
-                rowSklad4[cNameGroup] = "Зведення рук";
-                DovGroup.Rows.Add(rowSklad4);
+                min = 20;
+                max = 33;
             }
-            public void Reps(out int min, out int max)
+            else if (numTypeTrain == 2)
             {
-                if (numTypeTrain == 1)
-                {
-                    min = 24;
-                    max = 35;
-                }
-                else if (numTypeTrain == 2)
-                {
-                    min = 7;
-                    max = 15;
-                }
-                else
-                {
-                    min = 3;
-                    max = 6;
-                }
+                min = 8;
+                max = 20;
             }
-            public void Sets(out int min, out int max)
+            else
             {
                 min = 1;
-                max = 8;
+                max = 7;
             }
         }
+        public void Sets(out int min, out int max)
+        {
+            min = 1;
+            max = 10;
+        }
+    }
+    public class Chest : Base, IPainKiller
+    {
+        public void Exercises()
+        {
+            length = 5;
+            DataColumn cNameGroup = new DataColumn("Вправа");
+            cNameGroup.DataType = Type.GetType("System.String");
+            DovGroup.Columns.Add(cNameGroup);
+            DataRow rowSklad0 = DovGroup.NewRow();
+            rowSklad0[cNameGroup] = "Жим (широким хватом)";
+            DovGroup.Rows.Add(rowSklad0);
+            DataRow rowSklad1 = DovGroup.NewRow();
+            rowSklad1[cNameGroup] = "Віджимання";
+            DovGroup.Rows.Add(rowSklad1);
+            DataRow rowSklad2 = DovGroup.NewRow();
+            rowSklad2[cNameGroup] = "Паралельний жим";
+            DovGroup.Rows.Add(rowSklad2);
+            DataRow rowSklad3 = DovGroup.NewRow();
+            rowSklad3[cNameGroup] = "Пуловер";
+            DovGroup.Rows.Add(rowSklad3);
+            DataRow rowSklad4 = DovGroup.NewRow();
+            rowSklad4[cNameGroup] = "Зведення рук";
+            DovGroup.Rows.Add(rowSklad4);
+        }
+        public void Reps(out int min, out int max)
+        {
+            if (numTypeTrain == 1)
+            {
+                min = 20;
+                max = 35;
+            }
+            else if (numTypeTrain == 2)
+            {
+                min = 8;
+                max = 20;
+            }
+            else
+            {
+                min = 1;
+                max = 7;
+            }
+        }
+        public void Sets(out int min, out int max)
+        {
+            min = 1;
+            max = 8;
+        }
+    }
     public class Arms : Base, IPainKiller
     {
         public void Exercises()
@@ -675,18 +645,18 @@ namespace Painkiller
         {
             if (numTypeTrain == 1)
             {
-                min = 25;
+                min = 20;
                 max = 35;
             }
             else if (numTypeTrain == 2)
             {
                 min = 8;
-                max = 15;
+                max = 25;
             }
             else
             {
                 min = 1;
-                max = 6;
+                max = 7;
             }
         }
         public void Sets(out int min, out int max)
@@ -695,59 +665,59 @@ namespace Painkiller
             max = 8;
         }
     }
-        public class Shoulders : Base, IPainKiller
+    public class Shoulders : Base, IPainKiller
+    {
+        public void Exercises()
         {
-            public void Exercises()
-            {
-                length = 6;
-                DataColumn cNameGroup = new DataColumn("Вправа");
-                cNameGroup.DataType = Type.GetType("System.String");
-                DovGroup.Columns.Add(cNameGroup);
-                DataRow rowSklad0 = DovGroup.NewRow();
-                rowSklad0[cNameGroup] = "Жим перед собою";
-                DovGroup.Rows.Add(rowSklad0);
-                DataRow rowSklad1 = DovGroup.NewRow();
-                rowSklad1[cNameGroup] = "Жим за головою";
-                DovGroup.Rows.Add(rowSklad1);
-                DataRow rowSklad2 = DovGroup.NewRow();
-                rowSklad2[cNameGroup] = "Тяга на середню дельту";
-                DovGroup.Rows.Add(rowSklad2);
-                DataRow rowSklad3 = DovGroup.NewRow();
-                rowSklad3[cNameGroup] = "Тяга на задню дельту";
-                DovGroup.Rows.Add(rowSklad3);
-                DataRow rowSklad4 = DovGroup.NewRow();
-                rowSklad4[cNameGroup] = "Розведення";
-                DovGroup.Rows.Add(rowSklad4);
-                DataRow rowSklad5 = DovGroup.NewRow();
-                rowSklad5[cNameGroup] = "Піднімання снаряду перед собою";
-                DovGroup.Rows.Add(rowSklad5);
-                DataRow rowSklad6 = DovGroup.NewRow();
-                rowSklad6[cNameGroup] = "Метелик";
-                DovGroup.Rows.Add(rowSklad6);
+            length = 6;
+            DataColumn cNameGroup = new DataColumn("Вправа");
+            cNameGroup.DataType = Type.GetType("System.String");
+            DovGroup.Columns.Add(cNameGroup);
+            DataRow rowSklad0 = DovGroup.NewRow();
+            rowSklad0[cNameGroup] = "Жим перед собою";
+            DovGroup.Rows.Add(rowSklad0);
+            DataRow rowSklad1 = DovGroup.NewRow();
+            rowSklad1[cNameGroup] = "Жим за головою";
+            DovGroup.Rows.Add(rowSklad1);
+            DataRow rowSklad2 = DovGroup.NewRow();
+            rowSklad2[cNameGroup] = "Тяга на середню дельту";
+            DovGroup.Rows.Add(rowSklad2);
+            DataRow rowSklad3 = DovGroup.NewRow();
+            rowSklad3[cNameGroup] = "Тяга на задню дельту";
+            DovGroup.Rows.Add(rowSklad3);
+            DataRow rowSklad4 = DovGroup.NewRow();
+            rowSklad4[cNameGroup] = "Розведення";
+            DovGroup.Rows.Add(rowSklad4);
+            DataRow rowSklad5 = DovGroup.NewRow();
+            rowSklad5[cNameGroup] = "Піднімання снаряду перед собою";
+            DovGroup.Rows.Add(rowSklad5);
+            DataRow rowSklad6 = DovGroup.NewRow();
+            rowSklad6[cNameGroup] = "Метелик";
+            DovGroup.Rows.Add(rowSklad6);
         }
-            public void Reps(out int min, out int max)
+        public void Reps(out int min, out int max)
+        {
+            if (numTypeTrain == 1)
             {
-                if (numTypeTrain == 1)
-                {
-                    min = 25;
-                    max = 35;
-                }
-                else if (numTypeTrain == 2)
-                {
-                    min = 8;
-                    max = 15;
-                }
-                else
-                {
-                    min = 4;
-                    max = 6;
-                }
+                min = 20;
+                max = 35;
             }
-            public void Sets(out int min, out int max)
+            else if (numTypeTrain == 2)
+            {
+                min = 8;
+                max = 30;
+            }
+            else
             {
                 min = 1;
-                max = 8;
+                max = 7;
             }
         }
-
+        public void Sets(out int min, out int max)
+        {
+            min = 1;
+            max = 8;
+        }
     }
+
+}

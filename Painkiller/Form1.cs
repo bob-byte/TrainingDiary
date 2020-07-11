@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Reflection;
-using System.Collections.Generic;
 
 namespace Painkiller
 {
@@ -13,9 +10,30 @@ namespace Painkiller
         public Form1()
         {
             InitializeComponent();
+            
+            //пошукВправиToolStripMenuItem.Click += new EventHandler(пошукВправиToolStripMenuItem_Click_1);
+        }
+
+        internal static DataGridView DGV;
+
+        private void пошукВправиToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            DialogSeekExercise dialog = new DialogSeekExercise();
+
+            if (MessageEventArgs.CountNegInvoke > 0)
+            {
+                dialog.MessageNegative -= NegativeMessage;
+            }
+            dialog.MessageNegative += NegativeMessage;
+
+            dialog.ShowDialog();
+            
+            AllTraining.DataSource = Base.TabTrain;
         }
 
         WorkDB database = new WorkDB();
+
+
 
         void Clear(DataGridView dataGridView)
         {
@@ -30,53 +48,17 @@ namespace Painkiller
         void ChoicePosition()
         {
             position = "";
-            if(RBStanding.Checked)
+            foreach(Control control in groupBox3.Controls)
             {
-                position = RBStanding.Text;
+                RadioButton rb = control as RadioButton;
+                if(rb.Checked)
+                {
+                    position = rb.Text;
+                }
             }
-            else if (RBStandSlope.Checked)
+            if(position == "")
             {
-                position = RBStandSlope.Text;
-            }
-            else if(RBSiting.Checked)
-            {
-                position = RBSiting.Text;
-            }
-            else if(RBKnees.Checked)
-            {
-                position = RBKnees.Text;
-            }
-            else if (RBFloat.Checked)
-            {
-                position = RBFloat.Text;
-            }
-            else if (RBObtuseAngle.Checked)
-            {
-                position = RBObtuseAngle.Text;
-            }
-            else if (RBHorizontalBench.Checked)
-            {
-                position = RBHorizontalBench.Text;
-            }
-            else if (RBSlopingBench.Checked)
-            {
-                position = RBSlopingBench.Text;
-            }
-            else if (RBHorizontalBar.Checked)
-            {
-                position = RBHorizontalBar.Text;
-            }
-            else if (RBBars.Checked)
-            {
-                position = RBBars.Text;
-            }
-            else if(RBScottBench.Checked)
-            {
-                position = RBScottBench.Text;
-            }
-            else
-            {
-                MessageBox.Show("Виберіть, будь ласка, положення тіла", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);                
+                MessageBox.Show("Виберіть, будь ласка, положення тіла", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public static string dialogParameter;
@@ -228,7 +210,8 @@ namespace Painkiller
         private void Form1_Load(object sender, EventArgs e)
         {
             doIt = new Base();
-            AllTraining.DataSource = doIt.TabTrain;
+            DGV = AllTraining;
+            AllTraining.DataSource = Base.TabTrain;
             AllTraining.Columns["N_пп"].HeaderText = "№ п/п";
             AllTraining.Columns["Група_мязів"].HeaderText = "Група м\'язів";
             AllTraining.Columns["Вправа"].HeaderText = "Вправа";
@@ -323,11 +306,6 @@ namespace Painkiller
             {
                 doIt.WriteTabFile(false);
             }
-            else
-            {
-                return;
-            }
-            
         }
 
         private void зчитатиТаблицюЗФайлуToolStripMenuItem_Click(object sender, EventArgs e)
@@ -412,6 +390,7 @@ namespace Painkiller
                 CBExercise.Text = "";
                 if (CBGroup.SelectedIndex == 0)
                 {
+                    //замінити наступні рядки коду на метод з параметром типу Base
                     legs.DovGroup.Rows.Clear();
                     legs.DovGroup.Columns.Clear();
                     legs.Exercises();
@@ -521,7 +500,7 @@ namespace Painkiller
             Dialog search = new Dialog();
             search.Text = "Пошук вправи";
             search.ShowDialog();
-            doIt.SeekExercise(dialogParameter, AllTraining);
+            //doIt.SeekExercise(dialogParameter, AllTraining);
         }
         
 
@@ -537,7 +516,7 @@ namespace Painkiller
             }
             database.MessagePositive += PositiveMessage;
             database.MessageNegative += NegativeMessage;
-            database.WriteGrid(doIt.TabTrain, unitMeasure);
+            database.WriteGrid(Base.TabTrain, unitMeasure);
             //SqlConnection connect = new SqlConnection();
             //SqlCommand command = new SqlCommand();
             //command.Connection = connect;
@@ -643,26 +622,11 @@ namespace Painkiller
             //    doIt.TabTrain.Rows.Add(row);
             //}
             //connect.Close();
-            database.ReadDatabase(doIt.TabTrain, AllTraining);
+            database.ReadDatabase(Base.TabTrain, AllTraining);
             doIt.SetSumy(MinResults, unitMeasure);
         }
 
-        private void пошукВправиToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            Dialog search = new Dialog();
-            search.Text = "Виберіть вправу";
-            search.ShowDialog();
-            dialogParameter = search.criteria;
-            if (MessageEventArgs.CountNegInvoke > 0)
-            {
-                doIt.MessageNegative -= NegativeMessage;
-            }
-            doIt.MessageNegative += NegativeMessage;
-            if (dialogParameter != "")
-            {
-                doIt.SeekExercise(dialogParameter, AllTraining);
-            }
-        }
+        
 
         private void RBDumb_Bell_CheckedChanged(object sender, EventArgs e)
         {
