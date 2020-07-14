@@ -41,8 +41,10 @@
             this.BAdd = new System.Windows.Forms.Button();
             this.BClear = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label7 = new System.Windows.Forms.Label();
             this.unitMeasure = new System.Windows.Forms.DomainUpDown();
             this.AllTraining = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
             this.MinResults = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.RBMachine = new System.Windows.Forms.RadioButton();
@@ -56,11 +58,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.записатиТаблицюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.перезаписатиФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.зчитатиТаблицюЗФайлуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.записатиТаблицюВБазуДанихToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститиТаблицюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.очиститиФайлиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сортуватиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ввестиКритерійСортуванняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сортуватиПоГрупіToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +72,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.пошукToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.пошукВправиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GBPosition = new System.Windows.Forms.GroupBox();
             this.RBStandSlope = new System.Windows.Forms.RadioButton();
             this.RBScottBench = new System.Windows.Forms.RadioButton();
             this.RBBars = new System.Windows.Forms.RadioButton();
@@ -94,15 +96,15 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.GBPosition.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Yellow;
+            this.label1.BackColor = System.Drawing.Color.LemonChiffon;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(331, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 20);
@@ -112,9 +114,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Yellow;
+            this.label2.BackColor = System.Drawing.Color.LemonChiffon;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(825, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 20);
@@ -124,9 +126,9 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Yellow;
+            this.label3.BackColor = System.Drawing.Color.LemonChiffon;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(466, 123);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(256, 20);
@@ -136,9 +138,9 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Yellow;
+            this.label4.BackColor = System.Drawing.Color.LemonChiffon;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(772, 123);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(213, 20);
@@ -148,9 +150,9 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Yellow;
+            this.label5.BackColor = System.Drawing.Color.LemonChiffon;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(259, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 20);
@@ -159,9 +161,9 @@
             // 
             // CBGroup
             // 
-            this.CBGroup.BackColor = System.Drawing.Color.Yellow;
+            this.CBGroup.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.CBGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CBGroup.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.CBGroup.ForeColor = System.Drawing.Color.Black;
             this.CBGroup.FormattingEnabled = true;
             this.CBGroup.Items.AddRange(new object[] {
             "Ноги",
@@ -173,11 +175,11 @@
             this.CBGroup.Name = "CBGroup";
             this.CBGroup.Size = new System.Drawing.Size(237, 28);
             this.CBGroup.TabIndex = 6;
-            this.CBGroup.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.CBGroup.SelectedIndexChanged += new System.EventHandler(this.CBGroup_SelectedIndexChanged);
             // 
             // CBExercise
             // 
-            this.CBExercise.BackColor = System.Drawing.Color.Yellow;
+            this.CBExercise.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.CBExercise.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CBExercise.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.CBExercise.FormattingEnabled = true;
@@ -190,9 +192,9 @@
             // 
             // NReps
             // 
-            this.NReps.BackColor = System.Drawing.Color.Yellow;
+            this.NReps.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.NReps.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NReps.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.NReps.ForeColor = System.Drawing.Color.Black;
             this.NReps.Location = new System.Drawing.Point(533, 146);
             this.NReps.Minimum = new decimal(new int[] {
             1,
@@ -211,9 +213,9 @@
             // 
             // NSets
             // 
-            this.NSets.BackColor = System.Drawing.Color.Yellow;
+            this.NSets.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.NSets.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NSets.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.NSets.ForeColor = System.Drawing.Color.Black;
             this.NSets.Location = new System.Drawing.Point(829, 146);
             this.NSets.Minimum = new decimal(new int[] {
             1,
@@ -232,9 +234,9 @@
             // 
             // NWeight
             // 
-            this.NWeight.BackColor = System.Drawing.Color.Yellow;
+            this.NWeight.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.NWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.NWeight.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.NWeight.ForeColor = System.Drawing.Color.Black;
             this.NWeight.Location = new System.Drawing.Point(222, 146);
             this.NWeight.Maximum = new decimal(new int[] {
             1200,
@@ -254,43 +256,45 @@
             0,
             0,
             0});
+            this.NWeight.ValueChanged += new System.EventHandler(this.NWeight_ValueChanged);
             // 
             // BAdd
             // 
-            this.BAdd.BackColor = System.Drawing.Color.Yellow;
+            this.BAdd.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.BAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BAdd.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.BAdd.ForeColor = System.Drawing.Color.Black;
             this.BAdd.Location = new System.Drawing.Point(470, 207);
             this.BAdd.Name = "BAdd";
             this.BAdd.Size = new System.Drawing.Size(156, 74);
             this.BAdd.TabIndex = 9;
             this.BAdd.Text = "Додати";
             this.BAdd.UseVisualStyleBackColor = false;
-            this.BAdd.Click += new System.EventHandler(this.button1_Click);
+            this.BAdd.Click += new System.EventHandler(this.BAdd_Click);
             // 
             // BClear
             // 
-            this.BClear.BackColor = System.Drawing.Color.Yellow;
+            this.BClear.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.BClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BClear.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.BClear.ForeColor = System.Drawing.Color.Black;
             this.BClear.Location = new System.Drawing.Point(805, 207);
             this.BClear.Name = "BClear";
             this.BClear.Size = new System.Drawing.Size(156, 74);
             this.BClear.TabIndex = 10;
             this.BClear.Text = "Очистити введені дані";
             this.BClear.UseVisualStyleBackColor = false;
-            this.BClear.Click += new System.EventHandler(this.button2_Click);
+            this.BClear.Click += new System.EventHandler(this.BClear_Click);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.splitContainer1.BackColor = System.Drawing.Color.LemonChiffon;
             this.splitContainer1.Location = new System.Drawing.Point(12, 27);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.unitMeasure);
             this.splitContainer1.Panel1.Controls.Add(this.AllTraining);
             this.splitContainer1.Panel1.Controls.Add(this.BClear);
@@ -305,19 +309,33 @@
             this.splitContainer1.Panel1.Controls.Add(this.label2);
             this.splitContainer1.Panel1.Controls.Add(this.label5);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.ForeColor = System.Drawing.Color.Black;
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.LemonChiffon;
+            this.splitContainer1.Panel2.Controls.Add(this.label6);
             this.splitContainer1.Panel2.Controls.Add(this.MinResults);
+            this.splitContainer1.Panel2.ForeColor = System.Drawing.Color.Black;
             this.splitContainer1.Size = new System.Drawing.Size(1912, 939);
-            this.splitContainer1.SplitterDistance = 640;
+            this.splitContainer1.SplitterDistance = 639;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(928, 328);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(143, 20);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Все тренування";
             // 
             // unitMeasure
             // 
-            this.unitMeasure.BackColor = System.Drawing.Color.Yellow;
+            this.unitMeasure.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.unitMeasure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.unitMeasure.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.unitMeasure.ForeColor = System.Drawing.Color.Black;
             this.unitMeasure.Items.Add("кг");
             this.unitMeasure.Items.Add("lb");
             this.unitMeasure.Location = new System.Drawing.Point(305, 146);
@@ -332,22 +350,33 @@
             // 
             // AllTraining
             // 
-            this.AllTraining.BackgroundColor = System.Drawing.Color.Black;
+            this.AllTraining.BackgroundColor = System.Drawing.Color.NavajoWhite;
             this.AllTraining.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.AllTraining.Location = new System.Drawing.Point(155, 336);
+            this.AllTraining.Location = new System.Drawing.Point(155, 354);
             this.AllTraining.Name = "AllTraining";
-            this.AllTraining.ReadOnly = true;
             this.AllTraining.RowHeadersWidth = 51;
             this.AllTraining.RowTemplate.Height = 24;
             this.AllTraining.ShowEditingIcon = false;
-            this.AllTraining.Size = new System.Drawing.Size(1640, 301);
+            this.AllTraining.Size = new System.Drawing.Size(1640, 283);
             this.AllTraining.TabIndex = 6;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.LemonChiffon;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(969, 14);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(158, 20);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Відстаючі вправи";
             // 
             // MinResults
             // 
-            this.MinResults.BackgroundColor = System.Drawing.Color.Black;
+            this.MinResults.BackgroundColor = System.Drawing.Color.NavajoWhite;
             this.MinResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MinResults.Location = new System.Drawing.Point(424, 3);
+            this.MinResults.Location = new System.Drawing.Point(429, 37);
             this.MinResults.Name = "MinResults";
             this.MinResults.ReadOnly = true;
             this.MinResults.RowHeadersWidth = 51;
@@ -357,17 +386,17 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.BackColor = System.Drawing.Color.Yellow;
+            this.groupBox2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.groupBox2.Controls.Add(this.RBMachine);
             this.groupBox2.Controls.Add(this.RBBodyWeight);
             this.groupBox2.Controls.Add(this.RBBlok);
             this.groupBox2.Controls.Add(this.RBDumb_Bell);
             this.groupBox2.Controls.Add(this.RBBar);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox2.Location = new System.Drawing.Point(1138, 27);
+            this.groupBox2.ForeColor = System.Drawing.Color.Black;
+            this.groupBox2.Location = new System.Drawing.Point(1138, 43);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(343, 170);
+            this.groupBox2.Size = new System.Drawing.Size(343, 183);
             this.groupBox2.TabIndex = 12;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Обтяження";
@@ -442,7 +471,7 @@
             this.RBStatodynamic.TabIndex = 0;
             this.RBStatodynamic.Text = "Статодинаміка";
             this.RBStatodynamic.UseVisualStyleBackColor = true;
-            this.RBStatodynamic.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.RBStatodynamic.CheckedChanged += new System.EventHandler(this.RBStatodynamic_CheckedChanged);
             // 
             // RBHipertrophy
             // 
@@ -453,7 +482,7 @@
             this.RBHipertrophy.TabIndex = 1;
             this.RBHipertrophy.Text = "Гіпертрофія";
             this.RBHipertrophy.UseVisualStyleBackColor = true;
-            this.RBHipertrophy.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.RBHipertrophy.CheckedChanged += new System.EventHandler(this.RBHipertrophy_CheckedChanged);
             // 
             // RBStrength
             // 
@@ -465,19 +494,19 @@
             this.RBStrength.TabIndex = 2;
             this.RBStrength.Text = "Розвиток сили";
             this.RBStrength.UseVisualStyleBackColor = true;
-            this.RBStrength.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.RBStrength.CheckedChanged += new System.EventHandler(this.RBStrength_CheckedChanged);
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Yellow;
+            this.groupBox1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.groupBox1.Controls.Add(this.RBStrength);
             this.groupBox1.Controls.Add(this.RBHipertrophy);
             this.groupBox1.Controls.Add(this.RBStatodynamic);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(0, 27);
+            this.groupBox1.ForeColor = System.Drawing.Color.Black;
+            this.groupBox1.Location = new System.Drawing.Point(12, 43);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 107);
+            this.groupBox1.Size = new System.Drawing.Size(200, 124);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Вид тренування";
@@ -486,29 +515,38 @@
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.записатиТаблицюToolStripMenuItem,
+            this.перезаписатиФайлToolStripMenuItem,
             this.зчитатиТаблицюЗФайлуToolStripMenuItem,
             this.записатиТаблицюВБазуДанихToolStripMenuItem,
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem,
-            this.очиститиТаблицюToolStripMenuItem,
-            this.очиститиФайлиToolStripMenuItem});
-            this.файлToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.очиститиТаблицюToolStripMenuItem});
+            this.файлToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // записатиТаблицюToolStripMenuItem
             // 
-            this.записатиТаблицюToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.записатиТаблицюToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.записатиТаблицюToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.записатиТаблицюToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.записатиТаблицюToolStripMenuItem.Name = "записатиТаблицюToolStripMenuItem";
             this.записатиТаблицюToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
             this.записатиТаблицюToolStripMenuItem.Text = "Записати таблицю у файл";
             this.записатиТаблицюToolStripMenuItem.Click += new System.EventHandler(this.записатиТаблицюToolStripMenuItem_Click);
             // 
+            // перезаписатиФайлToolStripMenuItem
+            // 
+            this.перезаписатиФайлToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.перезаписатиФайлToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.перезаписатиФайлToolStripMenuItem.Name = "перезаписатиФайлToolStripMenuItem";
+            this.перезаписатиФайлToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
+            this.перезаписатиФайлToolStripMenuItem.Text = "Перезаписати файл";
+            this.перезаписатиФайлToolStripMenuItem.Click += new System.EventHandler(this.перезаписатиФайлToolStripMenuItem_Click);
+            // 
             // зчитатиТаблицюЗФайлуToolStripMenuItem
             // 
-            this.зчитатиТаблицюЗФайлуToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.зчитатиТаблицюЗФайлуToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.зчитатиТаблицюЗФайлуToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.зчитатиТаблицюЗФайлуToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.зчитатиТаблицюЗФайлуToolStripMenuItem.Name = "зчитатиТаблицюЗФайлуToolStripMenuItem";
             this.зчитатиТаблицюЗФайлуToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
             this.зчитатиТаблицюЗФайлуToolStripMenuItem.Text = "Зчитати таблицю з файлу";
@@ -516,8 +554,8 @@
             // 
             // записатиТаблицюВБазуДанихToolStripMenuItem
             // 
-            this.записатиТаблицюВБазуДанихToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.записатиТаблицюВБазуДанихToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.записатиТаблицюВБазуДанихToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.записатиТаблицюВБазуДанихToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.записатиТаблицюВБазуДанихToolStripMenuItem.Name = "записатиТаблицюВБазуДанихToolStripMenuItem";
             this.записатиТаблицюВБазуДанихToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
             this.записатиТаблицюВБазуДанихToolStripMenuItem.Text = "Записати таблицю в базу даних";
@@ -525,8 +563,8 @@
             // 
             // зчитатиТаблицюЗБазиДанихToolStripMenuItem
             // 
-            this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Name = "зчитатиТаблицюЗБазиДанихToolStripMenuItem";
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Text = "Зчитати таблицю з бази даних";
@@ -534,34 +572,28 @@
             // 
             // очиститиТаблицюToolStripMenuItem
             // 
-            this.очиститиТаблицюToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.очиститиТаблицюToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.очиститиТаблицюToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.очиститиТаблицюToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.очиститиТаблицюToolStripMenuItem.Name = "очиститиТаблицюToolStripMenuItem";
             this.очиститиТаблицюToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
             this.очиститиТаблицюToolStripMenuItem.Text = "Очистити таблиці";
             this.очиститиТаблицюToolStripMenuItem.Click += new System.EventHandler(this.очиститиТаблицюToolStripMenuItem_Click);
             // 
-            // очиститиФайлиToolStripMenuItem
-            // 
-            this.очиститиФайлиToolStripMenuItem.Name = "очиститиФайлиToolStripMenuItem";
-            this.очиститиФайлиToolStripMenuItem.Size = new System.Drawing.Size(313, 26);
-            this.очиститиФайлиToolStripMenuItem.Text = "Очистити файли";
-            // 
             // сортуватиToolStripMenuItem
             // 
-            this.сортуватиToolStripMenuItem.BackColor = System.Drawing.Color.Yellow;
+            this.сортуватиToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
             this.сортуватиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ввестиКритерійСортуванняToolStripMenuItem,
             this.сортуватиПоГрупіToolStripMenuItem});
-            this.сортуватиToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.сортуватиToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.сортуватиToolStripMenuItem.Name = "сортуватиToolStripMenuItem";
             this.сортуватиToolStripMenuItem.Size = new System.Drawing.Size(94, 24);
             this.сортуватиToolStripMenuItem.Text = "Сортувати";
             // 
             // ввестиКритерійСортуванняToolStripMenuItem
             // 
-            this.ввестиКритерійСортуванняToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ввестиКритерійСортуванняToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.ввестиКритерійСортуванняToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.ввестиКритерійСортуванняToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.ввестиКритерійСортуванняToolStripMenuItem.Name = "ввестиКритерійСортуванняToolStripMenuItem";
             this.ввестиКритерійСортуванняToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
             this.ввестиКритерійСортуванняToolStripMenuItem.Text = "Ввести критерій сортування";
@@ -569,8 +601,8 @@
             // 
             // сортуватиПоГрупіToolStripMenuItem
             // 
-            this.сортуватиПоГрупіToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.сортуватиПоГрупіToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.сортуватиПоГрупіToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.сортуватиПоГрупіToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.сортуватиПоГрупіToolStripMenuItem.Name = "сортуватиПоГрупіToolStripMenuItem";
             this.сортуватиПоГрупіToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
             this.сортуватиПоГрупіToolStripMenuItem.Text = "Зняти сортування";
@@ -578,18 +610,19 @@
             // 
             // фільтруватиToolStripMenuItem
             // 
+            this.фільтруватиToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
             this.фільтруватиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ввестиФільтрToolStripMenuItem,
             this.забратиФільтрToolStripMenuItem});
-            this.фільтруватиToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.фільтруватиToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.фільтруватиToolStripMenuItem.Name = "фільтруватиToolStripMenuItem";
             this.фільтруватиToolStripMenuItem.Size = new System.Drawing.Size(107, 24);
             this.фільтруватиToolStripMenuItem.Text = "Фільтрувати";
             // 
             // ввестиФільтрToolStripMenuItem
             // 
-            this.ввестиФільтрToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ввестиФільтрToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.ввестиФільтрToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.ввестиФільтрToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.ввестиФільтрToolStripMenuItem.Name = "ввестиФільтрToolStripMenuItem";
             this.ввестиФільтрToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.ввестиФільтрToolStripMenuItem.Text = "Ввести фільтр";
@@ -597,8 +630,8 @@
             // 
             // забратиФільтрToolStripMenuItem
             // 
-            this.забратиФільтрToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.забратиФільтрToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.забратиФільтрToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.забратиФільтрToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.забратиФільтрToolStripMenuItem.Name = "забратиФільтрToolStripMenuItem";
             this.забратиФільтрToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.забратиФільтрToolStripMenuItem.Text = "Забрати фільтр";
@@ -606,7 +639,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.Yellow;
+            this.menuStrip1.BackColor = System.Drawing.Color.DarkKhaki;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
@@ -621,45 +654,45 @@
             // 
             // пошукToolStripMenuItem
             // 
-            this.пошукToolStripMenuItem.BackColor = System.Drawing.Color.Yellow;
+            this.пошукToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
             this.пошукToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.пошукВправиToolStripMenuItem});
-            this.пошукToolStripMenuItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.пошукToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.пошукToolStripMenuItem.Name = "пошукToolStripMenuItem";
             this.пошукToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.пошукToolStripMenuItem.Text = "Пошук";
             // 
             // пошукВправиToolStripMenuItem
             // 
-            this.пошукВправиToolStripMenuItem.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.пошукВправиToolStripMenuItem.ForeColor = System.Drawing.Color.Yellow;
+            this.пошукВправиToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.пошукВправиToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.пошукВправиToolStripMenuItem.Name = "пошукВправиToolStripMenuItem";
             this.пошукВправиToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
             this.пошукВправиToolStripMenuItem.Text = "Пошук вправи";
             this.пошукВправиToolStripMenuItem.Click += new System.EventHandler(this.пошукВправиToolStripMenuItem_Click_1);
             // 
-            // groupBox3
+            // GBPosition
             // 
-            this.groupBox3.BackColor = System.Drawing.Color.Yellow;
-            this.groupBox3.Controls.Add(this.RBStandSlope);
-            this.groupBox3.Controls.Add(this.RBScottBench);
-            this.groupBox3.Controls.Add(this.RBBars);
-            this.groupBox3.Controls.Add(this.RBHorizontalBar);
-            this.groupBox3.Controls.Add(this.RBSlopingBench);
-            this.groupBox3.Controls.Add(this.RBHorizontalBench);
-            this.groupBox3.Controls.Add(this.RBObtuseAngle);
-            this.groupBox3.Controls.Add(this.RBFloat);
-            this.groupBox3.Controls.Add(this.RBKnees);
-            this.groupBox3.Controls.Add(this.RBSiting);
-            this.groupBox3.Controls.Add(this.RBStanding);
-            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox3.Location = new System.Drawing.Point(1552, 27);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(372, 330);
-            this.groupBox3.TabIndex = 12;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Положення тіла, в якому викнується вправа";
+            this.GBPosition.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.GBPosition.Controls.Add(this.RBStandSlope);
+            this.GBPosition.Controls.Add(this.RBScottBench);
+            this.GBPosition.Controls.Add(this.RBBars);
+            this.GBPosition.Controls.Add(this.RBHorizontalBar);
+            this.GBPosition.Controls.Add(this.RBSlopingBench);
+            this.GBPosition.Controls.Add(this.RBHorizontalBench);
+            this.GBPosition.Controls.Add(this.RBObtuseAngle);
+            this.GBPosition.Controls.Add(this.RBFloat);
+            this.GBPosition.Controls.Add(this.RBKnees);
+            this.GBPosition.Controls.Add(this.RBSiting);
+            this.GBPosition.Controls.Add(this.RBStanding);
+            this.GBPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.GBPosition.ForeColor = System.Drawing.Color.Black;
+            this.GBPosition.Location = new System.Drawing.Point(1552, 43);
+            this.GBPosition.Name = "GBPosition";
+            this.GBPosition.Size = new System.Drawing.Size(372, 332);
+            this.GBPosition.TabIndex = 12;
+            this.GBPosition.TabStop = false;
+            this.GBPosition.Text = "Положення тіла, в якому виконується";
             // 
             // RBStandSlope
             // 
@@ -675,99 +708,90 @@
             // RBScottBench
             // 
             this.RBScottBench.AutoSize = true;
-            this.RBScottBench.Location = new System.Drawing.Point(3, 300);
+            this.RBScottBench.Location = new System.Drawing.Point(3, 309);
             this.RBScottBench.Name = "RBScottBench";
             this.RBScottBench.Size = new System.Drawing.Size(147, 24);
             this.RBScottBench.TabIndex = 9;
-            this.RBScottBench.TabStop = true;
             this.RBScottBench.Text = "Лавка Скотта";
             this.RBScottBench.UseVisualStyleBackColor = true;
             // 
             // RBBars
             // 
             this.RBBars.AutoSize = true;
-            this.RBBars.Location = new System.Drawing.Point(3, 270);
+            this.RBBars.Location = new System.Drawing.Point(3, 279);
             this.RBBars.Name = "RBBars";
             this.RBBars.Size = new System.Drawing.Size(113, 24);
             this.RBBars.TabIndex = 8;
-            this.RBBars.TabStop = true;
             this.RBBars.Text = "На брусах";
             this.RBBars.UseVisualStyleBackColor = true;
             // 
             // RBHorizontalBar
             // 
             this.RBHorizontalBar.AutoSize = true;
-            this.RBHorizontalBar.Location = new System.Drawing.Point(3, 240);
+            this.RBHorizontalBar.Location = new System.Drawing.Point(3, 249);
             this.RBHorizontalBar.Name = "RBHorizontalBar";
             this.RBHorizontalBar.Size = new System.Drawing.Size(117, 24);
             this.RBHorizontalBar.TabIndex = 7;
-            this.RBHorizontalBar.TabStop = true;
             this.RBHorizontalBar.Text = "На турніку";
             this.RBHorizontalBar.UseVisualStyleBackColor = true;
             // 
             // RBSlopingBench
             // 
             this.RBSlopingBench.AutoSize = true;
-            this.RBSlopingBench.Location = new System.Drawing.Point(3, 210);
+            this.RBSlopingBench.Location = new System.Drawing.Point(3, 219);
             this.RBSlopingBench.Name = "RBSlopingBench";
             this.RBSlopingBench.Size = new System.Drawing.Size(235, 24);
             this.RBSlopingBench.TabIndex = 6;
-            this.RBSlopingBench.TabStop = true;
             this.RBSlopingBench.Text = "Лежачи на похилій лавці";
             this.RBSlopingBench.UseVisualStyleBackColor = true;
             // 
             // RBHorizontalBench
             // 
             this.RBHorizontalBench.AutoSize = true;
-            this.RBHorizontalBench.Location = new System.Drawing.Point(3, 180);
+            this.RBHorizontalBench.Location = new System.Drawing.Point(3, 189);
             this.RBHorizontalBench.Name = "RBHorizontalBench";
             this.RBHorizontalBench.Size = new System.Drawing.Size(304, 24);
             this.RBHorizontalBench.TabIndex = 5;
-            this.RBHorizontalBench.TabStop = true;
             this.RBHorizontalBench.Text = "Лежачи на горизонтальній лавці";
             this.RBHorizontalBench.UseVisualStyleBackColor = true;
             // 
             // RBObtuseAngle
             // 
             this.RBObtuseAngle.AutoSize = true;
-            this.RBObtuseAngle.Location = new System.Drawing.Point(3, 150);
+            this.RBObtuseAngle.Location = new System.Drawing.Point(3, 159);
             this.RBObtuseAngle.Name = "RBObtuseAngle";
             this.RBObtuseAngle.Size = new System.Drawing.Size(308, 24);
             this.RBObtuseAngle.TabIndex = 4;
-            this.RBObtuseAngle.TabStop = true;
             this.RBObtuseAngle.Text = "Лежачи на лавці під тупим кутом";
             this.RBObtuseAngle.UseVisualStyleBackColor = true;
             // 
             // RBFloat
             // 
             this.RBFloat.AutoSize = true;
-            this.RBFloat.Location = new System.Drawing.Point(3, 123);
+            this.RBFloat.Location = new System.Drawing.Point(3, 132);
             this.RBFloat.Name = "RBFloat";
             this.RBFloat.Size = new System.Drawing.Size(183, 24);
             this.RBFloat.TabIndex = 3;
-            this.RBFloat.TabStop = true;
             this.RBFloat.Text = "Лежачи на підлозі";
             this.RBFloat.UseVisualStyleBackColor = true;
             // 
             // RBKnees
             // 
             this.RBKnees.AutoSize = true;
-            this.RBKnees.Location = new System.Drawing.Point(3, 100);
+            this.RBKnees.Location = new System.Drawing.Point(3, 109);
             this.RBKnees.Name = "RBKnees";
             this.RBKnees.Size = new System.Drawing.Size(119, 24);
             this.RBKnees.TabIndex = 2;
-            this.RBKnees.TabStop = true;
             this.RBKnees.Text = "На колінах";
             this.RBKnees.UseVisualStyleBackColor = true;
             // 
             // RBSiting
             // 
             this.RBSiting.AutoSize = true;
-            this.RBSiting.Location = new System.Drawing.Point(3, 70);
+            this.RBSiting.Location = new System.Drawing.Point(3, 79);
             this.RBSiting.Name = "RBSiting";
             this.RBSiting.Size = new System.Drawing.Size(94, 24);
             this.RBSiting.TabIndex = 1;
-            this.RBSiting.TabStop = true;
             this.RBSiting.Text = "Сидячи";
             this.RBSiting.UseVisualStyleBackColor = true;
             // 
@@ -786,9 +810,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(1924, 993);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.GBPosition);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
@@ -803,6 +827,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.AllTraining)).EndInit();
@@ -813,8 +838,8 @@
             this.groupBox1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.GBPosition.ResumeLayout(false);
+            this.GBPosition.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -863,7 +888,7 @@
         private System.Windows.Forms.RadioButton RBBar;
         private System.Windows.Forms.RadioButton RBBodyWeight;
         private System.Windows.Forms.RadioButton RBMachine;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox GBPosition;
         private System.Windows.Forms.RadioButton RBBars;
         private System.Windows.Forms.RadioButton RBHorizontalBar;
         private System.Windows.Forms.RadioButton RBSlopingBench;
@@ -875,7 +900,9 @@
         private System.Windows.Forms.RadioButton RBStanding;
         private System.Windows.Forms.RadioButton RBScottBench;
         private System.Windows.Forms.RadioButton RBStandSlope;
-        private System.Windows.Forms.ToolStripMenuItem очиститиФайлиToolStripMenuItem;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem перезаписатиФайлToolStripMenuItem;
+        private System.Windows.Forms.Label label7;
     }
 }
 

@@ -10,8 +10,8 @@ namespace Painkiller
     {
         public String Message { get; }
         //кількість позитивних та негативних повідомлень відповідно
-        public static Int32 CountPosInvoke { get; internal set; }
-        public static Int32 CountNegInvoke { get; internal set; }
+        public static Int32 CountPosInvoke { get; internal set; } = 0;
+        public static Int32 CountNegInvoke { get; internal set; } = 0;
 
         public MessageEventArgs(String mess)
         {

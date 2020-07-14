@@ -49,6 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base.cs" />
+    <Compile Include="DialogSort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogSort.Designer.cs">
+      <DependentUpon>DialogSort.cs</DependentUpon>
+    </Compile>
     <Compile Include="DialogSeekExercise.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,14 +72,17 @@
     <Compile Include="MessageEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dialog.cs">
+    <Compile Include="DialogFiltr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog.Designer.cs">
-      <DependentUpon>Dialog.cs</DependentUpon>
+    <Compile Include="DialogFiltr.Designer.cs">
+      <DependentUpon>DialogFiltr.cs</DependentUpon>
     </Compile>
     <Compile Include="Training.cs" />
-    <Compile Include="WorkDB.cs" />
+    <Compile Include="WriteRead.cs" />
+    <EmbeddedResource Include="DialogSort.resx">
+      <DependentUpon>DialogSort.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DialogSeekExercise.resx">
       <DependentUpon>DialogSeekExercise.cs</DependentUpon>
     </EmbeddedResource>
@@ -88,8 +98,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Dialog.resx">
-      <DependentUpon>Dialog.cs</DependentUpon>
+    <EmbeddedResource Include="DialogFiltr.resx">
+      <DependentUpon>DialogFiltr.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".editorconfig" />
     <None Include="Properties\Settings.settings">

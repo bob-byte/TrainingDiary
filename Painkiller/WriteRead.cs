@@ -1,47 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Painkiller
 {
-    class WorkDB
+    class WriteRead : Base
     {
-        public delegate void Message(object sender, MessageEventArgs e);
-        event Message messagePositive;
-        event Message messageNegative;
-        public event Message MessagePositive
+        static String fileAllTrain, fileBadExercise;
+        String textRow;
+
+        internal WriteRead()
         {
-            add
-            {
-                messagePositive += value;
-                MessageEventArgs.CountPosInvoke++;
-            }
-            remove
-            {
-                messagePositive -= value;
-                MessageEventArgs.CountPosInvoke--;
-            }
-        }
-        public event Message MessageNegative
-        {
-            add
-            {
-                messageNegative += value;
-                MessageEventArgs.CountNegInvoke++;
-            }
-            remove
-            {
-                messageNegative -= value;
-                MessageEventArgs.CountNegInvoke--;
-            }
+            fileAllTrain = "Все тренування.txt";
+            fileBadExercise = "Відстаючі вправи.txt";
         }
 
-        internal  void WriteGrid(DataTable grid, DomainUpDown unitMeasure)
+        internal void WriteDB(DataTable grid, DomainUpDown unitMeasure)
         {
             using (SqlConnection connect = new SqlConnection())
             {
@@ -106,14 +82,14 @@ namespace Painkiller
                 }
                 catch (Exception ex)
                 {
-                    messageNegative?.Invoke(this, new MessageEventArgs($"Таблицю не вдалося записати в базу даних: {ex.Message}"));
+                    MessageInvoke(false, $"Таблицю не вдалося записати в базу даних: {ex.Message}");
                     tranPlSave.Rollback();//Виконати відкад у випадку невдалого записування
                     return;
                 }
-                messagePositive?.Invoke(this, new MessageEventArgs($"Таблиця записана в базу даних"));
+                MessageInvoke(true, "Таблиця записана в базу даних");
             }
         }
-         internal void ReadDatabase(DataTable table, DataGridView dGV)
+        internal void ReadDB(DataTable table, DataGridView dGV)
         {
             SqlConnection connect = new SqlConnection();
             SqlCommand com = new SqlCommand();
@@ -153,6 +129,101 @@ namespace Painkiller
             for (int i = 0; i < dGV.Rows.Count - 1; i++)
             {
                 dGV.Rows[i].Cells["N_пп"].Value = i + 1;
+            }
+        }
+
+        public void WriteTabFile(Boolean allTrain, Boolean rewrite)
+        {
+            try
+            {
+                Int32 i = 0;
+                String textRow;
+
+                if (allTrain && !rewrite)
+                {
+                    StreamReader sr = new StreamReader(fileAllTrain);
+                    while (sr.Peek() >= 0)
+                    {
+                        textRow = sr.ReadLine();
+                        if (textRow.Contains("День"))
+                        {
+                            String[] data = new String[2];
+                            data = textRow.Split(' ');
+                            if (!Int32.TryParse(data[1], out i))
+                            {
+                                MessageInvoke(false, "Файл \"Все тренування\" неправильно записаний");
+                            }
+                        }
+                    }
+                    sr.Close();
+                }
+
+
+                StreamWriter sw1 = new StreamWriter(fileAllTrain, !rewrite);//якщо не перезапис, то додаємо до вхідного тексту файлу наступні рядки
+                if (allTrain)
+                {
+                    sw1.WriteLine($"День {++i}");
+                }
+                foreach (DataRow r in TabTrain.Rows)
+                {
+                    this.textRow = $"{r["Група_мязів"]};{r["Вправа"]};{r["Вид_тренування"]};{r["Обтяження"]};{r["Положення"]};{r["Max_вага"]};{r["К_сть_повторень_з_max_вагою"]};{r["Загальна_к_сть_підходів"]}";
+                    sw1.WriteLine(this.textRow);
+                }
+                sw1.Close();
+                MessageInvoke(true, "Інформація у файл \"Все тренування\" записана");
+            }
+            catch (Exception ex)
+            {
+                MessageInvoke(true, ex.Message);
+            }
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(fileBadExercise))
+                {
+                    foreach (DataRow r in Base.TabMinTrain.Rows)
+                    {
+                        if (r["Вправа "].ToString() == "")
+                        {
+                            continue;
+                        }
+                        textRow = $"{r["Група_мязів "]};{r["Вправа "]};{r["Обтяження "]};{r["Положення тіла "]};{r["Max_вага "]};{r["К_сть_повторень_з_max_вагою "]}";
+                        sw.WriteLine(textRow);
+                    }
+                }
+
+                MessageInvoke(true, "Інформація у файл \"Відстаючі вправи\" записана");
+            }
+            catch (Exception ex)
+            {
+                MessageInvoke(false, ex.Message);
+            }
+        }
+        public void ReadTabFile(DataGridView allTrain)
+        {
+            try
+            {
+                using (StreamReader sr = new StreamReader(fileAllTrain))
+                {
+                    while (sr.Peek() >= 0)//поки у файлі є елементи
+                    {
+                        textRow = sr.ReadLine();
+                        String[] partTrain = textRow.Split(';');
+
+                        if (partTrain[0].Contains("День"))
+                        {
+                            continue;
+                        }
+                        TTrainingAddRow(partTrain[0], partTrain[1], partTrain[2], partTrain[3], partTrain[4], Convert.ToInt32(partTrain[5]), Convert.ToInt32(partTrain[6]), Convert.ToInt32(partTrain[7]));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageInvoke(false, ex.Message);
+            }
+            for (Int32 i = 0; i < allTrain.Rows.Count - 1; i++)
+            {
+                allTrain.Rows[i].Cells["N_пп"].Value = i + 1;
             }
         }
     }

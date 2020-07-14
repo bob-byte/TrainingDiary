@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Painkiller
@@ -17,39 +10,30 @@ namespace Painkiller
             InitializeComponent();
         }
 
-        public delegate void Message(object sender, MessageEventArgs e);
-        event Message messageNegative;
+        Legs legs = new Legs();
+        Back back = new Back();
+        Chest chest = new Chest();
+        Arms arms = new Arms();
+        Shoulders shoulders = new Shoulders();
 
-        public event Message MessageNegative
-        {
-            add
-            {
-                messageNegative += value;
-                MessageEventArgs.CountNegInvoke++;
-            }
-            remove
-            {
-                messageNegative -= value;
-                MessageEventArgs.CountNegInvoke--;
-            }
-        }
+        String[] exercises;
 
-        public void SeekExercise(string name, DataGridView grid, Int32 count)
+        public void SeekExercise(String name, DataGridView grid, Int32 count)
         {
-            int n = 0;
-            Int32 num = 0;
+            Int32 numElement = 0;
+            Int32 j = 0;
             bool isFound = false;
             
             try
             {
-                for (int i = 0; i < grid.Rows.Count - 1; i++)
+                for (Int32 i = 0; i < grid.Rows.Count - 1; i++)
                 {
-                    if ((string)grid.Rows[i].Cells["Вправа"].Value == name)
+                    if ((String)grid.Rows[i].Cells["Вправа"].Value == name)
                     {
-                        num++;
-                        if(num == count)
+                        j++;
+                        if(j == count)
                         {
-                            n = i;
+                            numElement = i;
                             isFound = true;
                             break;
                         }
@@ -57,89 +41,60 @@ namespace Painkiller
                 }
                 if (isFound)
                 {
-                    grid.FirstDisplayedCell = grid.Rows[n].Cells["Вправа"];
-                    grid.Rows[n].Selected = true;
-                    grid.CurrentCell = grid.Rows[n].Cells["Вправа"];
+                    grid.FirstDisplayedCell = grid.Rows[numElement].Cells["Вправа"];
+                    grid.Rows[numElement].Selected = true;
+                    grid.CurrentCell = grid.Rows[numElement].Cells["Вправа"];
                 }
                 else
                 {
-                    messageNegative?.Invoke(this, new MessageEventArgs($"Не вдається знайти \"{name}\""));
+                    MessageBox.Show($"Вправу \"{name}\" не вдалося знайти", "Невдача", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch(Exception ex)
             {
-                messageNegative?.Invoke(this, new MessageEventArgs(ex.Message));
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
-        Legs legs = new Legs();
-        Back back = new Back();
-        Chest chest = new Chest();
-        Arms arms = new Arms();
-        Shoulders shoulders = new Shoulders();
+        
 
         private void CBExercise_Click(object sender, EventArgs e)
         {
             CBExercise.Items.Clear();
+            CBExercise.Text = "";
+            Int32 length;
+
             if (CBGroup.SelectedIndex == 0)
             {
-                CBExercise.Text = "";
-                legs.DovGroup.Rows.Clear();
-                legs.DovGroup.Columns.Clear();
-                legs.Exercises();
-                foreach (DataRow r in legs.DovGroup.Rows)
-                {
-                    CBExercise.Items.Add(r["Вправа"]);
-                }
+                exercises = legs.Exercises();
             }
             else if (CBGroup.SelectedIndex == 1)
             {
-                CBExercise.Text = "";
-                back.DovGroup.Rows.Clear();
-                back.DovGroup.Columns.Clear();
-                back.Exercises();
-                foreach (DataRow r in back.DovGroup.Rows)
-                {
-                    CBExercise.Items.Add(r["Вправа"]);
-                }
+                exercises = back.Exercises();
             }
             else if (CBGroup.SelectedIndex == 2)
             {
-                CBExercise.Text = "";
-                chest.DovGroup.Rows.Clear();
-                chest.DovGroup.Columns.Clear();
-                chest.Exercises();
-                foreach (DataRow r in chest.DovGroup.Rows)
-                {
-                    CBExercise.Items.Add(r["Вправа"]);
-                }
+                exercises = chest.Exercises();
             }
             else if (CBGroup.SelectedIndex == 3)
             {
-                CBExercise.Text = "";
-                arms.DovGroup.Rows.Clear();
-                arms.DovGroup.Columns.Clear();
-                arms.Exercises();
-                foreach (DataRow r in arms.DovGroup.Rows)
-                {
-                    CBExercise.Items.Add(r["Вправа"]);
-                }
+                exercises = arms.Exercises();
             }
             else if (CBGroup.SelectedIndex == 4)
             {
-                CBExercise.Text = "";
-                shoulders.DovGroup.Rows.Clear();
-                shoulders.DovGroup.Columns.Clear();
-                shoulders.Exercises();
-                foreach (DataRow r in shoulders.DovGroup.Rows)
-                {
-                    CBExercise.Items.Add(r["Вправа"]);
-                }
+                exercises = shoulders.Exercises();
             }
             else
             {
                 MessageBox.Show("Виберіть, будь ласка, групу м\'язів", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            length = exercises.Length;
+            for (Int32 i = 0; i < length; i++)
+            {
+                CBExercise.Items.Add(exercises[i]);
             }
         }
 
@@ -150,6 +105,12 @@ namespace Painkiller
             {
                 SeekExercise(CBExercise.Text, Form1.DGV, (Int32)numExercise.Value);
             }
+        }
+
+        private void CBGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CBExercise.Text = "";
+            CBExercise.Items.Clear();
         }
     }
 }
