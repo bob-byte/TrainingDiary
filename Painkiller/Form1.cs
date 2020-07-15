@@ -55,7 +55,6 @@ namespace Painkiller
             AllTraining.Columns["К_сть_повторень_з_max_вагою"].Width = 65;
             AllTraining.Columns["Загальна_к_сть_підходів"].Width = 65;
             AllTraining.Columns[0].DefaultCellStyle.BackColor = Color.NavajoWhite;
-            AllTraining.Columns[0].DefaultCellStyle.ForeColor = Color.Black;
            
             for (Int32 i = 1; i < AllTraining.ColumnCount; i++)
             {
@@ -67,7 +66,6 @@ namespace Painkiller
                 {
                     AllTraining.Columns[i].DefaultCellStyle.BackColor = Color.PaleGoldenrod;
                 }
-                AllTraining.Columns[i].DefaultCellStyle.ForeColor = Color.Black;
             }
             doIt.MainRes();
 
@@ -84,7 +82,6 @@ namespace Painkiller
             MinResults.Columns["Max_вага "].Width = 65;
             MinResults.Columns["К_сть_повторень_з_max_вагою "].Width = 65;
             MinResults.Columns[0].DefaultCellStyle.BackColor = Color.NavajoWhite;
-            MinResults.Columns[0].DefaultCellStyle.ForeColor = Color.Black;
             for (Int32 i = 1; i < MinResults.ColumnCount; i++)
             {
                 if (i % 2 == 0)
@@ -95,7 +92,6 @@ namespace Painkiller
                 {
                     MinResults.Columns[i].DefaultCellStyle.BackColor = Color.PaleGoldenrod;
                 }
-                MinResults.Columns[i].DefaultCellStyle.ForeColor = Color.Black;
             }
         }
 

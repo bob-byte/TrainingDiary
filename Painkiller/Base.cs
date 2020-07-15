@@ -267,10 +267,8 @@ namespace Painkiller
                 dGV.Columns["Max_вага "].Width = 65;
                 dGV.Columns["К_сть_повторень_з_max_вагою "].Width = 65;
 
-                dGV.Columns["Max_вага "].DefaultCellStyle.BackColor = Color.Black;
-                dGV.Columns["Max_вага "].DefaultCellStyle.ForeColor = Color.Red;
-                dGV.Columns["К_сть_повторень_з_max_вагою "].DefaultCellStyle.BackColor = Color.Red;
-                dGV.Columns["К_сть_повторень_з_max_вагою "].DefaultCellStyle.ForeColor = Color.Black;
+                dGV.Columns["Max_вага "].DefaultCellStyle.BackColor = Color.NavajoWhite;
+                dGV.Columns["К_сть_повторень_з_max_вагою "].DefaultCellStyle.BackColor = Color.PaleGoldenrod;
 
                 isClearMinRes = false;//щоб не заходило зайвий раз в це розгалуження
             }
