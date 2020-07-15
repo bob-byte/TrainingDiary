@@ -9,10 +9,8 @@ namespace Painkiller
         public DialogFiltr()
         {
             InitializeComponent();
-            
+            Base.dialogCriteria = "";
         }
-
-        public string criteria;
 
         private void SortFiltr_Click(object sender, EventArgs e)
         {
@@ -29,15 +27,15 @@ namespace Painkiller
 
         private void amountWeigthReps_ValueChanged(object sender, EventArgs e)
         {
-            RBWeight.Text = $"Більше від {amountWeigthReps.Value}{Form1.sendMeasure.Text}";
+            RBWeight.Text = $"Більше від {amountWeigthReps.Value}{Form1.sendMeasure}";
             RBReps.Text = $"Більше від {amountWeigthReps.Value} к-сті повторів";
         }
 
-        public void TTrainingFiltr(string filter, DataGridView dGV, DataView view)
+        public void TTrainingFiltr(String filter, DataGridView dGV, DataView view)
         {
             view.RowFilter = filter;
             dGV.DataSource = view;
-            for (int i = 0; i < dGV.Rows.Count - 1; i++)
+            for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)
             {
                 dGV.Rows[i].Cells["N_пп"].Value = i + 1;
             }
@@ -46,7 +44,7 @@ namespace Painkiller
         private void DialogFiltr_Load(object sender, EventArgs e)
         {
             RBReps.Text = $"Більше від {amountWeigthReps.Value} к-сті повторів";
-            RBWeight.Text = $"Більше від {amountWeigthReps.Value}{Form1.sendMeasure.Text}";
+            RBWeight.Text = $"Більше від {amountWeigthReps.Value}{Form1.sendMeasure}";
         }
     }
 }

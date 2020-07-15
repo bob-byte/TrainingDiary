@@ -22,7 +22,7 @@ namespace Painkiller
         {
             Int32 numElement = 0;
             Int32 j = 0;
-            bool isFound = false;
+            Boolean isFound = false;
             
             try
             {
@@ -103,7 +103,7 @@ namespace Painkiller
         {
             if (CBExercise.Text != "" && numExercise.Value != 0)
             {
-                SeekExercise(CBExercise.Text, Form1.DGV, (Int32)numExercise.Value);
+                SeekExercise(CBExercise.Text, Form1.sendDialogSeek, (Int32)numExercise.Value);
             }
         }
 
@@ -112,5 +112,6 @@ namespace Painkiller
             CBExercise.Text = "";
             CBExercise.Items.Clear();
         }
+
     }
 }

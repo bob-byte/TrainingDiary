@@ -79,7 +79,7 @@
       <DependentUpon>DialogFiltr.cs</DependentUpon>
     </Compile>
     <Compile Include="Training.cs" />
-    <Compile Include="WriteRead.cs" />
+    <Compile Include="OperationDBFile.cs" />
     <EmbeddedResource Include="DialogSort.resx">
       <DependentUpon>DialogSort.cs</DependentUpon>
     </EmbeddedResource>

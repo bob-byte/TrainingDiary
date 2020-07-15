@@ -199,7 +199,7 @@ namespace Painkiller
             TabMinTrain.Columns.Add(cWeight);
             TabMinTrain.Columns.Add(cReps);
 
-            for (int i = 0; i < dGV.Rows.Count - 1; i++)
+            for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)
             {
                 TabMinTrain.Rows[i]["Вправа "] = "";
                 TabMinTrain.Rows[i]["Обтяження "] = "";
@@ -232,15 +232,15 @@ namespace Painkiller
             }
         }
 
-        void ChangeColumnsValue(int numRowTab, int numRowView)
+        void ChangeColumnsValue(Int32 numRowTab, Int32 numRowView)
         {
             try
             {
-                TabMinTrain.Rows[numRowTab]["Вправа "] = (string)TrainView[numRowView]["Вправа"];
-                TabMinTrain.Rows[numRowTab]["Обтяження "] = (string)TrainView[numRowView]["Обтяження"];
-                TabMinTrain.Rows[numRowTab]["Положення тіла "] = (string)TrainView[numRowView]["Положення"];
-                TabMinTrain.Rows[numRowTab]["Max_вага "] = (int)TrainView[numRowView]["Max_вага"];
-                TabMinTrain.Rows[numRowTab]["К_сть_повторень_з_max_вагою "] = (int)TrainView[numRowView]["К_сть_повторень_з_max_вагою"];
+                TabMinTrain.Rows[numRowTab]["Вправа "] = (String)TrainView[numRowView]["Вправа"];
+                TabMinTrain.Rows[numRowTab]["Обтяження "] = (String)TrainView[numRowView]["Обтяження"];
+                TabMinTrain.Rows[numRowTab]["Положення тіла "] = (String)TrainView[numRowView]["Положення"];
+                TabMinTrain.Rows[numRowTab]["Max_вага "] = (Int32)TrainView[numRowView]["Max_вага"];
+                TabMinTrain.Rows[numRowTab]["К_сть_повторень_з_max_вагою "] = (Int32)TrainView[numRowView]["К_сть_повторень_з_max_вагою"];
             }
             catch (InvalidCastException ex)
             {
@@ -290,23 +290,23 @@ namespace Painkiller
                 {
                     try
                     {
-                        if ((string)TrainView[i]["Група_мязів"] == "Ноги")
+                        if ((String)TrainView[i]["Група_мязів"] == "Ноги")
                         {
                             numRowLegs.Add(i);
                         }
-                        else if ((string)TrainView[i]["Група_мязів"] == "Спина")
+                        else if ((String)TrainView[i]["Група_мязів"] == "Спина")
                         {
                             numRowBack.Add(i);
                         }
-                        else if ((string)TrainView[i]["Група_мязів"] == "Груди")
+                        else if ((String)TrainView[i]["Група_мязів"] == "Груди")
                         {
                             numRowChest.Add(i);
                         }
-                        else if ((string)TrainView[i]["Група_мязів"] == "Руки")
+                        else if ((String)TrainView[i]["Група_мязів"] == "Руки")
                         {
                             numRowArms.Add(i);
                         }
-                        else if ((string)TrainView[i]["Група_мязів"] == "Плечі")
+                        else if ((String)TrainView[i]["Група_мязів"] == "Плечі")
                         {
                             numRowShoulders.Add(i);
                         }

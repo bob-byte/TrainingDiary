@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Data;
 using System.Drawing;
-using System.Threading;
 
 namespace Painkiller
 {
@@ -11,13 +9,12 @@ namespace Painkiller
         public Form1()
         {
             InitializeComponent();
-            sendMeasure = unitMeasure;
+            sendMeasure = unitMeasure.Text;
         }
 
         public static String dialogParameter;
-        internal static DataGridView DGV;
-        internal static DomainUpDown sendMeasure;
-
+        internal static DataGridView sendDialogSeek;
+        internal static String sendMeasure;
 
         Legs legs = new Legs();
         Back back = new Back();
@@ -30,13 +27,14 @@ namespace Painkiller
         String burden = "";
         DialogFiltr filtr = new DialogFiltr();
         DialogSort sortDialog = new DialogSort();
-        WriteRead writeRead;
+        DialogResult dialogRes;
+        OperationDBFile opFileDB;
 
         private void Form1_Load(object sender, EventArgs e)
         {
             doIt = new Base();
-            writeRead = new WriteRead();
-            DGV = AllTraining;
+            opFileDB = new OperationDBFile();
+            sendDialogSeek = AllTraining;
             AllTraining.DataSource = Base.TabTrain;
             AllTraining.Columns["N_пп"].HeaderText = "№ п/п";
             AllTraining.Columns["Група_мязів"].HeaderText = "Група м\'язів";
@@ -103,16 +101,16 @@ namespace Painkiller
 
         private void записатиТаблицюToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Всі вправи внесені у таблицю?", "Питання", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            AddMessage(true, true, writeRead);
+            dialogRes = MessageBox.Show("Всі вправи внесені у таблицю?", "Питання", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            AddMessage(true, true, opFileDB);
 
-            if (result == DialogResult.Yes)
+            if (dialogRes == DialogResult.Yes)
             {
-                writeRead.WriteTabFile(true, false);
+                opFileDB.WriteTabFile(true, false);
             }
-            else if (result == DialogResult.No)
+            else if (dialogRes == DialogResult.No)
             {
-                writeRead.WriteTabFile(false, false);
+                opFileDB.WriteTabFile(false, false);
             }
         }
 
@@ -150,23 +148,23 @@ namespace Painkiller
 
         private void зчитатиТаблицюЗФайлуToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddMessage(false, true, writeRead);
-            writeRead.ReadTabFile(AllTraining);
+            AddMessage(false, true, opFileDB);
+            opFileDB.ReadTabFile(AllTraining);
             doIt.SetSumy(MinResults, unitMeasure);
         }
 
         private void перезаписатиФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Всі вправи внесені у таблицю?", "Питання", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-            AddMessage(true, true, writeRead);
+            AddMessage(true, true, opFileDB);
 
             if (result == DialogResult.Yes)
             {
-                writeRead.WriteTabFile(true, true);
+                opFileDB.WriteTabFile(true, true);
             }
             else if (result == DialogResult.No)
             {
-                writeRead.WriteTabFile(false, true);
+                opFileDB.WriteTabFile(false, true);
             }
         }
 
@@ -176,34 +174,39 @@ namespace Painkiller
         {
             AddMessage(true, true, doIt);
 
-            writeRead.WriteDB(Base.TabTrain, unitMeasure);
+            opFileDB.WriteDB(Base.TabTrain, unitMeasure);
         }
 
         private void зчитатиТаблицюЗБазиДанихToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            writeRead.ReadDB(Base.TabTrain, AllTraining);
+            opFileDB.ReadDB(Base.TabTrain, AllTraining);
             doIt.SetSumy(MinResults, unitMeasure);
         }
 
         private void очиститиТаблицюToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clear(AllTraining);
-            doIt.ClearMax(MinResults);
-            MinResults.Columns["Max_вага "].Width = 65;
-            MinResults.Columns["К_сть_повторень_з_max_вагою "].Width = 65;
-            MinResults.Columns["Max_вага "].HeaderText = $"Max вага, {unitMeasure.Text}";
-            MinResults.Columns["К_сть_повторень_з_max_вагою "].HeaderText = "К-сть повторень з max вагою";
-            for (Int32 i = 3; i < MinResults.ColumnCount; i++)
+            dialogRes = MessageBox.Show("Ви впевнені, що хочете очистити таблиці? Повернути незаписані дані буде неможливо",
+                "Попередження", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dialogRes == DialogResult.Yes)
             {
-                if (i % 2 == 0)
+                Clear(AllTraining);
+                doIt.ClearMax(MinResults);
+                MinResults.Columns["Max_вага "].Width = 65;
+                MinResults.Columns["К_сть_повторень_з_max_вагою "].Width = 65;
+                MinResults.Columns["Max_вага "].HeaderText = $"Max вага, {unitMeasure.Text}";
+                MinResults.Columns["К_сть_повторень_з_max_вагою "].HeaderText = "К-сть повторень з max вагою";
+                for (Int32 i = 3; i < MinResults.ColumnCount; i++)
                 {
-                    MinResults.Columns[i].DefaultCellStyle.BackColor = Color.NavajoWhite;
+                    if (i % 2 == 0)
+                    {
+                        MinResults.Columns[i].DefaultCellStyle.BackColor = Color.NavajoWhite;
+                    }
+                    else
+                    {
+                        MinResults.Columns[i].DefaultCellStyle.BackColor = Color.PaleGoldenrod;
+                    }
+                    MinResults.Columns[i].DefaultCellStyle.ForeColor = Color.Black;
                 }
-                else
-                {
-                    MinResults.Columns[i].DefaultCellStyle.BackColor = Color.PaleGoldenrod;
-                }
-                MinResults.Columns[i].DefaultCellStyle.ForeColor = Color.Black;
             }
         }
 
@@ -218,9 +221,20 @@ namespace Painkiller
             }
         }
 
+        private void очиститиГоловнуТаблицюБДToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            dialogRes = MessageBox.Show("Ви впевнені, що хочете очистити головну таблицю в базі даних? Повернути незаписані дані буде неможливо",
+                "Попередження", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (dialogRes == DialogResult.Yes)
+            {
+                AddMessage(true, true, opFileDB);
+                opFileDB.ClearMainTabDB();
+            }
+        }
+
         private void ввестиКритерійСортуванняToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            sortDialog.ShowDialog();
+            dialogRes = sortDialog.ShowDialog();
             sortDialog.TTrainingSort(Base.dialogCriteria, AllTraining, Base.TrainView);
         }
         private void знятиСортуванняToolStripMenuItem_Click(object sender, EventArgs e)
@@ -598,9 +612,10 @@ namespace Painkiller
                 {
                     Base.TabTrain.Rows[i]["Max_вага"] = Math.Round((Int32)Base.TabTrain.Rows[i]["Max_вага"] * 0.454);
                 }
+
+                MinResults.Columns[4].HeaderText = "Max вага, кг";
                 for (Int32 i = 0; i < MinResults.Rows.Count - 1; i++)
                 {
-                    MinResults.Columns[4].HeaderText = "Max вага, кг";
                     if (Base.TabMinTrain.Rows[i]["Max_вага "].ToString() != "")
                     {
                         Base.TabMinTrain.Rows[i]["Max_вага "] = Math.Round((Int32)Base.TabMinTrain.Rows[i]["Max_вага "] * 0.454);
@@ -611,13 +626,11 @@ namespace Painkiller
             else
             {
                 AllTraining.Columns[6].HeaderText = "Max вага, lb";
-                Int32 j;
                 for (Int32 i = 0; i < AllTraining.Rows.Count - 1; i++)
                 {
-                    j = (Int32)Base.TrainView[i]["Max_вага"];
                     Base.TabTrain.Rows[i]["Max_вага"] = Math.Round((Int32)Base.TabTrain.Rows[i]["Max_вага"] * 2.2046);
-                    j = (Int32)Base.TrainView[i]["Max_вага"];
                 }
+
                 MinResults.Columns[4].HeaderText = "Max вага, lb";
                 for (Int32 i = 0; i < MinResults.Rows.Count - 1; i++)
                 {
@@ -631,15 +644,14 @@ namespace Painkiller
             AllTraining.DataSource = Base.TrainView;
         }
 
-        private void NWeight_ValueChanged(object sender, EventArgs e)
+        private void AllTraining_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if(unitMeasure.Text == "кг")
+            if(e.ColumnIndex != 0)
             {
-                NWeight.Maximum = 1200;
-            }
-            else
-            {
-                NWeight.Maximum = 2400;
+                for (Int32 i = 0; i < AllTraining.Rows.Count - 1; i++)
+                {
+                    AllTraining.Rows[i].Cells["N_пп"].Value = i + 1;
+                }
             }
         }
     }

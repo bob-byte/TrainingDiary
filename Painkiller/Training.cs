@@ -7,9 +7,6 @@ using System.Drawing;
 
 namespace Painkiller
 {
-
-    
-
     public class Legs : Base, IPainKiller
     {
         public String[] Exercises()
@@ -25,7 +22,7 @@ namespace Painkiller
             names[7] = "Згинання ніг";
             return names;
         }
-        public void Reps(out int min, out int max)
+        public void Reps(out Int32 min, out Int32 max)
         {
             if (numTypeTrain == 1)
             {
@@ -43,7 +40,7 @@ namespace Painkiller
                 max = 7;
             }
         }
-        public void Sets(out int min, out int max)
+        public void Sets(out Int32 min, out Int32 max)
         {
             min = 1;
             max = 10;
@@ -63,7 +60,7 @@ namespace Painkiller
             names[6] = "Гіперекстензія";
             return names;
         }
-        public void Reps(out int min, out int max)
+        public void Reps(out Int32 min, out Int32 max)
         {
             if (numTypeTrain == 1)
             {
@@ -81,7 +78,7 @@ namespace Painkiller
                 max = 7;
             }
         }
-        public void Sets(out int min, out int max)
+        public void Sets(out Int32 min, out Int32 max)
         {
             min = 1;
             max = 10;
@@ -99,7 +96,7 @@ namespace Painkiller
             names[4] = "Зведення рук";
             return names;
         }
-        public void Reps(out int min, out int max)
+        public void Reps(out Int32 min, out Int32 max)
         {
             if (numTypeTrain == 1)
             {
@@ -117,7 +114,7 @@ namespace Painkiller
                 max = 7;
             }
         }
-        public void Sets(out int min, out int max)
+        public void Sets(out Int32 min, out Int32 max)
         {
             min = 1;
             max = 8;
@@ -145,7 +142,7 @@ namespace Painkiller
             names[14] = "Розгинання рук за головою";
             return names;
         }
-        public void Reps(out int min, out int max)
+        public void Reps(out Int32 min, out Int32 max)
         {
             if (numTypeTrain == 1)
             {
@@ -163,7 +160,7 @@ namespace Painkiller
                 max = 7;
             }
         }
-        public void Sets(out int min, out int max)
+        public void Sets(out Int32 min, out Int32 max)
         {
             min = 1;
             max = 8;
@@ -183,7 +180,7 @@ namespace Painkiller
             names[6] = "Метелик";
             return names;
         }
-        public void Reps(out int min, out int max)
+        public void Reps(out Int32 min, out Int32 max)
         {
             if (numTypeTrain == 1)
             {
@@ -201,7 +198,7 @@ namespace Painkiller
                 max = 7;
             }
         }
-        public void Sets(out int min, out int max)
+        public void Sets(out Int32 min, out Int32 max)
         {
             min = 1;
             max = 8;

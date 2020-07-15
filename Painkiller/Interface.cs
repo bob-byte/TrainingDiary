@@ -9,8 +9,8 @@ namespace Painkiller
     public interface IPainKiller
     {
         public String[] Exercises();
-        public void Reps(out int min, out int max);
-        public void Sets(out int min, out int max);
+        public void Reps(out Int32 min, out Int32 max);
+        public void Sets(out Int32 min, out Int32 max);
     }
 
 }

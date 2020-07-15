@@ -15,27 +15,47 @@ namespace Painkiller
         public DialogSort()
         {
             InitializeComponent();
+            Base.dialogCriteria = "";
         }
 
         private void SortFiltrSearch_Click(object sender, EventArgs e)
         {
-            if (RBGroup.Checked)
+            if (CBTypeSort.Text == "По групах м'язів")
             {
                 Base.dialogCriteria = "Група_мязів";
             }
-            if (RBTypeTraining.Checked)
+            else if (CBTypeSort.Text == "По видах тренувань")
             {
                 Base.dialogCriteria = "Вид_тренування";
             }
-            if (RBExercise.Checked)
+            else if (CBTypeSort.Text == "По вправах")
             {
                 Base.dialogCriteria = "Вправа";
             }
-            
+            else if (CBTypeSort.Text == "По обтяженнях")
+            {
+                Base.dialogCriteria = "Обтяження";
+            }
+            else if(CBTypeSort.Text == "По положеннях тіла")
+            {
+                Base.dialogCriteria = "Положення";
+            }
+            else if (CBTypeSort.Text == "По max вазі")
+            {
+                Base.dialogCriteria = "Max_вага";
+            }
+            else if (CBTypeSort.Text == "По кількості повторень з max вагою")
+            {
+                Base.dialogCriteria = "К_сть_повторень_з_max_вагою";
+            }
+            else if (CBTypeSort.Text == "По кількості загальних підходів")
+            {
+                Base.dialogCriteria = "Загальна_к_сть_підходів";
+            }
             Close();
         }
 
-        public void TTrainingSort(string sort, DataGridView dGV, DataView view)
+        public void TTrainingSort(String sort, DataGridView dGV, DataView view)
         {
             if(sort != "")
             {

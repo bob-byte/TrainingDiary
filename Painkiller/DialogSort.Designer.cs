@@ -29,21 +29,20 @@
         private void InitializeComponent()
         {
             this.SortFiltrSearch = new System.Windows.Forms.Button();
-            this.RBGroup = new System.Windows.Forms.RadioButton();
-            this.RBExercise = new System.Windows.Forms.RadioButton();
-            this.RBTypeTraining = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.RBHorning = new System.Windows.Forms.RadioButton();
             this.RBGrowth = new System.Windows.Forms.RadioButton();
+            this.CBTypeSort = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // SortFiltrSearch
             // 
             this.SortFiltrSearch.BackColor = System.Drawing.Color.Yellow;
-            this.SortFiltrSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SortFiltrSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SortFiltrSearch.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.SortFiltrSearch.Location = new System.Drawing.Point(216, 150);
+            this.SortFiltrSearch.Location = new System.Drawing.Point(43, 129);
             this.SortFiltrSearch.Name = "SortFiltrSearch";
             this.SortFiltrSearch.Size = new System.Drawing.Size(148, 69);
             this.SortFiltrSearch.TabIndex = 6;
@@ -51,51 +50,14 @@
             this.SortFiltrSearch.UseVisualStyleBackColor = false;
             this.SortFiltrSearch.Click += new System.EventHandler(this.SortFiltrSearch_Click);
             // 
-            // RBGroup
-            // 
-            this.RBGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RBGroup.ForeColor = System.Drawing.Color.Yellow;
-            this.RBGroup.Location = new System.Drawing.Point(249, 21);
-            this.RBGroup.Name = "RBGroup";
-            this.RBGroup.Size = new System.Drawing.Size(246, 24);
-            this.RBGroup.TabIndex = 0;
-            this.RBGroup.TabStop = true;
-            this.RBGroup.Text = "По назвах груп м\'язів";
-            this.RBGroup.UseVisualStyleBackColor = true;
-            // 
-            // RBExercise
-            // 
-            this.RBExercise.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RBExercise.ForeColor = System.Drawing.Color.Yellow;
-            this.RBExercise.Location = new System.Drawing.Point(249, 92);
-            this.RBExercise.Name = "RBExercise";
-            this.RBExercise.Size = new System.Drawing.Size(229, 38);
-            this.RBExercise.TabIndex = 0;
-            this.RBExercise.TabStop = true;
-            this.RBExercise.Text = "По назвах вправ";
-            this.RBExercise.UseVisualStyleBackColor = true;
-            // 
-            // RBTypeTraining
-            // 
-            this.RBTypeTraining.AutoSize = true;
-            this.RBTypeTraining.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RBTypeTraining.ForeColor = System.Drawing.Color.Yellow;
-            this.RBTypeTraining.Location = new System.Drawing.Point(249, 62);
-            this.RBTypeTraining.Name = "RBTypeTraining";
-            this.RBTypeTraining.Size = new System.Drawing.Size(284, 24);
-            this.RBTypeTraining.TabIndex = 7;
-            this.RBTypeTraining.TabStop = true;
-            this.RBTypeTraining.Text = "По назвах видів тренувань";
-            this.RBTypeTraining.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Yellow;
             this.groupBox1.Controls.Add(this.RBHorning);
             this.groupBox1.Controls.Add(this.RBGrowth);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.groupBox1.Location = new System.Drawing.Point(21, 21);
+            this.groupBox1.Location = new System.Drawing.Point(12, 21);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(200, 102);
             this.groupBox1.TabIndex = 8;
@@ -105,7 +67,7 @@
             // RBHorning
             // 
             this.RBHorning.AutoSize = true;
-            this.RBHorning.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RBHorning.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RBHorning.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.RBHorning.Location = new System.Drawing.Point(6, 55);
             this.RBHorning.Name = "RBHorning";
@@ -118,7 +80,7 @@
             // RBGrowth
             // 
             this.RBGrowth.AutoSize = true;
-            this.RBGrowth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RBGrowth.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.RBGrowth.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.RBGrowth.Location = new System.Drawing.Point(6, 21);
             this.RBGrowth.Name = "RBGrowth";
@@ -128,16 +90,46 @@
             this.RBGrowth.Text = "Зростанням";
             this.RBGrowth.UseVisualStyleBackColor = true;
             // 
+            // CBTypeSort
+            // 
+            this.CBTypeSort.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.CBTypeSort.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CBTypeSort.ForeColor = System.Drawing.Color.Yellow;
+            this.CBTypeSort.FormattingEnabled = true;
+            this.CBTypeSort.Items.AddRange(new object[] {
+            "По групах м\'язів",
+            "По видах тренувань",
+            "По вправах",
+            "По обтяженнях",
+            "По положеннях тіла",
+            "По max вазі",
+            "По кількості повторень з max вагою",
+            "По кількості загальних підходів"});
+            this.CBTypeSort.Location = new System.Drawing.Point(235, 45);
+            this.CBTypeSort.Name = "CBTypeSort";
+            this.CBTypeSort.Size = new System.Drawing.Size(289, 28);
+            this.CBTypeSort.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.Yellow;
+            this.label1.Location = new System.Drawing.Point(231, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(293, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Виберіть критерій сортування";
+            // 
             // DialogSort
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ClientSize = new System.Drawing.Size(577, 243);
+            this.ClientSize = new System.Drawing.Size(558, 239);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.CBTypeSort);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.RBTypeTraining);
-            this.Controls.Add(this.RBExercise);
-            this.Controls.Add(this.RBGroup);
             this.Controls.Add(this.SortFiltrSearch);
             this.Name = "DialogSort";
             this.Text = "Виберіть, будь ласка, критерій сортування";
@@ -150,11 +142,10 @@
 
         #endregion
         private System.Windows.Forms.Button SortFiltrSearch;
-        private System.Windows.Forms.RadioButton RBGroup;
-        private System.Windows.Forms.RadioButton RBExercise;
-        private System.Windows.Forms.RadioButton RBTypeTraining;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton RBHorning;
         private System.Windows.Forms.RadioButton RBGrowth;
+        private System.Windows.Forms.ComboBox CBTypeSort;
+        private System.Windows.Forms.Label label1;
     }
 }
