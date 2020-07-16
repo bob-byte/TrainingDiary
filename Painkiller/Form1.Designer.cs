@@ -62,6 +62,7 @@
             this.зчитатиТаблицюЗФайлуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.записатиТаблицюВБазуДанихToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.очиститиГоловнуТаблицюБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.очиститиТаблицюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.сортуватиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ввестиКритерійСортуванняToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,7 +85,6 @@
             this.RBKnees = new System.Windows.Forms.RadioButton();
             this.RBSiting = new System.Windows.Forms.RadioButton();
             this.RBStanding = new System.Windows.Forms.RadioButton();
-            this.очиститиГоловнуТаблицюБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.NReps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NSets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NWeight)).BeginInit();
@@ -334,7 +334,7 @@
             // unitMeasure
             // 
             this.unitMeasure.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.unitMeasure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.unitMeasure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.unitMeasure.ForeColor = System.Drawing.Color.Black;
             this.unitMeasure.Items.Add("кг");
             this.unitMeasure.Items.Add("lb");
@@ -507,7 +507,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(12, 43);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 124);
+            this.groupBox1.Size = new System.Drawing.Size(170, 127);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Вид тренування";
@@ -571,6 +571,15 @@
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Text = "Зчитати таблицю з бази даних";
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Click += new System.EventHandler(this.зчитатиТаблицюЗБазиДанихToolStripMenuItem_Click);
+            // 
+            // очиститиГоловнуТаблицюБДToolStripMenuItem
+            // 
+            this.очиститиГоловнуТаблицюБДToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
+            this.очиститиГоловнуТаблицюБДToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Name = "очиститиГоловнуТаблицюБДToolStripMenuItem";
+            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
+            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Text = "Очистити головну таблицю в базі даних";
+            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Click += new System.EventHandler(this.очиститиГоловнуТаблицюБДToolStripMenuItem_Click);
             // 
             // очиститиТаблицюToolStripMenuItem
             // 
@@ -807,15 +816,6 @@
             this.RBStanding.TabStop = true;
             this.RBStanding.Text = "Стоячи";
             this.RBStanding.UseVisualStyleBackColor = true;
-            // 
-            // очиститиГоловнуТаблицюБДToolStripMenuItem
-            // 
-            this.очиститиГоловнуТаблицюБДToolStripMenuItem.BackColor = System.Drawing.Color.DarkKhaki;
-            this.очиститиГоловнуТаблицюБДToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Name = "очиститиГоловнуТаблицюБДToolStripMenuItem";
-            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
-            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Text = "Очистити головну таблицю в базі даних";
-            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Click += new System.EventHandler(this.очиститиГоловнуТаблицюБДToolStripMenuItem_Click);
             // 
             // Form1
             // 

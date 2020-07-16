@@ -162,7 +162,7 @@ namespace Painkiller
             MessageInvoke(true, "Головна таблиця успішно очищена");
         }
 
-        public void WriteTabFile(Boolean allTrain, Boolean rewrite)
+        public void WriteTabFile(Boolean allTrain, Boolean rewrite, DataGridView dGV1, DataGridView dGV2)
         {
             try
             {
@@ -193,7 +193,7 @@ namespace Painkiller
                 {
                     sw1.WriteLine($"День {++i}");
                 }
-                foreach (DataRow r in TabTrain.Rows)
+                foreach (DataRow r in dGV1.Rows)
                 {
                     this.textRow = $"{r["Група_мязів"]};{r["Вправа"]};{r["Вид_тренування"]};{r["Обтяження"]};{r["Положення"]};" +
                         $"{r["Max_вага"]};{r["К_сть_повторень_з_max_вагою"]};{r["Загальна_к_сть_підходів"]}";
@@ -210,7 +210,7 @@ namespace Painkiller
             {
                 using (StreamWriter sw = new StreamWriter(fileBadExercise))
                 {
-                    foreach (DataRow r in Base.TabMinTrain.Rows)
+                    foreach (DataRow r in dGV2.Rows)
                     {
                         if (r["Вправа "].ToString() == "")
                         {

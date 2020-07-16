@@ -102,11 +102,11 @@ namespace Painkiller
 
             if (dialogRes == DialogResult.Yes)
             {
-                opFileDB.WriteTabFile(true, false);
+                opFileDB.WriteTabFile(true, false, AllTraining, MinResults);
             }
             else if (dialogRes == DialogResult.No)
             {
-                opFileDB.WriteTabFile(false, false);
+                opFileDB.WriteTabFile(false, false, AllTraining, MinResults);
             }
         }
 
@@ -156,11 +156,11 @@ namespace Painkiller
 
             if (result == DialogResult.Yes)
             {
-                opFileDB.WriteTabFile(true, true);
+                opFileDB.WriteTabFile(true, true, AllTraining, MinResults);
             }
             else if (result == DialogResult.No)
             {
-                opFileDB.WriteTabFile(false, true);
+                opFileDB.WriteTabFile(false, true, AllTraining, MinResults);
             }
         }
 
@@ -168,7 +168,7 @@ namespace Painkiller
 
         private void записатиТаблицюВБазуДанихToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddMessage(true, true, doIt);
+            AddMessage(true, true, opFileDB);
 
             opFileDB.WriteDB(Base.TabTrain, unitMeasure);
         }
