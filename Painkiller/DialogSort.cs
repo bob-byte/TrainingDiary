@@ -15,42 +15,42 @@ namespace Painkiller
         public DialogSort()
         {
             InitializeComponent();
-            Base.dialogCriteria = "";
+            Base.DialogCriteria = "";
         }
 
         private void SortFiltrSearch_Click(object sender, EventArgs e)
         {
             if (CBTypeSort.Text == "По групах м'язів")
             {
-                Base.dialogCriteria = "Група_мязів";
+                Base.DialogCriteria = "Група_мязів";
             }
             else if (CBTypeSort.Text == "По видах тренувань")
             {
-                Base.dialogCriteria = "Вид_тренування";
+                Base.DialogCriteria = "Вид_тренування";
             }
             else if (CBTypeSort.Text == "По вправах")
             {
-                Base.dialogCriteria = "Вправа";
+                Base.DialogCriteria = "Вправа";
             }
             else if (CBTypeSort.Text == "По обтяженнях")
             {
-                Base.dialogCriteria = "Обтяження";
+                Base.DialogCriteria = "Обтяження";
             }
             else if(CBTypeSort.Text == "По положеннях тіла")
             {
-                Base.dialogCriteria = "Положення";
+                Base.DialogCriteria = "Положення";
             }
             else if (CBTypeSort.Text == "По max вазі")
             {
-                Base.dialogCriteria = "Max_вага";
+                Base.DialogCriteria = "Max_вага";
             }
             else if (CBTypeSort.Text == "По кількості повторень з max вагою")
             {
-                Base.dialogCriteria = "К_сть_повторень_з_max_вагою";
+                Base.DialogCriteria = "К_сть_повторень_з_max_вагою";
             }
             else if (CBTypeSort.Text == "По кількості загальних підходів")
             {
-                Base.dialogCriteria = "Загальна_к_сть_підходів";
+                Base.DialogCriteria = "Загальна_к_сть_підходів";
             }
             Close();
         }

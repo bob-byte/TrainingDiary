@@ -118,7 +118,7 @@
             this.label2.BackColor = System.Drawing.Color.LemonChiffon;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(825, 16);
+            this.label2.Location = new System.Drawing.Point(816, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 20);
             this.label2.TabIndex = 1;
@@ -184,9 +184,9 @@
             this.CBExercise.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CBExercise.ForeColor = System.Drawing.Color.Black;
             this.CBExercise.FormattingEnabled = true;
-            this.CBExercise.Location = new System.Drawing.Point(642, 45);
+            this.CBExercise.Location = new System.Drawing.Point(613, 45);
             this.CBExercise.Name = "CBExercise";
-            this.CBExercise.Size = new System.Drawing.Size(461, 28);
+            this.CBExercise.Size = new System.Drawing.Size(490, 28);
             this.CBExercise.TabIndex = 7;
             this.CBExercise.SelectedIndexChanged += new System.EventHandler(this.CBExercise_SelectedIndexChanged);
             this.CBExercise.Click += new System.EventHandler(this.CBExercise_Click);

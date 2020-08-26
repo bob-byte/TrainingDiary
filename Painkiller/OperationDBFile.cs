@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -10,7 +11,7 @@ namespace Painkiller
     {
         SqlTransaction tranPlSave;
 
-        static String fileAllTrain, fileBadExercise;
+        String fileAllTrain, fileBadExercise;
         String textRow;
 
         internal OperationDBFile()
@@ -19,7 +20,7 @@ namespace Painkiller
             fileBadExercise = "Відстаючі вправи.txt";
         }
 
-        internal void WriteDB(DataTable grid, DomainUpDown unitMeasure)
+        internal void WriteDB(DataTable grid, String measure)
         {
             SqlConnection connect = new SqlConnection();
             SqlCommand command = new SqlCommand();
@@ -45,7 +46,7 @@ namespace Painkiller
                     SqlParameter par6 = new SqlParameter(@"position", SqlDbType.NVarChar, 255);
                     par6.Value = rr["Положення"];
                     SqlParameter par7, par8;
-                    if (unitMeasure.Text == "кг")
+                    if (measure == "кг")
                     {
                         par7 = new SqlParameter(@"weightKg", SqlDbType.Int);
                         par7.Value = rr["Max_вага"];
@@ -79,9 +80,13 @@ namespace Painkiller
             }
             catch (Exception ex)
             {
-                MessageInvoke(false, $"Таблицю не вдалося записати в базу даних: {ex.Message}");
                 tranPlSave.Rollback();//Виконати відкад у випадку невдалого записування
+                MessageInvoke(false, $"Таблицю не вдалося записати в базу даних: {ex.Message}");
                 return;
+            }
+            finally
+            {
+                connect.Close();
             }
             MessageInvoke(true, "Таблиця записана в базу даних");
         }
@@ -129,13 +134,15 @@ namespace Painkiller
                     row["Загальна_к_сть_підходів"] = SqlLn.GetInt32(9);
                     table.Rows.Add(row);
                 }
-                connect.Close();
             }
-            catch(SqlException ex)
+            catch(Exception ex)
             {
                 MessageInvoke(false, ex.Message);
             }
-
+            finally
+            {
+                connect.Close();
+            }
             for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)
             {
                 dGV.Rows[i].Cells["N_пп"].Value = i + 1;
@@ -157,67 +164,187 @@ namespace Painkiller
                 MessageInvoke(false, ex.Message);
                 return;
             }
-            connect.Close();
 
             MessageInvoke(true, "Головна таблиця успішно очищена");
         }
 
-        public void WriteTabFile(Boolean allTrain, Boolean rewrite, DataGridView dGV1, DataGridView dGV2)
+        public void RewriteFile(Boolean whetherDelete, String measure, Boolean previousDay)
         {
+            StreamReader reader = null;
+            StreamWriter writer = null;
+
             try
             {
-                Int32 i = 0;
+                Int32 numberOfDay = 0;
+                String textRow;
+                List<String> newFile = new List<String>();
+                Int32 countDay = 0;
+
+                reader = new StreamReader(fileAllTrain);
+                while (reader.Peek() >= 0)
+                {
+                    textRow = reader.ReadLine();
+                    newFile.Add(textRow);
+                    if (textRow.Contains("День"))
+                    {
+                        String[] data = new String[2];
+                        countDay++;
+                        data = textRow.Split(' ');
+                        if (!Int32.TryParse(data[1], out numberOfDay))
+                        {
+                            MessageInvoke(false, "Файл \"Все тренування\" неправильно записаний");
+                        }
+                    }
+                }
+                reader.Close();
+
+                writer = new StreamWriter(fileAllTrain);//якщо не перезапис, то додаємо до вхідного тексту файлу наступні рядки
+
+                if (!whetherDelete)
+                {
+                    Int32 numRow = 0;
+                    for (Int32 i = 0; i < newFile.Count && numRow < TabTrain.Rows.Count; i++)
+                    {
+                        if (!newFile[i].Contains("День"))
+                        {
+                            textRow = $"{TabTrain.Rows[numRow]["Група_мязів"]};{TabTrain.Rows[numRow]["Вправа"]};{TabTrain.Rows[numRow]["Вид_тренування"]};" +
+                                $"{TabTrain.Rows[numRow]["Обтяження"]};{TabTrain.Rows[numRow]["Положення"]};" +
+                                $"{TabTrain.Rows[numRow]["Max_вага"]} {measure};{TabTrain.Rows[numRow]["К_сть_повторень_з_max_вагою"]} повторень;" +
+                                $"{TabTrain.Rows[numRow]["Загальна_к_сть_підходів"]} підходів";
+                            newFile[i] = textRow;
+                            numRow++;
+                        }
+                    }
+                    if(numRow < TabTrain.Rows.Count && !previousDay)
+                    {
+                        newFile.Add($"День {++numberOfDay}");
+                    }
+                    while (numRow < TabTrain.Rows.Count)
+                    {
+                        textRow = $"{TabTrain.Rows[numRow]["Група_мязів"]};{TabTrain.Rows[numRow]["Вправа"]};{TabTrain.Rows[numRow]["Вид_тренування"]};" +
+                                $"{TabTrain.Rows[numRow]["Обтяження"]};{TabTrain.Rows[numRow]["Положення"]};" +
+                                $"{TabTrain.Rows[numRow]["Max_вага"]} {measure};{TabTrain.Rows[numRow]["К_сть_повторень_з_max_вагою"]} повторень;" +
+                                $"{TabTrain.Rows[numRow]["Загальна_к_сть_підходів"]} підходів";
+                        newFile.Add(textRow);
+                        numRow++;
+                    }
+                    foreach (String row in newFile)
+                    {
+                        writer.WriteLine(row);
+                    }
+                }
+                else
+                {
+                    if(TabTrain.Rows.Count > 0)
+                    {
+                        writer.WriteLine($"День 1");
+                        foreach (DataRow r in TabTrain.Rows)
+                        {
+                            textRow = $"{r["Група_мязів"]};{r["Вправа"]};{r["Вид_тренування"]};{r["Обтяження"]};{r["Положення"]};" +
+                                $"{r["Max_вага"]} {measure};{r["К_сть_повторень_з_max_вагою"]} повторень;{r["Загальна_к_сть_підходів"]} підходів";
+                            writer.WriteLine(textRow);
+                        }
+                    }
+                }
+
+                writer.Close();
+                MessageInvoke(true, "Інформація у файл \"Все тренування\" записана");
+            }
+            catch (Exception ex)
+            {
+                MessageInvoke(false, ex.Message);
+            }
+            finally
+            {
+                reader?.Close();
+                writer?.Close();
+            }
+
+            WriteInFileBadExercise(measure);
+        }
+
+        public void WriteTabInFile(Boolean allTrain, String measure)
+        {
+            StreamReader reader = null;
+            StreamWriter writer = null;
+            Int32 numberOfDay = 0;
+
+            try
+            {
                 String textRow;
 
-                if (allTrain && !rewrite)
+                if (allTrain)
                 {
-                    StreamReader sr = new StreamReader(fileAllTrain);
-                    while (sr.Peek() >= 0)
+                    reader = new StreamReader(fileAllTrain);
+                    while (reader.Peek() >= 0)
                     {
-                        textRow = sr.ReadLine();
+                        textRow = reader.ReadLine();
                         if (textRow.Contains("День"))
                         {
                             String[] data = new String[2];
                             data = textRow.Split(' ');
-                            if (!Int32.TryParse(data[1], out i))
+                            if (!Int32.TryParse(data[1], out numberOfDay))
                             {
                                 MessageInvoke(false, "Файл \"Все тренування\" неправильно записаний");
                             }
                         }
                     }
-                    sr.Close();
                 }
+            }
+            catch (Exception ex)
+            {
+                if(ex is FileNotFoundException == false)
+                {
+                    MessageInvoke(false, ex.Message);
+                }
+            }
+            finally
+            {
+                reader?.Close();
+            }
 
-                StreamWriter sw1 = new StreamWriter(fileAllTrain, !rewrite);//якщо не перезапис, то додаємо до вхідного тексту файлу наступні рядки
+            try
+            {
+                writer = new StreamWriter(fileAllTrain, true);
                 if (allTrain)
                 {
-                    sw1.WriteLine($"День {++i}");
+                    writer.WriteLine($"День {++numberOfDay}");
                 }
-                foreach (DataRow r in dGV1.Rows)
+                foreach (DataRow r in TabTrain.Rows)
                 {
-                    this.textRow = $"{r["Група_мязів"]};{r["Вправа"]};{r["Вид_тренування"]};{r["Обтяження"]};{r["Положення"]};" +
-                        $"{r["Max_вага"]};{r["К_сть_повторень_з_max_вагою"]};{r["Загальна_к_сть_підходів"]}";
-                    sw1.WriteLine(this.textRow);
+                    textRow = $"{r["Група_мязів"]};{r["Вправа"]};{r["Вид_тренування"]};{r["Обтяження"]};{r["Положення"]};" +
+                            $"{r["Max_вага"]} {measure};{r["К_сть_повторень_з_max_вагою"]} повторень;{r["Загальна_к_сть_підходів"]} підходів";
+                    writer.WriteLine(textRow);
                 }
-                sw1.Close();
+                
                 MessageInvoke(true, "Інформація у файл \"Все тренування\" записана");
             }
             catch (Exception ex)
             {
-                MessageInvoke(true, ex.Message);
+                MessageInvoke(false, ex.Message);
             }
+            finally
+            {
+                writer?.Close();
+            }
+
+            WriteInFileBadExercise(measure);
+        }
+
+        private void WriteInFileBadExercise(String measure)
+        {
             try
             {
-                using (StreamWriter sw = new StreamWriter(fileBadExercise))
+                using (StreamWriter sw = new StreamWriter(fileBadExercise, true))
                 {
-                    foreach (DataRow r in dGV2.Rows)
+                    foreach (DataRow r in TabMinTrain.Rows)
                     {
                         if (r["Вправа "].ToString() == "")
                         {
                             continue;
                         }
                         textRow = $"{r["Група_мязів "]};{r["Вправа "]};{r["Обтяження "]};" +
-                            $"{r["Положення тіла "]};{r["Max_вага "]};{r["К_сть_повторень_з_max_вагою "]}";
+                            $"{r["Положення тіла "]};{r["Max_вага "]} {measure};{r["К_сть_повторень_з_max_вагою "]} повторень";
                         sw.WriteLine(textRow);
                     }
                 }
@@ -229,24 +356,27 @@ namespace Painkiller
                 MessageInvoke(false, ex.Message);
             }
         }
-        public void ReadTabFile(DataGridView allTrain)
+
+        public void ReadTabFile(DataGridView allTrain, String measure)
         {
             try
             {
-                using (StreamReader sr = new StreamReader(fileAllTrain))
+                using StreamReader sr = new StreamReader(fileAllTrain);
+                while (sr.Peek() >= 0)//поки у файлі є елементи
                 {
-                    while (sr.Peek() >= 0)//поки у файлі є елементи
-                    {
-                        textRow = sr.ReadLine();
-                        String[] partTrain = textRow.Split(';');
+                    textRow = sr.ReadLine();
+                    String[] partTrain = textRow.Split(';');
 
-                        if (partTrain[0].Contains("День"))
-                        {
-                            continue;
-                        }
-                        TTrainingAddRow(partTrain[0], partTrain[1], partTrain[2], partTrain[3], partTrain[4], 
-                            Convert.ToInt32(partTrain[5]), Convert.ToInt32(partTrain[6]), Convert.ToInt32(partTrain[7]));
+                    if (partTrain[0].Contains("День"))
+                    {
+                        continue;
                     }
+                    partTrain[5] = partTrain[5].Trim((" " + measure).ToCharArray());
+                    partTrain[6] = partTrain[6].Trim(" повторень".ToCharArray());
+                    partTrain[7] = partTrain[7].Trim(" підходів".ToCharArray());
+
+                    TTrainingAddRow(partTrain[0], partTrain[1], partTrain[2], partTrain[3], partTrain[4],
+                        Convert.ToInt32(partTrain[5]), Convert.ToInt32(partTrain[6]), Convert.ToInt32(partTrain[7]));
                 }
             }
             catch (Exception ex)

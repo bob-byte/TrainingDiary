@@ -11,25 +11,27 @@ namespace Painkiller
     {
         public String[] Exercises()
         {
-            names = new String[8];
-            names[0] = "Присідання";
-            names[1] = "Фронтальні присідання";
-            names[2] = "Мертва тяга";
-            names[3] = "Жим ногами";
-            names[4] = "Випади на місці";
-            names[5] = "Випади ходьбою";
-            names[6] = "Розгинання ніг";
-            names[7] = "Згинання ніг";
-            return names;
+            NameExercises = new String[9];
+            NameExercises[0] = "Присідання";
+            NameExercises[1] = "Фронтальні присідання";
+            NameExercises[2] = "Мертва тяга";
+            NameExercises[3] = "Жим ногами";
+            NameExercises[4] = "Випади на місці";
+            NameExercises[5] = "Випади ходьбою";
+            NameExercises[6] = "Розгинання ніг";
+            NameExercises[7] = "Згинання ніг";
+            NameExercises[8] = "Підйоми на носки";
+
+            return NameExercises;
         }
         public void Reps(out Int32 min, out Int32 max)
         {
-            if (numTypeTrain == 1)
+            if (NumTypeTrain == 1)
             {
                 min = 20;
                 max = 40;
             }
-            else if (numTypeTrain == 2)
+            else if (NumTypeTrain == 2)
             {
                 min = 8;
                 max = 20;
@@ -50,24 +52,33 @@ namespace Painkiller
     {
         public String[] Exercises()
         {
-            names = new String[7];
-            names[0] = "Станова тяга";
-            names[1] = "Тяга зверху перед собою";
-            names[2] = "Тяга за голову";
-            names[3] = "Тяга до поясу";
-            names[4] = "Пуловер";
-            names[5] = "Good morning";
-            names[6] = "Гіперекстензія";
-            return names;
+            NameExercises = new String[12];
+            NameExercises[0] = "Станова тяга";
+
+            NameExercises[1] = "Тяга зверху перед собою прямим широким хватом";
+            NameExercises[2] = "Тяга зверху перед собою прямим середнім хватом";
+            NameExercises[3] = "Тяга зверху перед собою прямим вузьким хватом";
+            NameExercises[4] = "Тяга зверху перед собою паралельним хватом";
+            NameExercises[5] = "Тяга зверху перед собою оберненим середнім хватом";
+
+            NameExercises[6] = "Тяга за голову";
+            NameExercises[7] = "Тяга до поясу";
+            NameExercises[8] = "Пуловер";
+            NameExercises[9] = "Шраги";
+
+            NameExercises[10] = "Good morning";
+            NameExercises[11] = "Гіперекстензія";
+
+            return NameExercises;
         }
         public void Reps(out Int32 min, out Int32 max)
         {
-            if (numTypeTrain == 1)
+            if (NumTypeTrain == 1)
             {
                 min = 20;
                 max = 33;
             }
-            else if (numTypeTrain == 2)
+            else if (NumTypeTrain == 2)
             {
                 min = 8;
                 max = 20;
@@ -88,22 +99,22 @@ namespace Painkiller
     {
         public String[] Exercises()
         {
-            names = new String[5];
-            names[0] = "Жим (широким хватом)";
-            names[1] = "Віджимання";
-            names[2] = "Паралельний жим";
-            names[3] = "Пуловер";
-            names[4] = "Зведення рук";
-            return names;
+            NameExercises = new String[5];
+            NameExercises[0] = "Жим (широким хватом)";
+            NameExercises[1] = "Віджимання";
+            NameExercises[2] = "Паралельний жим";
+            NameExercises[3] = "Пуловер";
+            NameExercises[4] = "Зведення рук";
+            return NameExercises;
         }
         public void Reps(out Int32 min, out Int32 max)
         {
-            if (numTypeTrain == 1)
+            if (NumTypeTrain == 1)
             {
                 min = 20;
                 max = 35;
             }
-            else if (numTypeTrain == 2)
+            else if (NumTypeTrain == 2)
             {
                 min = 8;
                 max = 20;
@@ -124,32 +135,32 @@ namespace Painkiller
     {
         public String[] Exercises()
         {
-            names = new String[15];
-            names[0] = "Молотки";
-            names[1] = "Згинання рук з супінацією";
-            names[2] = "Згинання рук широким прямим хватом";
-            names[3] = "Згинання рук середнім прямим хватом";
-            names[4] = "Згинання рук вузьким прямим хватом";
-            names[5] = "Згинання рук середнім оберненим хватом";
-            names[6] = "Згинання рук вузьким оберненим хватом";
-            names[7] = "Згинання Зотмана";
-            names[8] = "Концентровані згинання на біцепс з супінацією";
-            names[9] = "Концентровані згинання на біцепс в стилі молот";
-            names[10] = "Жим вузьким хватом";
-            names[11] = "Віджимання";
-            names[12] = "Французький жим";
-            names[13] = "Розгинання рук перед собою";
-            names[14] = "Розгинання рук за головою";
-            return names;
+            NameExercises = new String[15];
+            NameExercises[0] = "Молотки";
+            NameExercises[1] = "Згинання рук з супінацією";
+            NameExercises[2] = "Згинання рук широким прямим хватом";
+            NameExercises[3] = "Згинання рук середнім прямим хватом";
+            NameExercises[4] = "Згинання рук вузьким прямим хватом";
+            NameExercises[5] = "Згинання рук середнім оберненим хватом";
+            NameExercises[6] = "Згинання рук вузьким оберненим хватом";
+            NameExercises[7] = "Згинання Зотмана";
+            NameExercises[8] = "Концентровані згинання на біцепс з супінацією";
+            NameExercises[9] = "Концентровані згинання на біцепс в стилі молот";
+            NameExercises[10] = "Жим вузьким хватом";
+            NameExercises[11] = "Віджимання";
+            NameExercises[12] = "Французький жим";
+            NameExercises[13] = "Розгинання рук перед собою";
+            NameExercises[14] = "Розгинання рук за головою";
+            return NameExercises;
         }
         public void Reps(out Int32 min, out Int32 max)
         {
-            if (numTypeTrain == 1)
+            if (NumTypeTrain == 1)
             {
                 min = 20;
                 max = 35;
             }
-            else if (numTypeTrain == 2)
+            else if (NumTypeTrain == 2)
             {
                 min = 8;
                 max = 25;
@@ -170,24 +181,24 @@ namespace Painkiller
     {
         public String[] Exercises()
         {
-            names = new String[7];
-            names[0] = "Жим перед собою";
-            names[1] = "Жим за головою";
-            names[2] = "Тяга на середню дельту";
-            names[3] = "Тяга на задню дельту";
-            names[4] = "Розведення";
-            names[5] = "Піднімання снаряду перед собою";
-            names[6] = "Метелик";
-            return names;
+            NameExercises = new String[7];
+            NameExercises[0] = "Жим перед собою";
+            NameExercises[1] = "Жим за головою";
+            NameExercises[2] = "Тяга на середню дельту";
+            NameExercises[3] = "Тяга на задню дельту";
+            NameExercises[4] = "Розведення";
+            NameExercises[5] = "Піднімання снаряду перед собою";
+            NameExercises[6] = "Метелик";
+            return NameExercises;
         }
         public void Reps(out Int32 min, out Int32 max)
         {
-            if (numTypeTrain == 1)
+            if (NumTypeTrain == 1)
             {
                 min = 20;
                 max = 35;
             }
-            else if (numTypeTrain == 2)
+            else if (NumTypeTrain == 2)
             {
                 min = 8;
                 max = 30;

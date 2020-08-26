@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Painkiller
@@ -12,8 +9,8 @@ namespace Painkiller
     public class Base
     {
         public delegate void Message(Object sender, MessageEventArgs e);
-        event Message messagePositive;
-        event Message messageNegative;
+        private event Message messagePositive;
+        private event Message messageNegative;
         public event Message MessagePositive
         {
             add
@@ -53,18 +50,17 @@ namespace Painkiller
             }
         }
 
-        public static DataTable TabMinTrain = new DataTable();
-        public static DataTable TabTrain = new DataTable();//відводить місце для таблиці тренувань для кожного екземпляру типу Base
-        public static DataView TrainView;
+        internal Int32 firstGroup;//назва групи м'язів першого рядка в таблиці
 
+        internal static Byte NumTypeTrain { get; set; }
+        internal static String DialogCriteria { get; set; }
+        internal static Int32 Length { get; set; }        
+        protected String[] NameExercises { get; set; }
+        internal static Boolean isClearMinRes { get; set; }
 
-        public static String dialogCriteria, typeTrain;
-        public static Int32 numTypeTrain, length;
-
-        protected String[] names;
-        Int32 firstGroup;//назва групи м'язів першого рядка в таблиці
-
-        public static Boolean isClearMinRes;
+        protected internal static DataTable TabTrain { get; set; } = new DataTable();
+        protected internal static DataTable TabMinTrain { get; } = new DataTable();
+        internal static DataView TrainView { get; private set; }
 
         static Base()
         {
@@ -334,6 +330,38 @@ namespace Painkiller
                 if (numRowShoulders.Count >= 1)
                 {
                     DefineMinWeightColumn(4, numRowShoulders);
+                }
+            }
+        }
+
+        internal void GetValueMeasure(Boolean isKg)
+        {
+            if(isKg)
+            {
+                for (Int32 i = 0; i < TabTrain.Rows.Count; i++)
+                {
+                    TabTrain.Rows[i]["Max_вага"] = Math.Round((Int32)TabTrain.Rows[i]["Max_вага"] * 0.454);
+                }
+                for (Int32 i = 0; i < TabMinTrain.Rows.Count; i++)
+                {
+                    if (TabMinTrain.Rows[i]["Max_вага "].ToString() != "")
+                    {
+                        TabMinTrain.Rows[i]["Max_вага "] = Math.Round((Int32)TabMinTrain.Rows[i]["Max_вага "] * 0.454);
+                    }
+                }
+            }
+            else
+            {
+                for (Int32 i = 0; i < TabTrain.Rows.Count; i++)
+                {
+                    TabTrain.Rows[i]["Max_вага"] = Math.Round((Int32)TabTrain.Rows[i]["Max_вага"] * 2.2046);
+                }
+                for (Int32 i = 0; i < TabMinTrain.Rows.Count; i++)
+                {
+                    if (TabMinTrain.Rows[i]["Max_вага "].ToString() != "")
+                    {
+                        TabMinTrain.Rows[i]["Max_вага "] = Math.Round((Int32)TabMinTrain.Rows[i]["Max_вага "] * 2.2046);
+                    }
                 }
             }
         }

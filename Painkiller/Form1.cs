@@ -9,32 +9,38 @@ namespace Painkiller
         public Form1()
         {
             InitializeComponent();
-            sendMeasure = unitMeasure.Text;
+            SendMeasure = unitMeasure.Text;
+            SetFreezeComboBoxes();
         }
 
-        public static String dialogParameter;
-        internal static DataGridView sendDialogSeek;
-        internal static String sendMeasure;
+        private Legs legs = new Legs();
+        private Back back = new Back();
+        private Chest chest = new Chest();
+        private Arms arms = new Arms();
+        private Shoulders shoulders = new Shoulders();
+        private Base doIt;
 
-        Legs legs = new Legs();
-        Back back = new Back();
-        Chest chest = new Chest();
-        Arms arms = new Arms();
-        Shoulders shoulders = new Shoulders();
-        Base doIt;
+        private String[] exercises;
+        private String burden = "", typeTraining;
+        private DialogFiltr filtr = new DialogFiltr();
+        private DialogSort sortDialog = new DialogSort();
+        private DialogResult dialogRes;
+        private OperationDBFile opFileDB;
 
-        String[] exercises;
-        String burden = "";
-        DialogFiltr filtr = new DialogFiltr();
-        DialogSort sortDialog = new DialogSort();
-        DialogResult dialogRes;
-        OperationDBFile opFileDB;
+        internal static DataGridView SendDialogSeek { get; private set; }
+        internal static String SendMeasure { get; private set; }
+
+        private void SetFreezeComboBoxes()
+        {
+            CBGroup.DropDownStyle = ComboBoxStyle.DropDownList;
+            CBExercise.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             doIt = new Base();
             opFileDB = new OperationDBFile();
-            sendDialogSeek = AllTraining;
+            SendDialogSeek = AllTraining;
             AllTraining.DataSource = Base.TabTrain;
             AllTraining.Columns["N_пп"].HeaderText = "№ п/п";
             AllTraining.Columns["Група_мязів"].HeaderText = "Група м\'язів";
@@ -68,6 +74,7 @@ namespace Painkiller
                 }
             }
             doIt.MainRes();
+            AllTraining.Columns["N_пп"].ReadOnly = true;
 
             MinResults.DataSource = Base.TabMinTrain;
             MinResults.Columns["Група_мязів "].HeaderText = "Група_мязів";
@@ -102,11 +109,11 @@ namespace Painkiller
 
             if (dialogRes == DialogResult.Yes)
             {
-                opFileDB.WriteTabFile(true, false, AllTraining, MinResults);
+                opFileDB.WriteTabInFile(true, SendMeasure);
             }
             else if (dialogRes == DialogResult.No)
             {
-                opFileDB.WriteTabFile(false, false, AllTraining, MinResults);
+                opFileDB.WriteTabInFile(false, SendMeasure);
             }
         }
 
@@ -145,22 +152,24 @@ namespace Painkiller
         private void зчитатиТаблицюЗФайлуToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AddMessage(false, true, opFileDB);
-            opFileDB.ReadTabFile(AllTraining);
+            opFileDB.ReadTabFile(AllTraining, SendMeasure);
             doIt.SetSumy(MinResults, unitMeasure);
         }
 
         private void перезаписатиФайлToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Всі вправи внесені у таблицю?", "Питання", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             AddMessage(true, true, opFileDB);
-
-            if (result == DialogResult.Yes)
+            dialogRes = MessageBox.Show("Видалити інформацію, яка не була змінена?",
+                "Питання", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dialogResult = MessageBox.Show("Додати вправу(-и) до попереднього дня?",
+                "Питання", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogRes == DialogResult.Yes)
             {
-                opFileDB.WriteTabFile(true, true, AllTraining, MinResults);
+                opFileDB.RewriteFile(false, SendMeasure, dialogResult == DialogResult.Yes);
             }
-            else if (result == DialogResult.No)
+            else if (dialogRes == DialogResult.No)
             {
-                opFileDB.WriteTabFile(false, true, AllTraining, MinResults);
+                opFileDB.RewriteFile(true, SendMeasure, dialogResult == DialogResult.Yes);
             }
         }
 
@@ -170,7 +179,7 @@ namespace Painkiller
         {
             AddMessage(true, true, opFileDB);
 
-            opFileDB.WriteDB(Base.TabTrain, unitMeasure);
+            opFileDB.WriteDB(Base.TabTrain, unitMeasure.Text);
         }
 
         private void зчитатиТаблицюЗБазиДанихToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,7 +240,7 @@ namespace Painkiller
         private void ввестиКритерійСортуванняToolStripMenuItem_Click(object sender, EventArgs e)
         {
             dialogRes = sortDialog.ShowDialog();
-            sortDialog.TTrainingSort(Base.dialogCriteria, AllTraining, Base.TrainView);
+            sortDialog.TTrainingSort(Base.DialogCriteria, AllTraining, Base.TrainView);
         }
         private void знятиСортуванняToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -241,9 +250,9 @@ namespace Painkiller
         private void ввестиФільтрToolStripMenuItem_Click(object sender, EventArgs e)
         {
             filtr.ShowDialog();
-            if (Base.dialogCriteria != "")
+            if (Base.DialogCriteria != "")
             {
-                filtr.TTrainingFiltr(Base.dialogCriteria, AllTraining, Base.TrainView);
+                filtr.TTrainingFiltr(Base.DialogCriteria, AllTraining, Base.TrainView);
             }
         }
 
@@ -265,10 +274,10 @@ namespace Painkiller
         {
             if (RBStatodynamic.Checked)
             {
-                Base.numTypeTrain = 1;
-                Base.typeTrain = RBStatodynamic.Text;
+                Base.NumTypeTrain = 1;
                 RepsSets();
                 NReps.Value = NReps.Minimum;
+                typeTraining = RBStatodynamic.Text;
             }
         }
 
@@ -327,10 +336,10 @@ namespace Painkiller
         {
             if (RBHipertrophy.Checked)
             {
-                Base.numTypeTrain = 2;
-                Base.typeTrain = RBHipertrophy.Text;
+                Base.NumTypeTrain = 2;
                 RepsSets();
                 NReps.Value = NReps.Minimum;
+                typeTraining = RBHipertrophy.Text;
             }
         }
 
@@ -338,10 +347,10 @@ namespace Painkiller
         {
             if (RBStrength.Checked)
             {
-                Base.numTypeTrain = 3;
-                Base.typeTrain = RBStrength.Text;
+                Base.NumTypeTrain = 3;
                 RepsSets();
                 NReps.Value = NReps.Minimum;
+                typeTraining = RBStrength.Text;
             }
         }
 
@@ -358,70 +367,36 @@ namespace Painkiller
 
         private void CBExercise_Click(object sender, EventArgs e)
         {
-            Int32 min, max;
-            Int32 length;
             CBExercise.Items.Clear();
-            if (Base.numTypeTrain != 0)
+            if (Base.NumTypeTrain != 0)
             {
                 CBExercise.Text = "";
                 if (CBGroup.SelectedIndex == 0)
                 {
-                    exercises = legs.Exercises();
-                    legs.Reps(out min, out max);
-                    NReps.Minimum = min;
-                    NReps.Maximum = max;
-                    legs.Sets(out min, out max);
-                    NSets.Minimum = min;
-                    NSets.Maximum = max;                    
+                    InitTrain(legs);
                 }
                 else if (CBGroup.SelectedIndex == 1)
                 {
-                    exercises = back.Exercises();
-                    back.Reps(out min, out max);
-                    NReps.Minimum = min;
-                    NReps.Maximum = max;
-                    back.Sets(out min, out max);
-                    NSets.Minimum = min;
-                    NSets.Maximum = max;
+                    InitTrain(back);
                 }
                 else if (CBGroup.SelectedIndex == 2)
                 {
-                    exercises = chest.Exercises();
-                    chest.Reps(out min, out max);
-                    NReps.Minimum = min;
-                    NReps.Maximum = max;
-                    chest.Sets(out min, out max);
-                    NSets.Minimum = min;
-                    NSets.Maximum = max;
+                    InitTrain(chest);
                 }
                 else if (CBGroup.SelectedIndex == 3)
                 {
-                    exercises = arms.Exercises();
-                    arms.Exercises();
-                    arms.Reps(out min, out max);
-                    NReps.Minimum = min;
-                    NReps.Maximum = max;
-                    arms.Sets(out min, out max);
-                    NSets.Minimum = min;
-                    NSets.Maximum = max;
+                    InitTrain(arms);
                 }
                 else if (CBGroup.SelectedIndex == 4)
                 {
-                    exercises = shoulders.Exercises();
-                    shoulders.Exercises();
-                    shoulders.Reps(out min, out max);
-                    NReps.Minimum = min;
-                    NReps.Maximum = max;
-                    shoulders.Sets(out min, out max);
-                    NSets.Minimum = min;
-                    NSets.Maximum = max;
+                    InitTrain(shoulders);
                 }
                 else
                 {
                     MessageBox.Show("Виберіть, будь ласка, групу м\'язів", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                length = exercises.Length;
+                Int32 length = exercises.Length;
                 for (Int32 i = 0; i < length; i++)
                 {
                     CBExercise.Items.Add(exercises[i]);
@@ -433,7 +408,17 @@ namespace Painkiller
             }
         }
 
-        
+        internal void InitTrain(IPainKiller group)
+        {
+            Int32 min, max;
+            exercises = group.Exercises();
+            group.Reps(out min, out max);
+            NReps.Minimum = min;
+            NReps.Maximum = max;
+            group.Sets(out min, out max);
+            NSets.Minimum = min;
+            NSets.Maximum = max;
+        }
 
         private void RBDumb_Bell_CheckedChanged(object sender, EventArgs e)
         {
@@ -534,7 +519,7 @@ namespace Painkiller
 
         private void BAdd_Click(object sender, EventArgs e)
         {
-            if (Base.numTypeTrain == 0)
+            if (Base.NumTypeTrain == 0)
             {
                 MessageBox.Show("Виберіть, будь ласка, вид тренування", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -563,7 +548,7 @@ namespace Painkiller
                 }
                 if (position != "")
                 {
-                    doIt.TTrainingAddRow(CBGroup.Text, CBExercise.Text, RBStatodynamic.Text,
+                    doIt.TTrainingAddRow(CBGroup.Text, CBExercise.Text, typeTraining,
                     burden, position, (Int32)NWeight.Value, (Int32)NReps.Value, (Int32)NSets.Value);
                     AddMessage(false, true, doIt);
                     doIt.SetSumy(MinResults, unitMeasure);
@@ -577,8 +562,7 @@ namespace Painkiller
 
         private void BClear_Click(object sender, EventArgs e)
         {
-            CBGroup.Text = "";
-            CBExercise.Text = "";
+            CBGroup.SelectedIndex = -1;
             RBStatodynamic.Checked = false;
             RBHipertrophy.Checked = false;
             RBStrength.Checked = false;
@@ -601,42 +585,24 @@ namespace Painkiller
 
         private void unitMeasure_SelectedItemChanged(object sender, EventArgs e)
         {
+            Boolean isKg;
             if (unitMeasure.Text == "кг")
             {
                 AllTraining.Columns[6].HeaderText = "Max вага, кг";
-                for (Int32 i = 0; i < AllTraining.Rows.Count - 1; i++)
-                {
-                    Base.TabTrain.Rows[i]["Max_вага"] = Math.Round((Int32)Base.TabTrain.Rows[i]["Max_вага"] * 0.454);
-                }
-
                 MinResults.Columns[4].HeaderText = "Max вага, кг";
-                for (Int32 i = 0; i < MinResults.Rows.Count - 1; i++)
-                {
-                    if (Base.TabMinTrain.Rows[i]["Max_вага "].ToString() != "")
-                    {
-                        Base.TabMinTrain.Rows[i]["Max_вага "] = Math.Round((Int32)Base.TabMinTrain.Rows[i]["Max_вага "] * 0.454);
-                    }
-                }
                 NWeight.Maximum = 1200;
+
+                isKg = true;
             }
             else
             {
                 AllTraining.Columns[6].HeaderText = "Max вага, lb";
-                for (Int32 i = 0; i < AllTraining.Rows.Count - 1; i++)
-                {
-                    Base.TabTrain.Rows[i]["Max_вага"] = Math.Round((Int32)Base.TabTrain.Rows[i]["Max_вага"] * 2.2046);
-                }
-
                 MinResults.Columns[4].HeaderText = "Max вага, lb";
-                for (Int32 i = 0; i < MinResults.Rows.Count - 1; i++)
-                {
-                    if (Base.TabMinTrain.Rows[i]["Max_вага "].ToString() != "")
-                    {
-                        Base.TabMinTrain.Rows[i]["Max_вага "] = Math.Round((Int32)Base.TabMinTrain.Rows[i]["Max_вага "] * 2.2046);
-                    }
-                }
                 NWeight.Maximum = 2400;
+
+                isKg = false;
             }
+            doIt.GetValueMeasure(isKg);
             AllTraining.DataSource = Base.TrainView;
         }
 

@@ -103,7 +103,7 @@ namespace Painkiller
         {
             if (CBExercise.Text != "" && numExercise.Value != 0)
             {
-                SeekExercise(CBExercise.Text, Form1.sendDialogSeek, (Int32)numExercise.Value);
+                SeekExercise(CBExercise.Text, Form1.SendDialogSeek, (Int32)numExercise.Value);
             }
         }
 

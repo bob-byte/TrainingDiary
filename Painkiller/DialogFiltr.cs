@@ -9,26 +9,13 @@ namespace Painkiller
         public DialogFiltr()
         {
             InitializeComponent();
-            Base.dialogCriteria = "";
+            Base.DialogCriteria = "";
+            CBSelectTypeFilter.Text = "";
         }
 
         private void SortFiltr_Click(object sender, EventArgs e)
         {
-            if (RBWeight.Checked)
-            {
-                Base.dialogCriteria = $"Max_вага > {amountWeigthReps.Value}";
-            }
-            if (RBReps.Checked)
-            {
-                Base.dialogCriteria = $"К_сть_повторень_з_max_вагою > {amountWeigthReps.Value}";
-            }
             Close();
-        }
-
-        private void amountWeigthReps_ValueChanged(object sender, EventArgs e)
-        {
-            RBWeight.Text = $"Більше від {amountWeigthReps.Value}{Form1.sendMeasure}";
-            RBReps.Text = $"Більше від {amountWeigthReps.Value} к-сті повторів";
         }
 
         public void TTrainingFiltr(String filter, DataGridView dGV, DataView view)
@@ -41,10 +28,18 @@ namespace Painkiller
             }
         }
 
-        private void DialogFiltr_Load(object sender, EventArgs e)
+        private void CBSelectTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RBReps.Text = $"Більше від {amountWeigthReps.Value} к-сті повторів";
-            RBWeight.Text = $"Більше від {amountWeigthReps.Value}{Form1.sendMeasure}";
+            if(CBSelectTypeFilter.Text == "За групою м\'язів")
+            {
+                GroupFilter groupFilter = new GroupFilter();
+                groupFilter.ShowDialog();
+            }
+            else if (CBSelectTypeFilter.Text == "За max вагою/к-стю повторень/к-стю підходів")
+            {
+                WeightRepsSetsFiltr weightRepsSets = new WeightRepsSetsFiltr();
+                weightRepsSets.ShowDialog();
+            }
         }
     }
 }
