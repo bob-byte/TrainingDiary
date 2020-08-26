@@ -10,13 +10,13 @@ namespace Painkiller
             InitializeComponent();
         }
 
-        Legs legs = new Legs();
-        Back back = new Back();
-        Chest chest = new Chest();
-        Arms arms = new Arms();
-        Shoulders shoulders = new Shoulders();
-
-        String[] exercises;
+        private Legs legs = new Legs();
+        private Back back = new Back();
+        private Chest chest = new Chest();
+        private Arms arms = new Arms();
+        private Shoulders shoulders = new Shoulders();
+         
+        private String[] exercises;
 
         public void SeekExercise(String name, DataGridView grid, Int32 count)
         {

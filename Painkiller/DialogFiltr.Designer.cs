@@ -30,6 +30,7 @@
         {
             this.SortFiltrSearch = new System.Windows.Forms.Button();
             this.CBSelectTypeFilter = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SortFiltrSearch
@@ -37,7 +38,7 @@
             this.SortFiltrSearch.BackColor = System.Drawing.Color.Yellow;
             this.SortFiltrSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.SortFiltrSearch.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.SortFiltrSearch.Location = new System.Drawing.Point(176, 67);
+            this.SortFiltrSearch.Location = new System.Drawing.Point(546, 22);
             this.SortFiltrSearch.Name = "SortFiltrSearch";
             this.SortFiltrSearch.Size = new System.Drawing.Size(148, 69);
             this.SortFiltrSearch.TabIndex = 2;
@@ -53,29 +54,45 @@
             this.CBSelectTypeFilter.FormattingEnabled = true;
             this.CBSelectTypeFilter.Items.AddRange(new object[] {
             "За групою м\'язів",
+            "За вправами",
             "За max вагою/к-стю повторень/к-стю підходів"});
-            this.CBSelectTypeFilter.Location = new System.Drawing.Point(12, 12);
+            this.CBSelectTypeFilter.Location = new System.Drawing.Point(12, 43);
             this.CBSelectTypeFilter.Name = "CBSelectTypeFilter";
             this.CBSelectTypeFilter.Size = new System.Drawing.Size(497, 28);
             this.CBSelectTypeFilter.TabIndex = 7;
             this.CBSelectTypeFilter.SelectedIndexChanged += new System.EventHandler(this.CBSelectTypeFilter_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.Yellow;
+            this.label1.Location = new System.Drawing.Point(135, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(240, 20);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Виберіть вид фільтрації";
             // 
             // DialogFiltr
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.ClientSize = new System.Drawing.Size(522, 147);
+            this.ClientSize = new System.Drawing.Size(725, 132);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.CBSelectTypeFilter);
             this.Controls.Add(this.SortFiltrSearch);
             this.Name = "DialogFiltr";
             this.Text = "Виберіть критерій фільтрування";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Button SortFiltrSearch;
         private System.Windows.Forms.ComboBox CBSelectTypeFilter;
+        private System.Windows.Forms.Label label1;
     }
 }

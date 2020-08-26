@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,44 +54,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Фільтрувати за групою м\'язів ";
             // 
-            // checkBox1
+            // checkBox5
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox1.ForeColor = System.Drawing.Color.Yellow;
-            this.checkBox1.Location = new System.Drawing.Point(52, 29);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(76, 24);
-            this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "Ноги";
-            this.checkBox1.UseVisualStyleBackColor = false;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox2.ForeColor = System.Drawing.Color.Yellow;
-            this.checkBox2.Location = new System.Drawing.Point(52, 56);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(88, 24);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Спина";
-            this.checkBox2.UseVisualStyleBackColor = false;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox3.ForeColor = System.Drawing.Color.Yellow;
-            this.checkBox3.Location = new System.Drawing.Point(177, 29);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(86, 24);
-            this.checkBox3.TabIndex = 2;
-            this.checkBox3.Text = "Груди";
-            this.checkBox3.UseVisualStyleBackColor = false;
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox5.ForeColor = System.Drawing.Color.Yellow;
+            this.checkBox5.Location = new System.Drawing.Point(107, 86);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(83, 24);
+            this.checkBox5.TabIndex = 4;
+            this.checkBox5.Text = "Плечі";
+            this.checkBox5.UseVisualStyleBackColor = false;
             // 
             // checkBox4
             // 
@@ -106,18 +80,44 @@
             this.checkBox4.Text = "Руки";
             this.checkBox4.UseVisualStyleBackColor = false;
             // 
-            // checkBox5
+            // checkBox3
             // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBox5.ForeColor = System.Drawing.Color.Yellow;
-            this.checkBox5.Location = new System.Drawing.Point(107, 86);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(83, 24);
-            this.checkBox5.TabIndex = 4;
-            this.checkBox5.Text = "Плечі";
-            this.checkBox5.UseVisualStyleBackColor = false;
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox3.ForeColor = System.Drawing.Color.Yellow;
+            this.checkBox3.Location = new System.Drawing.Point(177, 29);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(86, 24);
+            this.checkBox3.TabIndex = 2;
+            this.checkBox3.Text = "Груди";
+            this.checkBox3.UseVisualStyleBackColor = false;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox2.ForeColor = System.Drawing.Color.Yellow;
+            this.checkBox2.Location = new System.Drawing.Point(52, 56);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(88, 24);
+            this.checkBox2.TabIndex = 1;
+            this.checkBox2.Text = "Спина";
+            this.checkBox2.UseVisualStyleBackColor = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.BackColor = System.Drawing.SystemColors.HotTrack;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBox1.ForeColor = System.Drawing.Color.Yellow;
+            this.checkBox1.Location = new System.Drawing.Point(52, 29);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(76, 24);
+            this.checkBox1.TabIndex = 0;
+            this.checkBox1.Text = "Ноги";
+            this.checkBox1.UseVisualStyleBackColor = false;
             // 
             // GroupFilter
             // 

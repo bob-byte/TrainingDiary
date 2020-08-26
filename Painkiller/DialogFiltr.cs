@@ -30,7 +30,7 @@ namespace Painkiller
 
         private void CBSelectTypeFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(CBSelectTypeFilter.Text == "За групою м\'язів")
+            if(CBSelectTypeFilter.Text == "За групами м\'язів")
             {
                 GroupFilter groupFilter = new GroupFilter();
                 groupFilter.ShowDialog();
@@ -40,6 +40,12 @@ namespace Painkiller
                 WeightRepsSetsFiltr weightRepsSets = new WeightRepsSetsFiltr();
                 weightRepsSets.ShowDialog();
             }
+            else if (CBSelectTypeFilter.Text == "За вправами")
+            {
+                ExerciseFiltr exercise = new ExerciseFiltr();
+                exercise.ShowDialog();
+            }
+            CBSelectTypeFilter.Text = "";
         }
     }
 }
