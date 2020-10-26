@@ -104,6 +104,7 @@
     <Compile Include="WeightRepsSetsFiltr.Designer.cs">
       <DependentUpon>WeightRepsSetsFiltr.cs</DependentUpon>
     </Compile>
+    <Compile Include="WorkWithDatabase.cs" />
     <EmbeddedResource Include="DialogSort.resx">
       <DependentUpon>DialogSort.cs</DependentUpon>
     </EmbeddedResource>

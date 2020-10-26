@@ -25,7 +25,8 @@ namespace Painkiller
         private DialogFiltr filtr = new DialogFiltr();
         private DialogSort sortDialog = new DialogSort();
         private DialogResult dialogRes;
-        private OperationDBFile opFileDB;
+        private WorkWithFile opFileDB;
+        private WorkWithDatabase opDatabase;
 
         internal static DataGridView SendDialogSeek { get; private set; }
         internal static String SendMeasure { get; private set; }
@@ -39,7 +40,8 @@ namespace Painkiller
         private void Form1_Load(object sender, EventArgs e)
         {
             doIt = new Base();
-            opFileDB = new OperationDBFile();
+            opFileDB = new WorkWithFile();
+            opDatabase = new WorkWithDatabase();
             SendDialogSeek = AllTraining;
             AllTraining.DataSource = Base.TabTrain;
             AllTraining.Columns["N_пп"].HeaderText = "№ п/п";
@@ -177,14 +179,14 @@ namespace Painkiller
 
         private void записатиТаблицюВБазуДанихToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddMessage(true, true, opFileDB);
+            AddMessage(true, true, opDatabase);
 
-            opFileDB.WriteDB(Base.TabTrain, unitMeasure.Text);
+            opDatabase.WriteDB(Base.TabTrain, unitMeasure.Text);
         }
 
         private void зчитатиТаблицюЗБазиДанихToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            opFileDB.ReadDB(Base.TabTrain, AllTraining);
+            opDatabase.ReadDB(Base.TabTrain, AllTraining);
             doIt.SetSumy(MinResults, unitMeasure);
         }
 
@@ -230,10 +232,11 @@ namespace Painkiller
         {
             dialogRes = MessageBox.Show("Ви впевнені, що хочете очистити головну таблицю в базі даних? Повернути незаписані дані буде неможливо",
                 "Попередження", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
             if (dialogRes == DialogResult.Yes)
             {
                 AddMessage(true, true, opFileDB);
-                opFileDB.ClearMainTabDB();
+                opDatabase.ClearMainTabDB();
             }
         }
 
