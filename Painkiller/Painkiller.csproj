@@ -91,7 +91,7 @@
       <DependentUpon>DialogFiltr.cs</DependentUpon>
     </Compile>
     <Compile Include="Training.cs" />
-    <Compile Include="OperationDBFile.cs" />
+    <Compile Include="WorkWithFile.cs" />
     <Compile Include="TypeTraining.cs">
       <SubType>Form</SubType>
     </Compile>
