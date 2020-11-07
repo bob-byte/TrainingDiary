@@ -49,23 +49,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base.cs" />
-    <Compile Include="DialogSort.cs">
+    <Compile Include="Training\Arm.cs" />
+    <Compile Include="Training\Back.cs" />
+    <Compile Include="Training\Base.cs" />
+    <Compile Include="Dialog\DialogSort.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DialogSort.Designer.cs">
+    <Compile Include="Dialog\DialogSort.Designer.cs">
       <DependentUpon>DialogSort.cs</DependentUpon>
     </Compile>
-    <Compile Include="DialogSeekExercise.cs">
+    <Compile Include="Dialog\DialogSeekExercise.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DialogSeekExercise.Designer.cs">
+    <Compile Include="Dialog\DialogSeekExercise.Designer.cs">
       <DependentUpon>DialogSeekExercise.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExerciseFiltr.cs">
+    <Compile Include="Dialog\ExerciseFiltr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExerciseFiltr.Designer.cs">
+    <Compile Include="Dialog\ExerciseFiltr.Designer.cs">
       <DependentUpon>ExerciseFiltr.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -74,50 +76,46 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="GroupFilter.cs">
+    <Compile Include="Dialog\GroupFilter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GroupFilter.Designer.cs">
+    <Compile Include="Dialog\GroupFilter.Designer.cs">
       <DependentUpon>GroupFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interface.cs" />
+    <Compile Include="Training\Chest.cs" />
+    <Compile Include="Training\Interface.cs" />
     <Compile Include="MessageEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DialogFiltr.cs">
+    <Compile Include="Dialog\DialogFiltr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DialogFiltr.Designer.cs">
+    <Compile Include="Dialog\DialogFiltr.Designer.cs">
       <DependentUpon>DialogFiltr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Training.cs" />
-    <Compile Include="WorkWithFile.cs" />
-    <Compile Include="TypeTraining.cs">
+    <Compile Include="Training\Leg.cs" />
+    <Compile Include="Training\Shoulder.cs" />
+    <Compile Include="WorkWithUnmanagedResources\WorkWithFile.cs" />
+    <Compile Include="Dialog\WeightRepsSetsFiltr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TypeTraining.Designer.cs">
-      <DependentUpon>TypeTraining.cs</DependentUpon>
-    </Compile>
-    <Compile Include="WeightRepsSetsFiltr.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WeightRepsSetsFiltr.Designer.cs">
+    <Compile Include="Dialog\WeightRepsSetsFiltr.Designer.cs">
       <DependentUpon>WeightRepsSetsFiltr.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkWithDatabase.cs" />
-    <EmbeddedResource Include="DialogSort.resx">
+    <Compile Include="WorkWithUnmanagedResources\WorkWithDatabase.cs" />
+    <EmbeddedResource Include="Dialog\DialogSort.resx">
       <DependentUpon>DialogSort.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DialogSeekExercise.resx">
+    <EmbeddedResource Include="Dialog\DialogSeekExercise.resx">
       <DependentUpon>DialogSeekExercise.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExerciseFiltr.resx">
+    <EmbeddedResource Include="Dialog\ExerciseFiltr.resx">
       <DependentUpon>ExerciseFiltr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GroupFilter.resx">
+    <EmbeddedResource Include="Dialog\GroupFilter.resx">
       <DependentUpon>GroupFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -129,10 +127,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DialogFiltr.resx">
+    <EmbeddedResource Include="Dialog\DialogFiltr.resx">
       <DependentUpon>DialogFiltr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="WeightRepsSetsFiltr.resx">
+    <EmbeddedResource Include="Dialog\WeightRepsSetsFiltr.resx">
       <DependentUpon>WeightRepsSetsFiltr.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".editorconfig" />
