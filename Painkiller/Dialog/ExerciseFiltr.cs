@@ -33,7 +33,6 @@ namespace Painkiller
         {
             CBExercise.Items.Clear();
             CBExercise.Text = "";
-            Int32 length;
 
             if (CBGroup.SelectedIndex == 0)
             {
@@ -61,8 +60,7 @@ namespace Painkiller
                 return;
             }
 
-            length = exercises.Length;
-            for (Int32 i = 0; i < length; i++)
+            for (Int32 i = 0; i < exercises.Length; i++)
             {
                 CBExercise.Items.Add(exercises[i]);
             }
@@ -87,7 +85,7 @@ namespace Painkiller
                 return;
             }
 
-            for (int i = 1; i < selectedExercises.Count; i++)
+            for (Int32 i = 1; i < selectedExercises.Count; i++)
             {
                 textFilter += $" OR Вправа = '{selectedExercises[i]}'";
             }

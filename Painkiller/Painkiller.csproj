@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Training\Arm.cs" />
     <Compile Include="Training\Back.cs" />
-    <Compile Include="Training\Base.cs" />
+    <Compile Include="Base.cs" />
     <Compile Include="Dialog\DialogSort.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,11 +70,11 @@
     <Compile Include="Dialog\ExerciseFiltr.Designer.cs">
       <DependentUpon>ExerciseFiltr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialog\GroupFilter.cs">
       <SubType>Form</SubType>
@@ -83,7 +83,7 @@
       <DependentUpon>GroupFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="Training\Chest.cs" />
-    <Compile Include="Training\Interface.cs" />
+    <Compile Include="Training\IExercise.cs" />
     <Compile Include="MessageEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,8 +112,8 @@
     <EmbeddedResource Include="Dialog\ExerciseFiltr.resx">
       <DependentUpon>ExerciseFiltr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialog\GroupFilter.resx">
       <DependentUpon>GroupFilter.cs</DependentUpon>

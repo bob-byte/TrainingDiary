@@ -21,6 +21,7 @@ namespace Painkiller
         {
             String textFilter = "";
             Int32 countChecked = 0;
+
             foreach(CheckBox checkBox in groupBox1.Controls)
             {
                 if(countChecked >= 1 && checkBox.Checked)

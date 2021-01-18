@@ -9,6 +9,7 @@ namespace Painkiller
         public DialogFiltr()
         {
             InitializeComponent();
+
             Base.DialogCriteria = "";
             CBSelectTypeFilter.Text = "";
         }
@@ -20,11 +21,19 @@ namespace Painkiller
 
         public void TTrainingFiltr(String filter, DataGridView dGV, DataView view)
         {
-            view.RowFilter = filter;
-            dGV.DataSource = view;
-            for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)
+            try
             {
-                dGV.Rows[i].Cells["N_пп"].Value = i + 1;
+                view.RowFilter = filter;
+                dGV.DataSource = view;
+
+                for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)
+                {
+                    dGV.Rows[i].Cells["N_пп"].Value = i + 1;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -45,6 +54,7 @@ namespace Painkiller
                 ExerciseFiltr exercise = new ExerciseFiltr();
                 exercise.ShowDialog();
             }
+
             CBSelectTypeFilter.Text = "";
         }
     }

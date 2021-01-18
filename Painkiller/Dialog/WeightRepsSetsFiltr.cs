@@ -10,8 +10,10 @@ namespace Painkiller
         public WeightRepsSetsFiltr()
         {
             InitializeComponent();
+
             Base.DialogCriteria = "";
-            CBWeight.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value}{Form1.SendMeasure}";
+
+            CBWeight.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value}{MainForm.SendMeasure}";
             CBReps.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value} к-сті повторів";
             CBSets.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value} к-сті підходів";
         }
@@ -25,7 +27,7 @@ namespace Painkiller
             {
                 if (isChecked && checkBox.Checked)
                 {
-                    if(checkBox.Text.Contains(Form1.SendMeasure))
+                    if(checkBox.Text.Contains(MainForm.SendMeasure))
                     {
                         textFilter += $" AND Max_вага {DUDMoreOrLess.Text} {NUDCountWeigthRepsSets.Value}";
                     }
@@ -40,7 +42,7 @@ namespace Painkiller
                 }
                 else if (checkBox.Checked)
                 {
-                    if (checkBox.Text.Contains(Form1.SendMeasure))
+                    if (checkBox.Text.Contains(MainForm.SendMeasure))
                     {
                         textFilter += $"Max_вага {DUDMoreOrLess.Text} {NUDCountWeigthRepsSets.Value}";
                     }
@@ -86,7 +88,7 @@ namespace Painkiller
 
         private void NUDCountWeigthRepsSets_ValueChanged(object sender, EventArgs e)
         {
-            CBWeight.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value}{Form1.SendMeasure}";
+            CBWeight.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value}{MainForm.SendMeasure}";
             CBReps.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value} к-сті повторів";
             CBSets.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value} к-сті підходів";
         }

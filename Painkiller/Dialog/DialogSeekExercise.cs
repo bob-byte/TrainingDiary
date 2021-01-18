@@ -32,6 +32,7 @@ namespace Painkiller
                     if ((String)grid.Rows[i].Cells["Вправа"].Value == name)
                     {
                         j++;
+
                         if(j == count)
                         {
                             numElement = i;
@@ -57,14 +58,10 @@ namespace Painkiller
             }
         }
 
-
-        
-
         private void CBExercise_Click(object sender, EventArgs e)
         {
             CBExercise.Items.Clear();
             CBExercise.Text = "";
-            Int32 length;
 
             if (CBGroup.SelectedIndex == 0)
             {
@@ -92,8 +89,7 @@ namespace Painkiller
                 return;
             }
 
-            length = exercises.Length;
-            for (Int32 i = 0; i < length; i++)
+            for (Int32 i = 0; i < exercises.Length; i++)
             {
                 CBExercise.Items.Add(exercises[i]);
             }
@@ -104,7 +100,7 @@ namespace Painkiller
         {
             if (CBExercise.Text != "" && numExercise.Value != 0)
             {
-                SeekExercise(CBExercise.Text, Form1.SendDialogSeek, (Int32)numExercise.Value);
+                SeekExercise(CBExercise.Text, MainForm.SendDialogSeek, (Int32)numExercise.Value);
             }
         }
 
@@ -113,6 +109,5 @@ namespace Painkiller
             CBExercise.Text = "";
             CBExercise.Items.Clear();
         }
-
     }
 }

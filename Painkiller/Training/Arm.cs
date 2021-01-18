@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Painkiller.Training
 {
-    public class Arms : Base, IPainKiller
+    public class Arms : Base, Painkiller.IExercise
     {
         public String[] Exercises()
         {
             NameExercises = new String[15];
+
             NameExercises[0] = "Молотки";
             NameExercises[1] = "Згинання рук з супінацією";
             NameExercises[2] = "Згинання рук широким прямим хватом";
@@ -26,8 +27,10 @@ namespace Painkiller.Training
             NameExercises[12] = "Французький жим";
             NameExercises[13] = "Розгинання рук перед собою";
             NameExercises[14] = "Розгинання рук за головою";
+
             return NameExercises;
         }
+
         public void Reps(out Int32 min, out Int32 max)
         {
             if (NumTypeTrain == 1)
@@ -46,6 +49,7 @@ namespace Painkiller.Training
                 max = 7;
             }
         }
+
         public void Sets(out Int32 min, out Int32 max)
         {
             min = 1;

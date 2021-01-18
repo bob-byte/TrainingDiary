@@ -52,6 +52,7 @@ namespace Painkiller
             {
                 Base.DialogCriteria = "Загальна_к_сть_підходів";
             }
+
             Close();
         }
 
@@ -76,9 +77,9 @@ namespace Painkiller
             {
                 view.Sort = sort;
             }
-            
 
             dGV.DataSource = view;
+
             for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)//dGv.Rows.Count - 1, оскільки останній рядок самостійно додається
             {
                 dGV.Rows[i].Cells["N_пп"].Value = i + 1;

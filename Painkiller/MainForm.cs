@@ -5,9 +5,9 @@ using Painkiller.Training;
 
 namespace Painkiller
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             SendMeasure = unitMeasure.Text;
@@ -412,7 +412,7 @@ namespace Painkiller
             }
         }
 
-        internal void InitTrain(IPainKiller group)
+        internal void InitTrain(IExercise group)
         {
             Int32 min, max;
             exercises = group.Exercises();

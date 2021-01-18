@@ -9,7 +9,6 @@ namespace Painkiller
 {
     class WorkWithFile : Base
     {
-
         String fileAllTrain, fileBadExercise;
         String textRow;
 
@@ -213,6 +212,7 @@ namespace Painkiller
             try
             {
                 using StreamReader sr = new StreamReader(fileAllTrain);
+
                 while (sr.Peek() >= 0)//поки у файлі є елементи
                 {
                     textRow = sr.ReadLine();
@@ -234,6 +234,7 @@ namespace Painkiller
             {
                 MessageInvoke(false, ex.Message);
             }
+
             for (Int32 i = 0; i < allTrain.Rows.Count - 1; i++)
             {
                 allTrain.Rows[i].Cells["N_пп"].Value = i + 1;
