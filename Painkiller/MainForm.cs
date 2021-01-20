@@ -412,7 +412,7 @@ namespace Painkiller
             }
         }
 
-        internal void InitTrain(IExercise group)
+        internal void InitTrain(IMuscleGroup group)
         {
             Int32 min, max;
             exercises = group.Exercises();

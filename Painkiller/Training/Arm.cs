@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Painkiller.Training
 {
-    public class Arms : Base, Painkiller.IExercise
+    public class Arms : Base, Painkiller.IMuscleGroup
     {
         public String[] Exercises()
         {

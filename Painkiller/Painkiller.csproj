@@ -83,7 +83,7 @@
       <DependentUpon>GroupFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="Training\Chest.cs" />
-    <Compile Include="Training\IExercise.cs" />
+    <Compile Include="Training\IMuscleGroup.cs" />
     <Compile Include="MessageEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

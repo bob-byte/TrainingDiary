@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Painkiller.Training
 {
-    public class Shoulders : Base, Painkiller.IExercise
+    public class Shoulders : Base, Painkiller.IMuscleGroup
     {
         public String[] Exercises()
         {
             NameExercises = new String[7];
+
             NameExercises[0] = "Жим перед собою";
             NameExercises[1] = "Жим за головою";
             NameExercises[2] = "Тяга на середню дельту";
@@ -18,6 +19,7 @@ namespace Painkiller.Training
             NameExercises[4] = "Розведення";
             NameExercises[5] = "Піднімання снаряду перед собою";
             NameExercises[6] = "Метелик";
+
             return NameExercises;
         }
 
