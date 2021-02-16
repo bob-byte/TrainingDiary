@@ -11,7 +11,7 @@ namespace Painkiller
         {
             InitializeComponent();
 
-            Base.DialogCriteria = "";
+            //AllTrainingTableContext.DialogCriteria = "";
 
             CBWeight.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value}{MainForm.SendMeasure}";
             CBReps.Text = $"{logicOperation} від {NUDCountWeigthRepsSets.Value} к-сті повторів";
@@ -60,7 +60,7 @@ namespace Painkiller
 
             if (isChecked)
             {
-                Base.DialogCriteria = textFilter;
+                //AllTrainingTableContext.DialogCriteria = textFilter;
             }
         }
 

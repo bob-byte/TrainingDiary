@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Painkiller
 {
-    public partial class GroupFilter : Form
+    public partial class GroupFilter : Form/*, IDialogFilter*/
     {
         public GroupFilter()
         {
@@ -37,7 +37,7 @@ namespace Painkiller
 
             if(countChecked >= 1)
             {
-                Base.DialogCriteria = textFilter;
+                //AllTrainingTableContext.DialogCriteria = textFilter;
             }
         }
     }

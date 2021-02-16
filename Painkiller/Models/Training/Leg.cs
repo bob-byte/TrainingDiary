@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Painkiller.Training
+namespace Painkiller.Models.Training
 {
-    public class Legs : Base, Painkiller.IMuscleGroup
+    public class Legs : MuscleGroup
     {
-        public String[] Exercises()
+        public override String[] GetExercises()
         {
             NameExercises = new String[9];
 
@@ -25,26 +25,31 @@ namespace Painkiller.Training
             return NameExercises;
         }
 
-        public void Reps(out Int32 min, out Int32 max)
+        public override void Reps(TypeTrainingEnum typeTraining, out Int32 min, out Int32 max)
         {
-            if (NumTypeTrain == 1)
+            if (typeTraining == TypeTrainingEnum.Statodynamics)
             {
                 min = 20;
                 max = 40;
             }
-            else if (NumTypeTrain == 2)
+            else if (typeTraining == TypeTrainingEnum.Hypertrophy)
             {
                 min = 8;
                 max = 20;
             }
-            else
+            else if (typeTraining == TypeTrainingEnum.DevelopmentStrength)
             {
                 min = 1;
                 max = 7;
             }
+            else
+            {
+                min = 1;
+                max = 40;
+            }
         }
 
-        public void Sets(out Int32 min, out Int32 max)
+        public override void Sets(out Int32 min, out Int32 max)
         {
             min = 1;
             max = 10;

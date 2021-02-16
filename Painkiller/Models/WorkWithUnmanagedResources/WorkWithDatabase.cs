@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Painkiller.PresentationModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,16 +10,25 @@ using System.Windows.Forms;
 
 namespace Painkiller
 {
-    class WorkWithDatabase : Base
+    class WorkWithDatabase
     {
         SqlTransaction tranPlSave;
+        SqlConnection connect = new SqlConnection();
+        SqlCommand command = new SqlCommand();
+        private Notification notification;
+
+        public WorkWithDatabase(Notification notification)
+        {
+            this.notification = notification;
+        }
 
         internal void WriteDB(DataTable grid, String measure)
         {
-            SqlConnection connect = new SqlConnection();
-            SqlCommand command = new SqlCommand();
-
-            ConnectDB(connect, command, "spWriteTrain");
+            if(connect.State != ConnectionState.Connecting)
+            {
+                ConnectDB(connect, command, CommandType.StoredProcedure);
+            }
+            command.CommandText = "spWriteTrain";
 
             try
             {
@@ -89,7 +99,7 @@ namespace Painkiller
             catch (Exception ex)
             {
                 tranPlSave.Rollback();//Виконати відкад у випадку невдалого записування
-                MessageInvoke(false, $"Таблицю не вдалося записати в базу даних: {ex.Message}");
+                notification.MessageInvoke(false, $"Таблицю не вдалося записати в базу даних: {ex.Message}");
 
                 return;
             }
@@ -98,30 +108,32 @@ namespace Painkiller
                 connect.Close();
             }
 
-            MessageInvoke(true, "Таблиця записана в базу даних");
+            notification.MessageInvoke(true, "Таблиця записана в базу даних");
         }
 
-        void ConnectDB(SqlConnection connect, SqlCommand command, String commandText)
+        void ConnectDB(SqlConnection connect, SqlCommand command, CommandType commandType)
         {
             command.Connection = connect;
-            command.CommandType = CommandType.StoredProcedure;
+            command.CommandType = commandType;
             connect.ConnectionString = "Data Source = (local)\\SQLEXPRESS; Initial Catalog = Training; " +
                 "Integrated Security = True";
-            command.CommandText = commandText;
         }
+
+
 
         internal void ReadDB(DataTable table, DataGridView dGV)
         {
-            SqlConnection connect = new SqlConnection();
-            SqlCommand com = new SqlCommand();
-
-            ConnectDB(connect, com, "spTrainTabRead");
+            if(connect.State != ConnectionState.Connecting)
+            {
+                ConnectDB(connect, command, CommandType.StoredProcedure);
+            }
+            command.CommandText = "spTrainTabRead";
 
             try
             {
                 connect.Open();
 
-                SqlDataReader SqlLn = com.ExecuteReader();
+                SqlDataReader SqlLn = command.ExecuteReader();
 
                 while (SqlLn.Read())
                 {
@@ -155,7 +167,7 @@ namespace Painkiller
             }
             catch (Exception ex)
             {
-                MessageInvoke(false, ex.Message);
+                notification.MessageInvoke(false, ex.Message);
             }
             finally
             {
@@ -168,21 +180,25 @@ namespace Painkiller
             }
         }
 
+
+
         public void ClearMainTabDB()
         {
-            SqlConnection connect = new SqlConnection();
-            SqlCommand com = new SqlCommand();
-
-            ConnectDB(connect, com, "spClearTrain");
+            if (connect.State != ConnectionState.Connecting)
+            {
+                ConnectDB(connect, command, CommandType.StoredProcedure);
+            }
+            command.CommandText = "spClearTrain";
 
             try
             {
                 connect.Open();
-                com.ExecuteNonQuery();
+
+                command.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
-                MessageInvoke(false, ex.Message);
+                notification.MessageInvoke(false, ex.Message);
                 return;
             }
             finally
@@ -190,7 +206,7 @@ namespace Painkiller
                 connect.Close();
             }
 
-            MessageInvoke(true, "Головна таблиця успішно очищена");
+            notification.MessageInvoke(true, "Головна таблиця успішно очищена");
         }
     }
 }

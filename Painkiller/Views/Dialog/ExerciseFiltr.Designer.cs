@@ -113,7 +113,6 @@
             this.Controls.Add(this.CBGroup);
             this.Name = "ExerciseFiltr";
             this.Text = "ExerciseFiltr";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ExerciseFiltr_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

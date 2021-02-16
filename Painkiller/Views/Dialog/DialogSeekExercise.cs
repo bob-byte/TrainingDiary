@@ -1,4 +1,4 @@
-﻿using Painkiller.Training;
+﻿using Painkiller.Models.Training;
 using System;
 using System.Windows.Forms;
 
@@ -65,23 +65,23 @@ namespace Painkiller
 
             if (CBGroup.SelectedIndex == 0)
             {
-                exercises = legs.Exercises();
+                exercises = legs.GetExercises();
             }
             else if (CBGroup.SelectedIndex == 1)
             {
-                exercises = back.Exercises();
+                exercises = back.GetExercises();
             }
             else if (CBGroup.SelectedIndex == 2)
             {
-                exercises = chest.Exercises();
+                exercises = chest.GetExercises();
             }
             else if (CBGroup.SelectedIndex == 3)
             {
-                exercises = arms.Exercises();
+                exercises = arms.GetExercises();
             }
             else if (CBGroup.SelectedIndex == 4)
             {
-                exercises = shoulders.Exercises();
+                exercises = shoulders.GetExercises();
             }
             else
             {

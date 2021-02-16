@@ -42,7 +42,7 @@
             this.BClear = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label7 = new System.Windows.Forms.Label();
-            this.unitMeasure = new System.Windows.Forms.DomainUpDown();
+            this.DUD_UnitMeasure = new System.Windows.Forms.DomainUpDown();
             this.AllTraining = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.MinResults = new System.Windows.Forms.DataGridView();
@@ -52,10 +52,10 @@
             this.RBBlok = new System.Windows.Forms.RadioButton();
             this.RBDumb_Bell = new System.Windows.Forms.RadioButton();
             this.RBBar = new System.Windows.Forms.RadioButton();
-            this.RBStatodynamic = new System.Windows.Forms.RadioButton();
-            this.RBHipertrophy = new System.Windows.Forms.RadioButton();
+            this.GBTypesTraining = new System.Windows.Forms.GroupBox();
             this.RBStrength = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RBHipertrophy = new System.Windows.Forms.RadioButton();
+            this.RBStatodynamic = new System.Windows.Forms.RadioButton();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.записатиТаблицюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.перезаписатиФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.AllTraining)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MinResults)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.GBTypesTraining.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.GBPosition.SuspendLayout();
             this.SuspendLayout();
@@ -176,7 +176,6 @@
             this.CBGroup.Name = "CBGroup";
             this.CBGroup.Size = new System.Drawing.Size(237, 28);
             this.CBGroup.TabIndex = 6;
-            this.CBGroup.SelectedIndexChanged += new System.EventHandler(this.CBGroup_SelectedIndexChanged);
             // 
             // CBExercise
             // 
@@ -188,8 +187,6 @@
             this.CBExercise.Name = "CBExercise";
             this.CBExercise.Size = new System.Drawing.Size(490, 28);
             this.CBExercise.TabIndex = 7;
-            this.CBExercise.SelectedIndexChanged += new System.EventHandler(this.CBExercise_SelectedIndexChanged);
-            this.CBExercise.Click += new System.EventHandler(this.CBExercise_Click);
             // 
             // NReps
             // 
@@ -244,11 +241,6 @@
             0,
             0,
             0});
-            this.NWeight.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.NWeight.Name = "NWeight";
             this.NWeight.Size = new System.Drawing.Size(75, 27);
             this.NWeight.TabIndex = 5;
@@ -269,7 +261,6 @@
             this.BAdd.TabIndex = 9;
             this.BAdd.Text = "Додати";
             this.BAdd.UseVisualStyleBackColor = false;
-            this.BAdd.Click += new System.EventHandler(this.BAdd_Click);
             // 
             // BClear
             // 
@@ -282,7 +273,6 @@
             this.BClear.TabIndex = 10;
             this.BClear.Text = "Очистити введені дані";
             this.BClear.UseVisualStyleBackColor = false;
-            this.BClear.Click += new System.EventHandler(this.BClear_Click);
             // 
             // splitContainer1
             // 
@@ -295,7 +285,7 @@
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.LemonChiffon;
             this.splitContainer1.Panel1.Controls.Add(this.label7);
-            this.splitContainer1.Panel1.Controls.Add(this.unitMeasure);
+            this.splitContainer1.Panel1.Controls.Add(this.DUD_UnitMeasure);
             this.splitContainer1.Panel1.Controls.Add(this.AllTraining);
             this.splitContainer1.Panel1.Controls.Add(this.BClear);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
@@ -331,22 +321,20 @@
             this.label7.TabIndex = 12;
             this.label7.Text = "Все тренування";
             // 
-            // unitMeasure
+            // DUD_UnitMeasure
             // 
-            this.unitMeasure.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.unitMeasure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.unitMeasure.ForeColor = System.Drawing.Color.Black;
-            this.unitMeasure.Items.Add("кг");
-            this.unitMeasure.Items.Add("lb");
-            this.unitMeasure.Location = new System.Drawing.Point(305, 146);
-            this.unitMeasure.Name = "unitMeasure";
-            this.unitMeasure.ReadOnly = true;
-            this.unitMeasure.Size = new System.Drawing.Size(75, 27);
-            this.unitMeasure.TabIndex = 11;
-            this.unitMeasure.Text = "кг";
-            this.unitMeasure.Wrap = true;
-            this.unitMeasure.SelectedItemChanged += new System.EventHandler(this.unitMeasure_SelectedItemChanged);
-            this.unitMeasure.Scroll += new System.Windows.Forms.ScrollEventHandler(this.unitMeasure_Scroll);
+            this.DUD_UnitMeasure.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.DUD_UnitMeasure.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.DUD_UnitMeasure.ForeColor = System.Drawing.Color.Black;
+            this.DUD_UnitMeasure.Items.Add("кг");
+            this.DUD_UnitMeasure.Items.Add("lb");
+            this.DUD_UnitMeasure.Location = new System.Drawing.Point(305, 146);
+            this.DUD_UnitMeasure.Name = "DUD_UnitMeasure";
+            this.DUD_UnitMeasure.ReadOnly = true;
+            this.DUD_UnitMeasure.Size = new System.Drawing.Size(75, 27);
+            this.DUD_UnitMeasure.TabIndex = 11;
+            this.DUD_UnitMeasure.Text = "кг";
+            this.DUD_UnitMeasure.Wrap = true;
             // 
             // AllTraining
             // 
@@ -359,7 +347,6 @@
             this.AllTraining.ShowEditingIcon = false;
             this.AllTraining.Size = new System.Drawing.Size(1640, 283);
             this.AllTraining.TabIndex = 6;
-            this.AllTraining.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.AllTraining_ColumnHeaderMouseClick);
             // 
             // label6
             // 
@@ -412,7 +399,6 @@
             this.RBMachine.TabStop = true;
             this.RBMachine.Text = "Тренажер";
             this.RBMachine.UseVisualStyleBackColor = true;
-            this.RBMachine.CheckedChanged += new System.EventHandler(this.RBMachine_CheckedChanged);
             // 
             // RBBodyWeight
             // 
@@ -424,7 +410,6 @@
             this.RBBodyWeight.TabStop = true;
             this.RBBodyWeight.Text = "Власна вага тіла(+додаткова вага)";
             this.RBBodyWeight.UseVisualStyleBackColor = true;
-            this.RBBodyWeight.CheckedChanged += new System.EventHandler(this.RBBodyWeight_CheckedChanged);
             // 
             // RBBlok
             // 
@@ -436,7 +421,6 @@
             this.RBBlok.TabStop = true;
             this.RBBlok.Text = "Блок";
             this.RBBlok.UseVisualStyleBackColor = true;
-            this.RBBlok.CheckedChanged += new System.EventHandler(this.RBBlok_CheckedChanged);
             // 
             // RBDumb_Bell
             // 
@@ -448,7 +432,6 @@
             this.RBDumb_Bell.TabStop = true;
             this.RBDumb_Bell.Text = "Гантелі";
             this.RBDumb_Bell.UseVisualStyleBackColor = true;
-            this.RBDumb_Bell.CheckedChanged += new System.EventHandler(this.RBDumb_Bell_CheckedChanged);
             // 
             // RBBar
             // 
@@ -460,57 +443,53 @@
             this.RBBar.TabStop = true;
             this.RBBar.Text = "Штанга";
             this.RBBar.UseVisualStyleBackColor = true;
-            this.RBBar.CheckedChanged += new System.EventHandler(this.RBBar_CheckedChanged);
             // 
-            // RBStatodynamic
+            // GBTypesTraining
             // 
-            this.RBStatodynamic.AutoSize = true;
-            this.RBStatodynamic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RBStatodynamic.Location = new System.Drawing.Point(6, 26);
-            this.RBStatodynamic.Name = "RBStatodynamic";
-            this.RBStatodynamic.Size = new System.Drawing.Size(159, 24);
-            this.RBStatodynamic.TabIndex = 0;
-            this.RBStatodynamic.Text = "Статодинаміка";
-            this.RBStatodynamic.UseVisualStyleBackColor = true;
-            this.RBStatodynamic.CheckedChanged += new System.EventHandler(this.RBStatodynamic_CheckedChanged);
-            // 
-            // RBHipertrophy
-            // 
-            this.RBHipertrophy.AutoSize = true;
-            this.RBHipertrophy.Location = new System.Drawing.Point(6, 54);
-            this.RBHipertrophy.Name = "RBHipertrophy";
-            this.RBHipertrophy.Size = new System.Drawing.Size(134, 24);
-            this.RBHipertrophy.TabIndex = 1;
-            this.RBHipertrophy.Text = "Гіпертрофія";
-            this.RBHipertrophy.UseVisualStyleBackColor = true;
-            this.RBHipertrophy.CheckedChanged += new System.EventHandler(this.RBHipertrophy_CheckedChanged);
+            this.GBTypesTraining.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.GBTypesTraining.Controls.Add(this.RBStrength);
+            this.GBTypesTraining.Controls.Add(this.RBHipertrophy);
+            this.GBTypesTraining.Controls.Add(this.RBStatodynamic);
+            this.GBTypesTraining.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.GBTypesTraining.ForeColor = System.Drawing.Color.Black;
+            this.GBTypesTraining.Location = new System.Drawing.Point(12, 43);
+            this.GBTypesTraining.Name = "GBTypesTraining";
+            this.GBTypesTraining.Size = new System.Drawing.Size(170, 127);
+            this.GBTypesTraining.TabIndex = 8;
+            this.GBTypesTraining.TabStop = false;
+            this.GBTypesTraining.Text = "Вид тренування";
             // 
             // RBStrength
             // 
             this.RBStrength.AutoSize = true;
             this.RBStrength.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.RBStrength.Location = new System.Drawing.Point(6, 84);
+            this.RBStrength.Location = new System.Drawing.Point(6, 80);
             this.RBStrength.Name = "RBStrength";
             this.RBStrength.Size = new System.Drawing.Size(153, 24);
-            this.RBStrength.TabIndex = 2;
+            this.RBStrength.TabIndex = 5;
             this.RBStrength.Text = "Розвиток сили";
             this.RBStrength.UseVisualStyleBackColor = true;
-            this.RBStrength.CheckedChanged += new System.EventHandler(this.RBStrength_CheckedChanged);
             // 
-            // groupBox1
+            // RBHipertrophy
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.groupBox1.Controls.Add(this.RBStrength);
-            this.groupBox1.Controls.Add(this.RBHipertrophy);
-            this.groupBox1.Controls.Add(this.RBStatodynamic);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox1.ForeColor = System.Drawing.Color.Black;
-            this.groupBox1.Location = new System.Drawing.Point(12, 43);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(170, 127);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Вид тренування";
+            this.RBHipertrophy.AutoSize = true;
+            this.RBHipertrophy.Location = new System.Drawing.Point(6, 50);
+            this.RBHipertrophy.Name = "RBHipertrophy";
+            this.RBHipertrophy.Size = new System.Drawing.Size(134, 24);
+            this.RBHipertrophy.TabIndex = 4;
+            this.RBHipertrophy.Text = "Гіпертрофія";
+            this.RBHipertrophy.UseVisualStyleBackColor = true;
+            // 
+            // RBStatodynamic
+            // 
+            this.RBStatodynamic.AutoSize = true;
+            this.RBStatodynamic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.RBStatodynamic.Location = new System.Drawing.Point(6, 22);
+            this.RBStatodynamic.Name = "RBStatodynamic";
+            this.RBStatodynamic.Size = new System.Drawing.Size(159, 24);
+            this.RBStatodynamic.TabIndex = 3;
+            this.RBStatodynamic.Text = "Статодинаміка";
+            this.RBStatodynamic.UseVisualStyleBackColor = true;
             // 
             // файлToolStripMenuItem
             // 
@@ -534,7 +513,6 @@
             this.записатиТаблицюToolStripMenuItem.Name = "записатиТаблицюToolStripMenuItem";
             this.записатиТаблицюToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
             this.записатиТаблицюToolStripMenuItem.Text = "Записати таблицю у файл";
-            this.записатиТаблицюToolStripMenuItem.Click += new System.EventHandler(this.записатиТаблицюToolStripMenuItem_Click);
             // 
             // перезаписатиФайлToolStripMenuItem
             // 
@@ -543,7 +521,6 @@
             this.перезаписатиФайлToolStripMenuItem.Name = "перезаписатиФайлToolStripMenuItem";
             this.перезаписатиФайлToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
             this.перезаписатиФайлToolStripMenuItem.Text = "Перезаписати файл";
-            this.перезаписатиФайлToolStripMenuItem.Click += new System.EventHandler(this.перезаписатиФайлToolStripMenuItem_Click);
             // 
             // зчитатиТаблицюЗФайлуToolStripMenuItem
             // 
@@ -552,7 +529,6 @@
             this.зчитатиТаблицюЗФайлуToolStripMenuItem.Name = "зчитатиТаблицюЗФайлуToolStripMenuItem";
             this.зчитатиТаблицюЗФайлуToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
             this.зчитатиТаблицюЗФайлуToolStripMenuItem.Text = "Зчитати таблицю з файлу";
-            this.зчитатиТаблицюЗФайлуToolStripMenuItem.Click += new System.EventHandler(this.зчитатиТаблицюЗФайлуToolStripMenuItem_Click);
             // 
             // записатиТаблицюВБазуДанихToolStripMenuItem
             // 
@@ -561,7 +537,6 @@
             this.записатиТаблицюВБазуДанихToolStripMenuItem.Name = "записатиТаблицюВБазуДанихToolStripMenuItem";
             this.записатиТаблицюВБазуДанихToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
             this.записатиТаблицюВБазуДанихToolStripMenuItem.Text = "Записати таблицю в базу даних";
-            this.записатиТаблицюВБазуДанихToolStripMenuItem.Click += new System.EventHandler(this.записатиТаблицюВБазуДанихToolStripMenuItem_Click);
             // 
             // зчитатиТаблицюЗБазиДанихToolStripMenuItem
             // 
@@ -570,7 +545,6 @@
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Name = "зчитатиТаблицюЗБазиДанихToolStripMenuItem";
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
             this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Text = "Зчитати таблицю з бази даних";
-            this.зчитатиТаблицюЗБазиДанихToolStripMenuItem.Click += new System.EventHandler(this.зчитатиТаблицюЗБазиДанихToolStripMenuItem_Click);
             // 
             // очиститиГоловнуТаблицюБДToolStripMenuItem
             // 
@@ -579,7 +553,6 @@
             this.очиститиГоловнуТаблицюБДToolStripMenuItem.Name = "очиститиГоловнуТаблицюБДToolStripMenuItem";
             this.очиститиГоловнуТаблицюБДToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
             this.очиститиГоловнуТаблицюБДToolStripMenuItem.Text = "Очистити головну таблицю в базі даних";
-            this.очиститиГоловнуТаблицюБДToolStripMenuItem.Click += new System.EventHandler(this.очиститиГоловнуТаблицюБДToolStripMenuItem_Click);
             // 
             // очиститиТаблицюToolStripMenuItem
             // 
@@ -588,7 +561,6 @@
             this.очиститиТаблицюToolStripMenuItem.Name = "очиститиТаблицюToolStripMenuItem";
             this.очиститиТаблицюToolStripMenuItem.Size = new System.Drawing.Size(371, 26);
             this.очиститиТаблицюToolStripMenuItem.Text = "Очистити таблиці в програмі";
-            this.очиститиТаблицюToolStripMenuItem.Click += new System.EventHandler(this.очиститиТаблицюToolStripMenuItem_Click);
             // 
             // сортуватиToolStripMenuItem
             // 
@@ -608,7 +580,6 @@
             this.ввестиКритерійСортуванняToolStripMenuItem.Name = "ввестиКритерійСортуванняToolStripMenuItem";
             this.ввестиКритерійСортуванняToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
             this.ввестиКритерійСортуванняToolStripMenuItem.Text = "Ввести критерій сортування";
-            this.ввестиКритерійСортуванняToolStripMenuItem.Click += new System.EventHandler(this.ввестиКритерійСортуванняToolStripMenuItem_Click);
             // 
             // сортуватиПоГрупіToolStripMenuItem
             // 
@@ -617,7 +588,6 @@
             this.сортуватиПоГрупіToolStripMenuItem.Name = "сортуватиПоГрупіToolStripMenuItem";
             this.сортуватиПоГрупіToolStripMenuItem.Size = new System.Drawing.Size(288, 26);
             this.сортуватиПоГрупіToolStripMenuItem.Text = "Зняти сортування";
-            this.сортуватиПоГрупіToolStripMenuItem.Click += new System.EventHandler(this.знятиСортуванняToolStripMenuItem_Click);
             // 
             // фільтруватиToolStripMenuItem
             // 
@@ -637,7 +607,6 @@
             this.ввестиФільтрToolStripMenuItem.Name = "ввестиФільтрToolStripMenuItem";
             this.ввестиФільтрToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.ввестиФільтрToolStripMenuItem.Text = "Ввести фільтр";
-            this.ввестиФільтрToolStripMenuItem.Click += new System.EventHandler(this.ввестиФільтрToolStripMenuItem_Click);
             // 
             // забратиФільтрToolStripMenuItem
             // 
@@ -646,7 +615,6 @@
             this.забратиФільтрToolStripMenuItem.Name = "забратиФільтрToolStripMenuItem";
             this.забратиФільтрToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.забратиФільтрToolStripMenuItem.Text = "Забрати фільтр";
-            this.забратиФільтрToolStripMenuItem.Click += new System.EventHandler(this.забратиФільтрToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -680,7 +648,6 @@
             this.пошукВправиToolStripMenuItem.Name = "пошукВправиToolStripMenuItem";
             this.пошукВправиToolStripMenuItem.Size = new System.Drawing.Size(193, 26);
             this.пошукВправиToolStripMenuItem.Text = "Пошук вправи";
-            this.пошукВправиToolStripMenuItem.Click += new System.EventHandler(this.пошукВправиToolStripMenuItem_Click_1);
             // 
             // GBPosition
             // 
@@ -817,7 +784,7 @@
             this.RBStanding.Text = "Стоячи";
             this.RBStanding.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -826,12 +793,11 @@
             this.Controls.Add(this.GBPosition);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.GBTypesTraining);
             this.Controls.Add(this.splitContainer1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Тренування";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.NReps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NSets)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NWeight)).EndInit();
@@ -845,8 +811,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.MinResults)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GBTypesTraining.ResumeLayout(false);
+            this.GBTypesTraining.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.GBPosition.ResumeLayout(false);
@@ -873,10 +839,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView AllTraining;
         private System.Windows.Forms.DataGridView MinResults;
-        private System.Windows.Forms.RadioButton RBStatodynamic;
-        private System.Windows.Forms.RadioButton RBHipertrophy;
-        private System.Windows.Forms.RadioButton RBStrength;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GBTypesTraining;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem записатиТаблицюToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem зчитатиТаблицюЗФайлуToolStripMenuItem;
@@ -890,7 +853,7 @@
         private System.Windows.Forms.ToolStripMenuItem ввестиФільтрToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem забратиФільтрToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.DomainUpDown unitMeasure;
+        private System.Windows.Forms.DomainUpDown DUD_UnitMeasure;
         private System.Windows.Forms.ToolStripMenuItem пошукToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem пошукВправиToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -915,6 +878,9 @@
         private System.Windows.Forms.ToolStripMenuItem перезаписатиФайлToolStripMenuItem;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolStripMenuItem очиститиГоловнуТаблицюБДToolStripMenuItem;
+        private System.Windows.Forms.RadioButton RBStrength;
+        private System.Windows.Forms.RadioButton RBHipertrophy;
+        private System.Windows.Forms.RadioButton RBStatodynamic;
     }
 }
 

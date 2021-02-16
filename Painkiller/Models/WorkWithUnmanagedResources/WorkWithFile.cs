@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Painkiller.PresentationModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,18 +8,20 @@ using System.Windows.Forms;
 
 namespace Painkiller
 {
-    class WorkWithFile : Base
+    class WorkWithFile : AllTrainingTableContext
     {
         String fileAllTrain, fileBadExercise;
         String textRow;
+        private Notification notification;
 
-        internal WorkWithFile()
+        internal WorkWithFile(Notification notification, String fileAllTrain, String fileBadExercise)
         {
-            fileAllTrain = "Все тренування.txt";
-            fileBadExercise = "Відстаючі вправи.txt";
+            this.notification = notification;
+            this.fileAllTrain = fileAllTrain;
+            this.fileBadExercise = fileBadExercise;
         }
 
-        public void RewriteFile(Boolean whetherDelete, String measure, Boolean previousDay)
+        public void RewriteFile(Boolean doDelete, String measure, Boolean previousDay, DataTable laggingExercisesTable)
         {
             StreamReader reader = null;
             StreamWriter writer = null;
@@ -42,7 +45,7 @@ namespace Painkiller
                         data = textRow.Split(' ');
                         if (!Int32.TryParse(data[1], out numberOfDay))
                         {
-                            MessageInvoke(false, "Файл \"Все тренування\" неправильно записаний");
+                            notification.MessageInvoke(false, "Файл \"Все тренування\" неправильно записаний");
                         }
                     }
                 }
@@ -50,7 +53,7 @@ namespace Painkiller
 
                 writer = new StreamWriter(fileAllTrain);//якщо не перезапис, то додаємо до вхідного тексту файлу наступні рядки
 
-                if (!whetherDelete)
+                if (!doDelete)
                 {
                     Int32 numRow = 0;
                     for (Int32 i = 0; i < newFile.Count && numRow < TabTrain.Rows.Count; i++)
@@ -98,11 +101,11 @@ namespace Painkiller
                 }
 
                 writer.Close();
-                MessageInvoke(true, "Інформація у файл \"Все тренування\" записана");
+                notification.MessageInvoke(true, "Інформація у файл \"Все тренування\" записана");
             }
             catch (Exception ex)
             {
-                MessageInvoke(false, ex.Message);
+                notification.MessageInvoke(false, ex.Message);
             }
             finally
             {
@@ -110,10 +113,10 @@ namespace Painkiller
                 writer?.Close();
             }
 
-            WriteInFileBadExercise(measure);
+            WriteInFileBadExercise(measure, laggingExercisesTable);
         }
 
-        public void WriteTabInFile(Boolean allTrain, String measure)
+        public void WriteTabInFile(Boolean allTrain, String measure, DataTable laggingExercisesTable)
         {
             StreamReader reader = null;
             StreamWriter writer = null;
@@ -135,7 +138,7 @@ namespace Painkiller
                             data = textRow.Split(' ');
                             if (!Int32.TryParse(data[1], out numberOfDay))
                             {
-                                MessageInvoke(false, "Файл \"Все тренування\" неправильно записаний");
+                                notification.MessageInvoke(false, "Файл \"Все тренування\" неправильно записаний");
                             }
                         }
                     }
@@ -143,10 +146,7 @@ namespace Painkiller
             }
             catch (Exception ex)
             {
-                if(ex is FileNotFoundException == false)
-                {
-                    MessageInvoke(false, ex.Message);
-                }
+                notification.MessageInvoke(false, ex.Message);
             }
             finally
             {
@@ -167,27 +167,27 @@ namespace Painkiller
                     writer.WriteLine(textRow);
                 }
                 
-                MessageInvoke(true, "Інформація у файл \"Все тренування\" записана");
+                notification.MessageInvoke(true, "Інформація у файл \"Все тренування\" записана");
             }
             catch (Exception ex)
             {
-                MessageInvoke(false, ex.Message);
+                notification.MessageInvoke(false, ex.Message);
             }
             finally
             {
                 writer?.Close();
             }
 
-            WriteInFileBadExercise(measure);
+            WriteInFileBadExercise(measure, laggingExercisesTable);
         }
 
-        private void WriteInFileBadExercise(String measure)
+        private void WriteInFileBadExercise(String measure, DataTable laggingExercisesTable)
         {
             try
             {
                 using (StreamWriter sw = new StreamWriter(fileBadExercise, true))
                 {
-                    foreach (DataRow r in TabMinTrain.Rows)
+                    foreach (DataRow r in laggingExercisesTable.Rows)
                     {
                         if (r["Вправа "].ToString() == "")
                         {
@@ -199,11 +199,11 @@ namespace Painkiller
                     }
                 }
 
-                MessageInvoke(true, "Інформація у файл \"Відстаючі вправи\" записана");
+                notification.MessageInvoke(true, "Інформація у файл \"Відстаючі вправи\" записана");
             }
             catch (Exception ex)
             {
-                MessageInvoke(false, ex.Message);
+                notification.MessageInvoke(false, ex.Message);
             }
         }
 
@@ -212,6 +212,8 @@ namespace Painkiller
             try
             {
                 using StreamReader sr = new StreamReader(fileAllTrain);
+
+                List<String[]> rowsFromFile = new List<String[]>();
 
                 while (sr.Peek() >= 0)//поки у файлі є елементи
                 {
@@ -226,13 +228,15 @@ namespace Painkiller
                     partTrain[6] = partTrain[6].Trim(" повторень".ToCharArray());
                     partTrain[7] = partTrain[7].Trim(" підходів".ToCharArray());
 
-                    TTrainingAddRow(partTrain[0], partTrain[1], partTrain[2], partTrain[3], partTrain[4],
-                        Convert.ToInt32(partTrain[5]), Convert.ToInt32(partTrain[6]), Convert.ToInt32(partTrain[7]));
+                    rowsFromFile.Add(partTrain);
+
+                    //TTrainingAddRow(partTrain[0], partTrain[1], partTrain[2], partTrain[3], partTrain[4],
+                    //    Convert.ToInt32(partTrain[5]), Convert.ToInt32(partTrain[6]), Convert.ToInt32(partTrain[7]));
                 }
             }
             catch (Exception ex)
             {
-                MessageInvoke(false, ex.Message);
+                notification.MessageInvoke(false, ex.Message);
             }
 
             for (Int32 i = 0; i < allTrain.Rows.Count - 1; i++)

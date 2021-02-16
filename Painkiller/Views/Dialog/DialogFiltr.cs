@@ -4,13 +4,15 @@ using System.Windows.Forms;
 
 namespace Painkiller
 {
-    public partial class DialogFiltr : Form
+    public partial class DialogFiltr : Form, IDialogService
     {
+        public String DialogCriteria { get; private set; }
+
         public DialogFiltr()
         {
             InitializeComponent();
 
-            Base.DialogCriteria = "";
+            //AllTrainingTableContext.dialogCriteria = "";
             CBSelectTypeFilter.Text = "";
         }
 
@@ -19,17 +21,19 @@ namespace Painkiller
             Close();
         }
 
-        public void TTrainingFiltr(String filter, DataGridView dGV, DataView view)
+        public void Execute(DataView view, out String dialogCriteria, DataGridView dGV = null)
         {
+            dialogCriteria = DialogCriteria;
+
             try
             {
-                view.RowFilter = filter;
+                view.RowFilter = DialogCriteria;
                 dGV.DataSource = view;
 
-                for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)
-                {
-                    dGV.Rows[i].Cells["N_пп"].Value = i + 1;
-                }
+                //for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)
+                //{
+                //    dGV.Rows[i].Cells["N_пп"].Value = i + 1;
+                //}
             }
             catch(Exception ex)
             {

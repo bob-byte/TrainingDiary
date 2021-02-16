@@ -35,6 +35,7 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceProcess" />
@@ -49,73 +50,89 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Training\Arm.cs" />
-    <Compile Include="Training\Back.cs" />
-    <Compile Include="Base.cs" />
-    <Compile Include="Dialog\DialogSort.cs">
+    <Compile Include="IDialogFilter.cs" />
+    <Compile Include="IDialogService.cs" />
+    <Compile Include="Models\LaggingExercisesTableContext.cs" />
+    <Compile Include="Models\Training\Arm.cs" />
+    <Compile Include="Models\Training\Back.cs" />
+    <Compile Include="Models\AllTrainingTableContext.cs" />
+    <Compile Include="Models\Training\TypesEncumbrances.cs" />
+    <Compile Include="Models\Training\TypeTraining.cs" />
+    <Compile Include="Models\Training\UnitMeasure.cs" />
+    <Compile Include="PresentationModels\MainPresentationModel. SelectedBurden.cs" />
+    <Compile Include="PresentationModels\MainPresentationModel.ChangeViewWhenSelectedTypeTraining.cs" />
+    <Compile Include="PresentationModels\MainPresentationModel.DUD_UnitMeasure.cs" />
+    <Compile Include="PresentationModels\MainPresentationModel.EnterDataInAllTrainingDataGridView.cs" />
+    <Compile Include="PresentationModels\MainPresentationModel.ShowExercises.cs" />
+    <Compile Include="PresentationModels\MainPresentationModel.Sorting.cs" />
+    <Compile Include="PresentationModels\Notification.cs" />
+    <Compile Include="PresentationModels\MainPresentationModel.cs" />
+    <Compile Include="PresentationModels\MainPresentationModel.Database.cs" />
+    <Compile Include="PresentationModels\RelayCommand.cs" />
+    <Compile Include="Views\Dialog\DialogSort.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\DialogSort.Designer.cs">
+    <Compile Include="Views\Dialog\DialogSort.Designer.cs">
       <DependentUpon>DialogSort.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\DialogSeekExercise.cs">
+    <Compile Include="Views\Dialog\DialogSeekExercise.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\DialogSeekExercise.Designer.cs">
+    <Compile Include="Views\Dialog\DialogSeekExercise.Designer.cs">
       <DependentUpon>DialogSeekExercise.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\ExerciseFiltr.cs">
+    <Compile Include="Views\Dialog\ExerciseFiltr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\ExerciseFiltr.Designer.cs">
+    <Compile Include="Views\Dialog\ExerciseFiltr.Designer.cs">
       <DependentUpon>ExerciseFiltr.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Views\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dialog\GroupFilter.cs">
+    <Compile Include="Views\Dialog\GroupFilter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\GroupFilter.Designer.cs">
+    <Compile Include="Views\Dialog\GroupFilter.Designer.cs">
       <DependentUpon>GroupFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Training\Chest.cs" />
-    <Compile Include="Training\IMuscleGroup.cs" />
-    <Compile Include="MessageEventArgs.cs" />
+    <Compile Include="Models\Training\Chest.cs" />
+    <Compile Include="Models\Training\MuscleGroup.cs" />
+    <Compile Include="Models\MessageEventArgs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Dialog\DialogFiltr.cs">
+    <Compile Include="Views\Dialog\DialogFiltr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\DialogFiltr.Designer.cs">
+    <Compile Include="Views\Dialog\DialogFiltr.Designer.cs">
       <DependentUpon>DialogFiltr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Training\Leg.cs" />
-    <Compile Include="Training\Shoulder.cs" />
-    <Compile Include="WorkWithUnmanagedResources\WorkWithFile.cs" />
-    <Compile Include="Dialog\WeightRepsSetsFiltr.cs">
+    <Compile Include="Models\Training\Leg.cs" />
+    <Compile Include="Models\Training\Shoulder.cs" />
+    <Compile Include="Models\WorkWithUnmanagedResources\WorkWithFile.cs" />
+    <Compile Include="Views\Dialog\WeightRepsSetsFiltr.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dialog\WeightRepsSetsFiltr.Designer.cs">
+    <Compile Include="Views\Dialog\WeightRepsSetsFiltr.Designer.cs">
       <DependentUpon>WeightRepsSetsFiltr.cs</DependentUpon>
     </Compile>
-    <Compile Include="WorkWithUnmanagedResources\WorkWithDatabase.cs" />
-    <EmbeddedResource Include="Dialog\DialogSort.resx">
+    <Compile Include="Models\WorkWithUnmanagedResources\WorkWithDatabase.cs" />
+    <EmbeddedResource Include="Views\Dialog\DialogSort.resx">
       <DependentUpon>DialogSort.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\DialogSeekExercise.resx">
+    <EmbeddedResource Include="Views\Dialog\DialogSeekExercise.resx">
       <DependentUpon>DialogSeekExercise.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\ExerciseFiltr.resx">
+    <EmbeddedResource Include="Views\Dialog\ExerciseFiltr.resx">
       <DependentUpon>ExerciseFiltr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\GroupFilter.resx">
+    <EmbeddedResource Include="Views\Dialog\GroupFilter.resx">
       <DependentUpon>GroupFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -127,10 +144,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Dialog\DialogFiltr.resx">
+    <EmbeddedResource Include="Views\Dialog\DialogFiltr.resx">
       <DependentUpon>DialogFiltr.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dialog\WeightRepsSetsFiltr.resx">
+    <EmbeddedResource Include="Views\Dialog\WeightRepsSetsFiltr.resx">
       <DependentUpon>WeightRepsSetsFiltr.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".editorconfig" />
@@ -147,5 +164,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

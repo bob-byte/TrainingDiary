@@ -1,4 +1,4 @@
-﻿using Painkiller.Training;
+﻿using Painkiller.Models.Training;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,12 +11,12 @@ using System.Windows.Forms;
 
 namespace Painkiller
 {
-    public partial class ExerciseFiltr : Form
+    public partial class ExerciseFiltr : Form, IDialogFilter
     {
         public ExerciseFiltr()
         {
             InitializeComponent();
-            Base.DialogCriteria = "";
+            //AllTrainingTableContext.DialogCriteria = "";
         }
 
         private Legs legs = new Legs();
@@ -36,23 +36,23 @@ namespace Painkiller
 
             if (CBGroup.SelectedIndex == 0)
             {
-                exercises = legs.Exercises();
+                exercises = legs.GetExercises();
             }
             else if (CBGroup.SelectedIndex == 1)
             {
-                exercises = back.Exercises();
+                exercises = back.GetExercises();
             }
             else if (CBGroup.SelectedIndex == 2)
             {
-                exercises = chest.Exercises();
+                exercises = chest.GetExercises();
             }
             else if (CBGroup.SelectedIndex == 3)
             {
-                exercises = arms.Exercises();
+                exercises = arms.GetExercises();
             }
             else if (CBGroup.SelectedIndex == 4)
             {
-                exercises = shoulders.Exercises();
+                exercises = shoulders.GetExercises();
             }
             else
             {
@@ -66,23 +66,17 @@ namespace Painkiller
             }
         }
 
-        private void CBGroup_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CBExercise.Text = "";
-            CBExercise.Items.Clear();
-        }
-
-        private void ExerciseFiltr_FormClosed(object sender, FormClosedEventArgs e)
+        public String GetFilterCriteria()
         {
             String textFilter = "";
 
-            if(selectedExercises.Count != 0)
+            if (selectedExercises.Count != 0)
             {
                 textFilter += $"Вправа = '{selectedExercises[0]}'";
             }
             else
             {
-                return;
+                return textFilter;
             }
 
             for (Int32 i = 1; i < selectedExercises.Count; i++)
@@ -90,7 +84,13 @@ namespace Painkiller
                 textFilter += $" OR Вправа = '{selectedExercises[i]}'";
             }
 
-            Base.DialogCriteria = textFilter;
+            return textFilter;
+        }
+
+        private void CBGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CBExercise.Text = "";
+            CBExercise.Items.Clear();
         }
 
         private void button1_Click(object sender, EventArgs e)

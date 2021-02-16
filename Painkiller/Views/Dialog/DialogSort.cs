@@ -10,47 +10,49 @@ using System.Windows.Forms;
 
 namespace Painkiller
 {
-    public partial class DialogSort : Form
+    public partial class DialogSort : Form/*, IDialogService*/
     {
+        public String DialogCriteria { get; private set; }
+
         public DialogSort()
         {
             InitializeComponent();
-            Base.DialogCriteria = "";
+            DialogCriteria = "";
         }
 
         private void SortFiltrSearch_Click(object sender, EventArgs e)
         {
             if (CBTypeSort.Text == "По групах м'язів")
             {
-                Base.DialogCriteria = "Група_мязів";
+                DialogCriteria = "Група_мязів";
             }
             else if (CBTypeSort.Text == "По видах тренувань")
             {
-                Base.DialogCriteria = "Вид_тренування";
+                DialogCriteria = "Вид_тренування";
             }
             else if (CBTypeSort.Text == "По вправах")
             {
-                Base.DialogCriteria = "Вправа";
+                DialogCriteria = "Вправа";
             }
             else if (CBTypeSort.Text == "По обтяженнях")
             {
-                Base.DialogCriteria = "Обтяження";
+                DialogCriteria = "Обтяження";
             }
             else if(CBTypeSort.Text == "По положеннях тіла")
             {
-                Base.DialogCriteria = "Положення";
+                DialogCriteria = "Положення";
             }
             else if (CBTypeSort.Text == "По max вазі")
             {
-                Base.DialogCriteria = "Max_вага";
+                DialogCriteria = "Max_вага";
             }
             else if (CBTypeSort.Text == "По кількості повторень з max вагою")
             {
-                Base.DialogCriteria = "К_сть_повторень_з_max_вагою";
+                DialogCriteria = "К_сть_повторень_з_max_вагою";
             }
             else if (CBTypeSort.Text == "По кількості загальних підходів")
             {
-                Base.DialogCriteria = "Загальна_к_сть_підходів";
+                DialogCriteria = "Загальна_к_сть_підходів";
             }
 
             Close();
@@ -58,15 +60,24 @@ namespace Painkiller
 
         public void TTrainingSort(String sort, DataGridView dGV, DataView view)
         {
-            if(sort != "")
+            
+
+            dGV.DataSource = view;
+
+            
+        }
+
+        public void Filtering(String DialogCriteria, DataView view)
+        {
+            if (DialogCriteria != "")
             {
                 if (RBGrowth.Checked)
                 {
-                    view.Sort = $"{sort} ASC";
+                    view.Sort = $"{DialogCriteria} ASC";
                 }
                 else if (RBHorning.Checked)
                 {
-                    view.Sort = $"{sort} DESC";
+                    view.Sort = $"{DialogCriteria} DESC";
                 }
                 else
                 {
@@ -75,14 +86,7 @@ namespace Painkiller
             }
             else
             {
-                view.Sort = sort;
-            }
-
-            dGV.DataSource = view;
-
-            for (Int32 i = 0; i < dGV.Rows.Count - 1; i++)//dGv.Rows.Count - 1, оскільки останній рядок самостійно додається
-            {
-                dGV.Rows[i].Cells["N_пп"].Value = i + 1;
+                view.Sort = DialogCriteria;
             }
         }
     }
