@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Painkiller.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,6 @@ namespace Painkiller.PresentationModels
         private RelayCommand enterDataInDatabaseCommand;
         public RelayCommand clearMainTableInDBCommand;
         private DialogSort sortDialog = new DialogSort();
-        private WorkWithFile opFileDB;
         private Notification notification = new Notification();
         private WorkWithDatabase opDatabase;
 
@@ -34,7 +35,13 @@ namespace Painkiller.PresentationModels
                  if (doClearMainTableInDB == DialogResult.Yes)
                  {
                      AddMessage(true, true, notification);
-                     opDatabase.ClearMainTabDB();
+
+                     SqlConnection connect;
+
+                     opDatabase.ConnectDB(out connect);
+                     connect.Open();
+                     opDatabase.ClearMainTabDB(connect);
+                     connect.Close();
                  }
              }));
         }

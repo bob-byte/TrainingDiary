@@ -112,14 +112,13 @@
     </Compile>
     <Compile Include="Models\Training\Leg.cs" />
     <Compile Include="Models\Training\Shoulder.cs" />
-    <Compile Include="Models\WorkWithUnmanagedResources\WorkWithFile.cs" />
     <Compile Include="Views\Dialog\WeightRepsSetsFiltr.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\Dialog\WeightRepsSetsFiltr.Designer.cs">
       <DependentUpon>WeightRepsSetsFiltr.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\WorkWithUnmanagedResources\WorkWithDatabase.cs" />
+    <Compile Include="Models\WorkWithDatabase.cs" />
     <EmbeddedResource Include="Views\Dialog\DialogSort.resx">
       <DependentUpon>DialogSort.cs</DependentUpon>
     </EmbeddedResource>

@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using Painkiller.Models.Training;
 using Painkiller.PresentationModels;
+using System.Threading.Tasks;
 
 namespace Painkiller
 {
@@ -15,7 +16,11 @@ namespace Painkiller
             InitializeComponent();
             mainPresentationModel = new MainPresentationModel(AllTraining, GBTypesTraining, groupBox2, CBGroup, CBExercise, NReps, NSets, NWeight, DUD_UnitMeasure, label5);
 
-            RBStatodynamic.CheckedChanged += (s, e) => mainPresentationModel.ChangeViewWhenSelectedTypeTrainingCommand.Execute(null);
+            RBStatodynamic.CheckedChanged += (s, e) => Task.Factory.StartNew(() =>
+            {
+                mainPresentationModel.ChangeViewWhenSelectedTypeTrainingCommand.Execute(null);
+            }, TaskCreationOptions.AttachedToParent);
+
             RBHipertrophy.CheckedChanged += (s, e) => mainPresentationModel.ChangeViewWhenSelectedTypeTrainingCommand.Execute(null);
             RBStrength.CheckedChanged += (s, e) => mainPresentationModel.ChangeViewWhenSelectedTypeTrainingCommand.Execute(null);
 
